@@ -4,6 +4,10 @@
   width:auto;
 }
 
+#SearchBox{
+  float: right;
+}
+
 /*Cards*/
 .card-img-top {
   width: 100%;

@@ -8,7 +8,7 @@ import AnimalPage from './components/AnimalPage';
 //Esse componente se refere ao conjunto de componentes que constituem a página
 
 ReactDOM.render(
-  <IndexPage />,
+  <AnimalPage />,
   document.getElementById('IndexPageComponent')
 );
 

@@ -1,4 +1,5 @@
 import img from './img/logo.png'
+import NavbarSearchBox from './NavbarSearchBox'
 
 function Navbar() {
     return (
@@ -11,7 +12,7 @@ function Navbar() {
                 </button>
 
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul className="navbar-nav mr-auto mt-2 mt-lg-0 text-capitalize">
+                    <ul className="navbar-nav mr-auto text-capitalize">
                         <li className="nav-item active">
                             <a className="nav-link active" href="template.html">Inicio</a>
                         </li>
@@ -26,6 +27,7 @@ function Navbar() {
                         </li>
                     </ul>
                     {/* Inserir search box aqui */}
+                    <NavbarSearchBox/>
             </div>
             </div>
         </nav>
