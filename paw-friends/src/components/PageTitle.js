@@ -1,4 +1,4 @@
-
+// Componente que recebe um título e renderiza numa linha da página
 function PageTitle(props) {
     return (
         <div class="row d-flex justify-content-center mt-4">

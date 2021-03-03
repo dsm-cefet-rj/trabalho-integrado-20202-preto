@@ -19,7 +19,7 @@ const CardList = [
         CardDescription: 'Descrição 3'
     },
     {
-        CardImg: 'https://i2-prod.mirror.co.uk/incoming/article21142078.ece/ALTERNATES/s615/0_Stray-Cat.jpg',
+        CardImg: 'https://www.petlove.com.br/images/breeds/192401/profile/original/srd-p.jpg?1532539578',
         CardTitle: 'Bituco',
         CardDescription: 'Descrição 4'
     }

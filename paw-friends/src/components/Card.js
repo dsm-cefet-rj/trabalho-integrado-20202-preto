@@ -1,3 +1,5 @@
+//Componente que representa um card da tela principal. 
+//Uma versão simplificada do AnimalCard.js, pra exibição em grid na tela principal.
 
 function Card(props) {
     return (
@@ -10,7 +12,7 @@ function Card(props) {
                     <div className="card-body text-center">
                         <h5 className="card-title">{props.card.CardTitle}</h5>
                         <p className="card-text">{props.card.CardDescription}</p>
-                        <a className="btn btn-outline-dark text-capitalize">Mais informações</a>
+                        <a href="telaAnuncio.html" className="btn btn-outline-dark text-capitalize">Mais informações</a>
                     </div>
                 </div>
             </div>
