@@ -8,6 +8,6 @@ import AnimalCreatePage from './components/AnimalCreatePage';
 //Renderiza o componente IndexPage.js em uma div no index.html
 //Esse componente se refere ao conjunto de componentes que constituem a página
 ReactDOM.render(
-  <IndexPage />,
+  <AnimalCreatePage />,
   document.getElementById('IndexPageComponent')
 );

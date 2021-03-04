@@ -2,7 +2,7 @@
 import React from 'react';
 
 
-function Formulario() {
+function AnimalCreateForm() {
     const controleAnuncio = event =>{
       event.preventDefault();
       alert("Você criou um anúncio")
@@ -10,7 +10,7 @@ function Formulario() {
 
     return (
         <div className="formulario">
-          <form  onSubmit={controleAnuncio}>
+          <form onSubmit={controleAnuncio}>
           <fieldset>
               <label>
 
@@ -67,4 +67,4 @@ function Formulario() {
       )
 }
 
-export default Formulario;
+export default AnimalCreateForm;

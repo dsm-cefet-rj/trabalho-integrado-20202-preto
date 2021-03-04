@@ -1,7 +1,6 @@
 import Navbar from './Navbar'
 import PageTitle from './PageTitle'
-import AnimalCard from './AnimalCard'
-import Formulario from './Formulario'
+import Formulario from './AnimalCreateForm'
 import PageSubtitle from './PageSubtitle';
 
 /* Esse componente é referente a página completa do anuncio de um animal */
