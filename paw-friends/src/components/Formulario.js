@@ -20,7 +20,7 @@ function Formulario() {
 
                   <p>Tipo</p>
                       <select name="tipo">
-                      <option value="">--Escolha o animal correspondente--</option>
+                      <option value="">--Escolha o correspondente--</option>
                       <option value="ave">Ave</option>
                       <option value="cachorro">Cachorro</option>
                       <option value="coelho">Coelho</option>
@@ -37,6 +37,13 @@ function Formulario() {
                   <p>Sexo</p>
                   <input sexo="s"/>
                   <br/>
+                  <p>Temperamento</p>
+                      <select name="temperamento">
+                      <option value="">--Escolha o correspondente--</option>
+                      <option value="manso">Manso</option>
+                      <option value="neutro">Neutro</option>
+                      <option value="agressivo">Agressivo</option>
+                      </select>
                   <p>Estado</p>
                   <input estado="estado"/>
                   <br/>

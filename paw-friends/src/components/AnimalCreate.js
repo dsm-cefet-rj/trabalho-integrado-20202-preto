@@ -2,6 +2,7 @@ import Navbar from './Navbar'
 import PageTitle from './PageTitle'
 import AnimalCard from './AnimalCard'
 import Formulario from './Formulario'
+import PageSubtitle from './PageSubtitle';
 
 /* Esse componente é referente a página completa do anuncio de um animal */
 
@@ -26,7 +27,8 @@ function AnimalCreate() {
     return (
         <>
             <Navbar/>
-            <PageTitle title={"Crie um anúncio"}/>
+            <PageTitle title={"Cadastrar Anúncio"}/>
+            <PageSubtitle subtitle={"Insira os dados do seu pet!"}/>
             <Formulario/>
         </>
     );
