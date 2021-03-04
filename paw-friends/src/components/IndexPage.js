@@ -30,7 +30,7 @@ function IndexPage() {
         <>
             <Navbar/>
             <PageTitle title={"Animais para adoção"}/>
-            <div class="container-fluid container-cards">
+            <div className="container-fluid container-cards">
                 <CardGrid CardList={CardList}/>
             </div>
         </>

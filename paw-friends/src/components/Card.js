@@ -1,4 +1,4 @@
-//Componente que representa um card da tela principal. 
+//Componente que representa um card pequeno da tela principal. 
 //Uma versão simplificada do AnimalCard.js, pra exibição em grid na tela principal.
 
 function Card(props) {
