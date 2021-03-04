@@ -1,14 +1,14 @@
 // Componente que recebe um título e renderiza numa linha da página
 import React from 'react';
 
-function AnimalCreateForm() {
+function AnimalEditForm() {
     const controleAnuncio = event =>{
       event.preventDefault();
-      alert("Você criou um anúncio")
+      alert("Você editou um anúncio")
     }
 
     return (
-        <div className="animalcreateform">
+        <div className="animaleditform">
           <form onSubmit={controleAnuncio}>
           <fieldset>
               <label>
@@ -78,10 +78,13 @@ function AnimalCreateForm() {
                   </p>
               </label>
           </fieldset>
-          <button class="btn btn-outline-dark mt-3 text-capitalize" type="submit">Criar anúncio</button>
+          <div>
+          <button class="btn btn-outline-dark mt-3 text-capitalize" type="submit">Editar anúncio</button>
+          <button class="btn btn-outline-danger mt-3 text-capitalize" type="cancel">Cancelar</button>
+          </div>
           </form>
         </div>
       )
 }
 
-export default AnimalCreateForm;
+export default AnimalEditForm;

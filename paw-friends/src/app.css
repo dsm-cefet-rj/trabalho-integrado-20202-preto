@@ -16,10 +16,19 @@
 }
 
 /*Formulario*/
-.formulario{
+.animalcreateform{
   margin: auto;
   margin-bottom: 40px;
-  width: 60%;
+  width: 64%;
+  border: 2px solid;
+  padding-inline-start: 8px;
+  padding-inline-end: 8px;
+  padding-bottom: 8px;
+}
+.animaleditform{
+  margin: auto;
+  margin-bottom: 40px;
+  width: 64%;
   border: 2px solid;
   padding-inline-start: 8px;
   padding-inline-end: 8px;
