@@ -42,8 +42,9 @@ class UserCards extends Component {
       this.loadData();
     }
   
-    render() {
-      return (
+  render() {
+    return (
+      <div className="container-fluid">
         <div className="clearfix">
           <div className="row">
             {this.state.data.map(data => (
@@ -83,8 +84,9 @@ class UserCards extends Component {
             Previous Messages
           </button>
         </div>
-      );
-    }
+      </div>
+    );
   }
+}
   
   export default UserCards;

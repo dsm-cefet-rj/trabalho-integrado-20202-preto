@@ -6,14 +6,16 @@ import UserCards from './UserCards';
 
 
 
-function Chat() {
+function ChatPage() {
     return (
         <>
             <Navbar/>
             <PageTitle title={"mensagens"}/>
-            <UserCards/>
+            
+                <UserCards/>
+            
         </>
     );
 }
 
-export default Chat;
+export default ChatPage;

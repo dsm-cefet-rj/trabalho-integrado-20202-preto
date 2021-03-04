@@ -1,7 +1,6 @@
 //Componente de Rating de Estrelas do Formulario
 
 import React, { Component } from 'react';
-
 import BeautyStars from 'beauty-stars';
 
 export default class Rating extends Component {
