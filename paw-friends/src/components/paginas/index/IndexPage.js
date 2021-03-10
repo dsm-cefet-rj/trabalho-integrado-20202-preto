@@ -1,6 +1,6 @@
-import Navbar from './Navbar'
+import Navbar from '../../layouts/navbar/Navbar'
 import CardGrid from './CardGrid'
-import PageTitle from './PageTitle'
+import PageTitle from '../../layouts/PageTitle'
 
 const CardList = [
     {

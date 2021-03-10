@@ -1,7 +1,7 @@
 //Chat Page from the app
 
-import Navbar from './Navbar'
-import PageTitle from './PageTitle'
+import Navbar from '../../layouts/navbar/Navbar'
+import PageTitle from '../../layouts/PageTitle'
 import UserCards from './UserCards';
 
 

@@ -1,7 +1,7 @@
-import Navbar from './Navbar'
-import PageTitle from './PageTitle'
-import AnimalEditForm from './AnimalEditForm'
-import PageSubtitle from './PageSubtitle';
+import Navbar from '../../layouts/navbar/Navbar'
+import PageTitle from '../../layouts/PageTitle'
+import AnimalCreateForm from './AnimalCreateForm'
+import PageSubtitle from '../../layouts/PageSubtitle';
 
 /* Esse componente é referente a página completa do anuncio de um animal */
 
@@ -22,15 +22,15 @@ const AnimalData = {
         UserOwner:'root',
     };
 
-function AnimalEditPage() {
+function AnimalCreatePage() {
     return (
         <>
             <Navbar/>
-            <PageTitle title={"Editar Anúncio"}/>
-            <PageSubtitle subtitle={"Edite os dados do seu pet!"}/>
-            <AnimalEditForm/>
+            <PageTitle title={"Cadastrar Anúncio"}/>
+            <PageSubtitle subtitle={"Insira os dados do seu pet!"}/>
+            <AnimalCreateForm/>
         </>
     );
 }
 
-export default AnimalEditPage;
+export default AnimalCreatePage;

@@ -1,7 +1,5 @@
-import Navbar from './Navbar'
-import PageTitle from './PageTitle'
-import Formulario from './AnimalCreateForm'
-import PageSubtitle from './PageSubtitle';
+import Navbar from '../../layouts/navbar/Navbar'
+import AnimalCard from './AnimalCard'
 
 /* Esse componente é referente a página completa do anuncio de um animal */
 
@@ -9,7 +7,7 @@ import PageSubtitle from './PageSubtitle';
 const AnimalData = {
         Img: 'https://i2-prod.mirror.co.uk/incoming/article21142078.ece/ALTERNATES/s615/0_Stray-Cat.jpg',
         Nome: 'Salvador',
-        Idade: 3,
+        Idade: '1 ano',
         Raça: 'Qualquer uma',
         Sexo: 'Macho',
         Temperamento: 'Agitado',
@@ -18,19 +16,19 @@ const AnimalData = {
             PostCity:'Macaé',
             PostState:'Rio de Janeiro'
         },
-        Description: 'Descrição do salvador',
-        UserOwner:'root',
+        Description: 'Quero dar esse gato fofo para adoção pois não tenho recursos financeiros para cuidar dele. Ele é bem agitado, gosta de bater nas pessoas e provavelmente vai acabar com a sua casa. Mas ele é lindo. Olha pra essa cara fofa.',
+        UserOwner:'juninho123',
     };
 
-function AnimalCreate() {
+function AnimalPage() {
     return (
         <>
             <Navbar/>
-            <PageTitle title={"Cadastrar Anúncio"}/>
-            <PageSubtitle subtitle={"Insira os dados do seu pet!"}/>
-            <Formulario/>
+            <div class="container-fluid container-cards">
+                <AnimalCard AnimalData={AnimalData}/>
+            </div>
         </>
     );
 }
 
-export default AnimalCreate;
+export default AnimalPage;

@@ -1,8 +1,6 @@
-//Form Page from the app
-
-import Navbar from './Navbar'
-import PageTitle from './PageTitle'
-import PageSubtitle from './PageSubtitle';
+import Navbar from '../../layouts/navbar/Navbar'
+import PageTitle from '../../layouts/PageTitle'
+import PageSubtitle from '../../layouts/PageSubtitle';
 import ConclusionForm from './ConclusionForm';
 
 

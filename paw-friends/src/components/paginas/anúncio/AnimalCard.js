@@ -1,7 +1,7 @@
 // Referente ao card principal detalhado da tela do anuncio do animal.
 // Recebe um AnimalData, estrutura que representa o conjunto de dados de um anuncio.
 
-import PageTitle from "./PageTitle";
+import PageTitle from "../../layouts/PageTitle";
 
 function AnimalCard(props) {
     return (

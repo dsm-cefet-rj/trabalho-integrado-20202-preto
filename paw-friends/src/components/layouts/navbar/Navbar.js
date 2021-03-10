@@ -1,4 +1,4 @@
-import img from './img/logo.png'
+import img from '../../img/logo.png'
 import NavbarSearchBox from './NavbarSearchBox'
 
 function Navbar() {
