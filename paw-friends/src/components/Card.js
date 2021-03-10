@@ -12,7 +12,7 @@ function Card(props) {
                     <div className="card-body text-center">
                         <h5 className="card-title">{props.card.CardTitle}</h5>
                         <p className="card-text">{props.card.CardDescription}</p>
-                        <a href="telaAnuncio.html" className="btn btn-outline-dark text-capitalize">Mais informações</a>
+                        <a href="/animal" className="btn btn-outline-dark text-capitalize">Mais informações</a>
                     </div>
                 </div>
             </div>

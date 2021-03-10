@@ -7,11 +7,13 @@ import AnimalCreatePage from './components/AnimalCreatePage';
 import ChatPage from './components/ChatPage';
 import ConclusionFormPage from './components/ConclusionFormPage';
 import AnimalEditPage from './components/AnimalEditPage';
+import AnimalEditForm from './components/AnimalEditForm';
+import App from './App.js'
 
 //Renderiza o componente IndexPage.js em uma div no index.html
 //Esse componente se refere ao conjunto de componentes que constituem a página
 
 ReactDOM.render(
-  <AnimalEditPage />,
+  <App />,
   document.getElementById('IndexPageComponent')
 );

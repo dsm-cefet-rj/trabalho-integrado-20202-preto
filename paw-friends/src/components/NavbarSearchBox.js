@@ -4,7 +4,7 @@ function NavbarSearchBox() {
             <div className="form-outline">
                 <input type="search" id="search-box-form" className="form-control" placeholder="Buscar" />
             </div>
-            <button type="button" className="btn btn-primary">
+            <button type="button" className="btn btn-dark">
                 <i className="bi bi-search"/>
             </button>
         </div>

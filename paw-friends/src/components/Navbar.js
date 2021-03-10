@@ -14,19 +14,21 @@ function Navbar() {
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul className="navbar-nav mr-auto text-capitalize">
                         <li className="nav-item active">
-                            <a className="nav-link active" href="template.html">Inicio</a>
+                            <a className="nav-link active" href="/index">Inicio</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="telaPerfil.html">Sua conta</a>
+                            <a className="nav-link" href="/seuPerfil">Sua conta</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="index.html">Seus anúncios</a>
+                            <a className="nav-link" href="/seusAnuncios">Seus anúncios</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="template.html">Sair</a>
+                            <a className="nav-link" href="/criarAnuncio">Criar Anúncio</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="/">Sair</a>
                         </li>
                     </ul>
-                    {/* Inserir search box aqui */}
                     <NavbarSearchBox/>
             </div>
             </div>
