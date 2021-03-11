@@ -25,6 +25,11 @@ function Navbar() {
                                 <a className="nav-link" href="/seuPerfil">Sua conta</a>
                             </li>
                         </Link>
+                        <Link to="/chat">
+                            <li className="nav-item">
+                                <a className="nav-link" href="/suasMensagens">Suas Mensagens</a>
+                            </li>
+                        </Link>
                         <Link to="/index">
                             <li className="nav-item">
                                 <a className="nav-link" href="/seusAnuncios">Seus anúncios</a>
