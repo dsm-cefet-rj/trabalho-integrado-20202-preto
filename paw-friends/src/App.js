@@ -20,6 +20,7 @@ function App() {
                 <Route path="/criarAnuncio" component={AnimalCreatePage}/>
                 <Route path="/chat" component={ChatPage}/>
                 <Route path="/animal" component={AnimalPage}/>
+                <Route path="/adocao" component={ConclusionFormPage}/>
             </Switch>
         </Router>
     );
