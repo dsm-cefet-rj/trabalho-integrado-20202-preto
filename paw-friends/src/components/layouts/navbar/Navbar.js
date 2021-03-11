@@ -20,12 +20,12 @@ function Navbar() {
                                 <a className="nav-link active">Inicio</a>
                             </li>
                         </Link>
-                        <Link to="/seuPerfil">
+                        <Link to="/perfil">
                             <li className="nav-item">
                                 <a className="nav-link" href="/seuPerfil">Sua conta</a>
                             </li>
                         </Link>
-                        <Link to="/seusAnuncios">
+                        <Link to="/index">
                             <li className="nav-item">
                                 <a className="nav-link" href="/seusAnuncios">Seus anúncios</a>
                             </li>
