@@ -5,8 +5,8 @@ import { useState } from 'react'
 import { Link } from "react-router-dom";
 import PageTitle from "../../layouts/PageTitle";
 
-function AnimalCard(props) {
 
+function AnimalCard(props) {
     return (
         <div class="row d-flex justify-content-center mt-4 mb-5">
             <div class="col-lg-6 col-md-8 col-sm-10 col-10">
