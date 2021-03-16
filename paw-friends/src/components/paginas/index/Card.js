@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 //Componente que representa um card pequeno da tela principal. 
 //Uma versão simplificada do AnimalCard.js, pra exibição em grid na tela principal.
 
@@ -12,7 +14,9 @@ function Card(props) {
                     <div className="card-body text-center">
                         <h5 className="card-title">{props.card.CardTitle}</h5>
                         <p className="card-text">{props.card.CardDescription}</p>
-                        <a href="/animal" className="btn btn-outline-dark text-capitalize">Mais informações</a>
+                        <Link to='/animal'>
+                            <button className="btn btn-outline-dark text-capitalize">Mais informações</button>
+                        </Link>
                     </div>
                 </div>
             </div>
