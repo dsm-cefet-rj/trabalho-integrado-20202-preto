@@ -7,7 +7,7 @@ function Navbar() {
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
                 <Link to='/index'>
-                    <a className="navbar-brand"><img src={img} className="img-fluid" alt="logo"/></a>                
+                    <div className="navbar-brand"><img src={img} className="img-fluid" alt="logo"/></div>                
                 </Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
                     aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,22 +19,22 @@ function Navbar() {
                     <ul className="navbar-nav mr-auto text-capitalize">
                         <Link to="/index">
                             <li className="nav-item active">
-                                <a className="nav-link active">Inicio</a>
+                                <a className="nav-link active" href="/#">Inicio</a>
                             </li>
                         </Link>
                         <Link to="/perfil">
                             <li className="nav-item">
-                                <a className="nav-link" href="/seuPerfil">Sua conta</a>
+                                <a className="nav-link" href="/#">Sua conta</a>
                             </li>
                         </Link>
                         <Link to="/chat">
                             <li className="nav-item">
-                                <a className="nav-link" href="/suasMensagens">Suas Mensagens</a>
+                                <a className="nav-link" href="href=/#">Suas Mensagens</a>
                             </li>
                         </Link>
                         <Link to="/index">
                             <li className="nav-item">
-                                <a className="nav-link" href="/seusAnuncios">Seus anúncios</a>
+                                <a className="nav-link" href="href=/#">Seus anúncios</a>
                             </li>
                         </Link>                        
                         <Link to="/criarAnuncio">

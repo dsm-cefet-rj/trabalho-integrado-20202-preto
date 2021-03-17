@@ -16,7 +16,7 @@ function AnimalPage({ anuncio }) {
 }
 
 const mapStateToProps = state => ({
-    anuncio: state.anuncios[state.idAnuncioAtual],
+    anuncio: state.anuncios.anunciosObjs[state.anuncios.anunciosObjs.findIndex(x => x.key === state.anuncios.keyAnuncioAtual)],
 });
 
 export default connect(mapStateToProps)(AnimalPage);

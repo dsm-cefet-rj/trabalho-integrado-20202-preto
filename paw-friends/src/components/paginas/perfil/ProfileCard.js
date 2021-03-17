@@ -5,7 +5,7 @@ function ProfileCard(props) {
         <div class="row d-flex justify-content-center mt-4 mb-5">
             <div class="col-lg-6 col-md-8 col-sm-10 col-10">
                 <div class="card mb-3">
-                    <img class="profile-img card-img-top" src={props.ProfileData.Img} alt="Card image cap"/>
+                    <img class="profile-img card-img-top" src={props.ProfileData.Img} alt="Card cap"/>
                     <div class="card-body">
                             <h5 class="card-title ">Usuario: </h5>
                             <p class="card-text">{props.ProfileData.User}</p>

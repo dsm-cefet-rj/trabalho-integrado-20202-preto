@@ -2,17 +2,18 @@ import Navbar from '../../layouts/navbar/Navbar'
 import Card from './Card'
 import PageTitle from '../../layouts/PageTitle'
 import { connect } from 'react-redux'
-import * as AnuncioActions from '../../../store/actions/anuncio'
+import * as AnuncioActions from '../../../store/actions/anuncios'
+import { bindActionCreators } from 'redux'
 
-function IndexPage({ anuncios , clickMaisInfos }) {
+function IndexPage({ anuncios , clickCardIndex }) {
     return (
         <>
             <Navbar />
             <PageTitle title={"Animais para adoção"} />
             <div className="container-fluid container-cards">
-                <div class="row d-flex justify-content-center mb-5">
+                <div className="row d-flex justify-content-center mb-5">
                     {anuncios.map((anuncio) => {
-                        return <Card anuncio={anuncio} clickMaisInfos={clickMaisInfos}/>;
+                        return <Card key={anuncio.key} anuncio={anuncio} clickMaisInfos={clickCardIndex}/>;
                     })}
                 </div>
             </div>
@@ -21,11 +22,10 @@ function IndexPage({ anuncios , clickMaisInfos }) {
 }
 
 const mapStateToProps = state => ({
-    anuncios: state.anuncios
+    anuncios: state.anuncios.anunciosObjs
 });
 
-const mapDispatchToProps = dispatch => ({
-    clickMaisInfos: (anuncio) => dispatch(AnuncioActions.clickCardIndex(anuncio.id))
-});
+const mapDispatchToProps = dispatch => 
+    bindActionCreators(AnuncioActions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(IndexPage);
