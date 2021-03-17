@@ -1,17 +1,22 @@
 import Navbar from '../../layouts/navbar/Navbar'
 import AnimalCard from './AnimalCard'
+import { connect } from 'react-redux'
 
 /* Esse componente é referente a página completa do anuncio de um animal */
 
-function AnimalPage() {
+function AnimalPage({ anuncio }) {
     return (
         <>
             <Navbar/>
             <div class="container-fluid container-cards">
-                <AnimalCard />
+                <AnimalCard anuncio={anuncio} />
             </div>
         </>
     );
 }
 
-export default AnimalPage;
+const mapStateToProps = state => ({
+    anuncio: state.anuncios[state.idAnuncioAtual],
+});
+
+export default connect(mapStateToProps)(AnimalPage);
