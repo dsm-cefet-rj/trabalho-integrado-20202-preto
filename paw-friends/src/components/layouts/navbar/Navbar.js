@@ -17,33 +17,33 @@ function Navbar() {
 
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul className="navbar-nav mr-auto text-capitalize">
-                        <Link to="/index">
-                            <li className="nav-item active">
-                                <a className="nav-link active" href="/#">Inicio</a>
+                        <Link to="/index" style={{textDecoration: 'none'}} >
+                            <li className="nav-item active nav-link">
+                                Inicio
                             </li>
                         </Link>
-                        <Link to="/perfil">
-                            <li className="nav-item">
-                                <a className="nav-link" href="/#">Sua conta</a>
+                        <Link to="/perfil" style={{textDecoration: 'none'}} >
+                            <li className="nav-item nav-link">
+                                Sua conta
                             </li>
                         </Link>
-                        <Link to="/chat">
-                            <li className="nav-item">
-                                <a className="nav-link" href="href=/#">Suas Mensagens</a>
+                        <Link to="/chat" style={{textDecoration: 'none'}} >
+                            <li className="nav-item nav-link">
+                                Suas Mensagens
                             </li>
                         </Link>
-                        <Link to="/index">
-                            <li className="nav-item">
-                                <a className="nav-link" href="href=/#">Seus anúncios</a>
+                        <Link to="/index" style={{textDecoration: 'none'}}>
+                            <li className="nav-item nav-link">
+                                Seus anúncios
                             </li>
                         </Link>                        
-                        <Link to="/criarAnuncio">
-                            <li className="nav-item">
-                                <a className="nav-link" href="/criarAnuncio">Criar Anúncio</a>
+                        <Link to="/criarAnuncio" style={{textDecoration: 'none'}}>
+                            <li className="nav-item nav-link">
+                                Criar Anúncio
                             </li>
                         </Link>
-                        <li className="nav-item">
-                            <a className="nav-link" href="/">Sair</a>
+                        <li className="nav-item nav-link">
+                            Sair
                         </li>
                     </ul>
                     <NavbarSearchBox/>

@@ -8,7 +8,7 @@ function AnimalPage({ anuncio }) {
     return (
         <>
             <Navbar/>
-            <div class="container-fluid container-cards">
+            <div className="container-fluid container-cards">
                 <AnimalCard anuncio={anuncio} />
             </div>
         </>
