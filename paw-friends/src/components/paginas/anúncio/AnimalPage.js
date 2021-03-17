@@ -1,10 +1,11 @@
-import Navbar from '../../layouts/navbar/Navbar'
-import AnimalCard from './AnimalCard'
-import { connect } from 'react-redux'
+import Navbar from '../../layouts/navbar/Navbar';
+import AnimalCard from './AnimalCard';
+import { useSelector } from 'react-redux';
 
 /* Esse componente é referente a página completa do anuncio de um animal */
 
-function AnimalPage({ anuncio }) {
+export default function AnimalPage() {
+    const anuncio = useSelector(state => state.anuncios.anunciosObjs[state.anuncios.anunciosObjs.findIndex(x => x.key === state.anuncios.keyAnuncioAtual)])
     return (
         <>
             <Navbar/>
@@ -14,9 +15,3 @@ function AnimalPage({ anuncio }) {
         </>
     );
 }
-
-const mapStateToProps = state => ({
-    anuncio: state.anuncios.anunciosObjs[state.anuncios.anunciosObjs.findIndex(x => x.key === state.anuncios.keyAnuncioAtual)],
-});
-
-export default connect(mapStateToProps)(AnimalPage);

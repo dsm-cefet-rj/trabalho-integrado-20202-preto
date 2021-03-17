@@ -1,8 +1,8 @@
 const estadoInicial = {
-    keyAnuncioAtual: "999",
+    keyAnuncioAtual: "",
     anunciosObjs: [
         {
-            key:"1",
+            key:"128766",
             img: "https://i2-prod.mirror.co.uk/incoming/article21142078.ece/ALTERNATES/s615/0_Stray-Cat.jpg",
             nome: "Salvador",
             idade: "1",
@@ -19,7 +19,7 @@ const estadoInicial = {
             usuario: "usuarioTeste1"
         },
         {
-            key:"2",
+            key:"219877",
             img: "https://www.petlove.com.br/images/breeds/192471/profile/original/yorkshire-p.jpg?1532539683",
             nome: "Maick",
             idade: "4",
@@ -36,7 +36,7 @@ const estadoInicial = {
             usuario: "usuarioTeste2"
         },
         {
-            key:"999",
+            key:"999123",
             img: "https://i.pinimg.com/originals/0c/e8/cd/0ce8cddcbbb19d11199fa8ae2d81927f.jpg",
             nome: "Laurita",
             idade: "1",
@@ -53,7 +53,7 @@ const estadoInicial = {
             usuario: "usuarioTeste3"
         },
         {
-            key:"4",
+            key:"423655",
             img: "https://www.petlove.com.br/images/breeds/192401/profile/original/srd-p.jpg?1532539578",
             nome: "Bituco",
             idade: "6",
@@ -73,10 +73,8 @@ const estadoInicial = {
 }
 
 export default function anuncios(state = estadoInicial, action) {
-    console.log(action);
-
     if (action.type === 'CLICK_CARD_INDEX') {
-        console.log(state.keyAnuncioAtual)
+        console.log(action);
         return {
             ...state,
             keyAnuncioAtual: action.keyAnuncio,
