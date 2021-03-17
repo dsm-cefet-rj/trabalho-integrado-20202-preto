@@ -10,7 +10,7 @@ function ProfileCreatePage() {
         <>
             <Navbar/>
             <PageTitle title={"Criar Conta"}/>
-            <PageSubtitle subtitle={"Cria seu perfil no nosso site!"}/>
+            <PageSubtitle subtitle={"Crie seu perfil!"}/>
             <ProfileCreateForm/>
         </>
     );

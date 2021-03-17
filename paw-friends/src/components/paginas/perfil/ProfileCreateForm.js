@@ -1,10 +1,20 @@
 // Componente que recebe um título e renderiza numa linha da página
-import React from 'react';
+import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
+// import useForm from 'react-hook-form'; //
 
-function AnimalCreateForm() {
-    const controleAnuncio = event =>{
+
+function ProfileCreateForm() {
+    
+/*    const PerfilCriado = event =>{
       event.preventDefault();
       alert("Você criou sua conta!")
+    }
+*/
+
+    function PerfilCriado(event){
+        event.preventDefault();
+        alert("Você criou sua conta!")
     }
 
     return (
@@ -12,7 +22,7 @@ function AnimalCreateForm() {
             <div className="col-lg-4 col-md-8 col-sm-8 col-10">
                 <div class="card">
                     <div class="card-body">
-                        <form onSubmit={controleAnuncio}>
+                        <form onSubmit={PerfilCriado}>
                             <div class="form-group">
                                 <label for="InputName">Nome</label>
                                 <input type="text" class="form-control" placeholder="Nome"/>
@@ -68,7 +78,10 @@ function AnimalCreateForm() {
                                 <div class="invalid-feedback">Arquivo não válido</div>
                             </div>
 
-                            <button type="submit" className="btn btn-outline-dark mt-3 text-capitalize">Criar perfil</button>
+                            <button type="submit" className="button-line btn btn-outline-dark mt-3 text-capitalize">Criar perfil</button>
+                            <Link to="/index"> 
+                                <button type="button" className="button-line btn btn-outline-danger mt-3 text-capitalize">Cancelar</button> 
+                            </Link>
                         </form>
                     </div>
                 </div>
