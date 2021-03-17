@@ -1,26 +1,9 @@
 import { useState } from 'react'
 import { Link } from "react-router-dom";
 import PageTitle from "../../layouts/PageTitle";
+import { connect } from 'react-redux'
 
-function AnimalCard() {
-    const [anuncio, setAnuncio] = useState(
-        {
-            "img": "https://i2-prod.mirror.co.uk/incoming/article21142078.ece/ALTERNATES/s615/0_Stray-Cat.jpg",
-            "nome": "Salvador",
-            "idade": "1",
-            "raça": "Spitz",
-            "sexo": "Macho",
-            "temperamento": "Agitado",
-            "post": {
-                "dataPost": "12/10/2020",
-                "cidadePost": "Macaé",
-                "estadoPost": "Rio de Janeiro"
-            },
-            "descricao": "Quero dar esse gato fofo para adoção pois não tenho recursos financeiros para cuidar dele. Ele é bem agitado, gosta de bater nas pessoas e provavelmente vai acabar com a sua casa. Mas ele é lindo. Olha pra essa cara fofa.",
-            "cardDescricao": "Descrição 1",
-            "usuario": "juninho123"
-        }
-    )
+function AnimalCard({ anuncio }) {
     return (
         <div class="row d-flex justify-content-center mt-4 mb-5">
             <div class="col-lg-6 col-md-8 col-sm-10 col-10">
@@ -58,4 +41,4 @@ function AnimalCard() {
     )
 };
 
-export default AnimalCard;
+export default connect(state => ({ anuncio: state }))(AnimalCard);
