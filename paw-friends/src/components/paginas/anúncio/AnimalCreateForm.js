@@ -2,7 +2,7 @@
 import React from 'react';
 
 function AnimalCreateForm() {
-    const controleAnuncio = event =>{
+    const submitFormAnuncio = event =>{
       event.preventDefault();
       alert("Você criou um anúncio")
     }
@@ -12,7 +12,7 @@ function AnimalCreateForm() {
             <div className="col-lg-4 col-md-8 col-sm-8 col-10">
                 <div class="card">
                     <div class="card-body">
-                        <form onSubmit={controleAnuncio}>
+                        <form onSubmit={submitFormAnuncio}>
                             <div class="form-group">
                                 <label for="InputName">Nome do Animal</label>
                                 <input type="text" class="form-control" placeholder="Nome do Animal"/>
