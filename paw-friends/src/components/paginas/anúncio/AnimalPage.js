@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 /* Esse componente é referente a página completa do anuncio de um animal */
 
 export default function AnimalPage() {
-    const anuncio = useSelector(state => state.anuncios.anunciosObjs[state.anuncios.anunciosObjs.findIndex(x => x.key === state.anuncios.keyAnuncioAtual)])
+    const anuncio = useSelector(state => state.anuncios.anunciosObjs.find((x) => x.key === state.anuncios.keyAnuncioAtual));
     return (
         <>
             <Navbar/>
