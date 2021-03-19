@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
-const initialAnuncios = [];
+const initialAnuncios = {anunciosObjs:[]};
 
 export const fetchAnuncios = createAsyncThunk('anuncios/fetchAnuncio',
     async () => {
@@ -9,7 +9,6 @@ export const fetchAnuncios = createAsyncThunk('anuncios/fetchAnuncio',
 
 
 function fullfillAnunciosReducer(initialState, anunciosFetched) {
-    //initialState.anuncios.push(anunciosFetched);
     return anunciosFetched;
 }
 
