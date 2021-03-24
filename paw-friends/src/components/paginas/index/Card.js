@@ -12,7 +12,7 @@ function Card(props) {
                     <div className="card-body text-center">
                         <h5 className="card-title">{props.anuncio.nome}</h5>
                         <p className="card-text">{props.anuncio.cardDescricao}</p>
-                        <CardButton keyAnuncio={props.anuncio.key}/>
+                        <CardButton id={props.anuncio.id}/>
                     </div>
                 </div>
             </div>

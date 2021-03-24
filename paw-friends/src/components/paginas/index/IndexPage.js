@@ -2,14 +2,15 @@ import Navbar from '../../layouts/navbar/Navbar'
 import Card from './Card'
 import PageTitle from '../../layouts/PageTitle'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchAnuncios } from '../../../store/reducers/anunciosReducer';
+import { fetchAnuncios, selectAllAnuncios } from '../../../store/reducers/anunciosReducer';
 import React, { useEffect } from 'react'
 
 export default function IndexPage() {
-    const anuncios = useSelector(state => state.anuncios);
+    const anuncios = useSelector(selectAllAnuncios);
+    //console.log(anuncios)
     const dispatch = useDispatch();
-    const status = anuncios.status;
-    const error = anuncios.error;
+    const status = useSelector(state => state.anuncios.status);
+    const error = useSelector(state => state.anuncios.error);
     var pageTitle = '';
     let anunciosRow = null;
 
@@ -23,8 +24,8 @@ export default function IndexPage() {
     //Gerencia status
     if(status === 'loaded'){
         pageTitle = 'Animais para adoção';
-        anunciosRow = anuncios.anunciosObjs.map((anuncio) => {
-            return <Card key={anuncio.key} anuncio={anuncio}/>;
+        anunciosRow = anuncios.map((anuncio) => {
+            return <Card id={anuncio.id} anuncio={anuncio}/>;
         });
     }
     else if(status === 'loading'){

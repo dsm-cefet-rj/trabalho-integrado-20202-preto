@@ -30,6 +30,9 @@ function AnimalCard(props) {
                                 <Link to='/privateChat'>
                                     <button className="btn btn-outline-dark btn-adocao">Adotar</button>
                                 </Link>
+                                <Link to='/editarAnuncio'>
+                                    <button className="btn btn-outline-dark btn-adocao">Editar</button>
+                                </Link>
                             </div>
                         </div>
                     </div>

@@ -1,11 +1,16 @@
 import Navbar from '../../layouts/navbar/Navbar';
 import AnimalCard from './AnimalCard';
-import { useSelector } from 'react-redux';
-
-/* Esse componente é referente a página completa do anuncio de um animal */
-
+import { useParams, useHistory } from "react-router-dom";
+import {useDispatch, useSelector} from 'react-redux';
+import { selectAnunciosById } from '../../../store/reducers/anunciosReducer';
+   
 export default function AnimalPage() {
-    const anuncio = useSelector(state => state.anuncios.anunciosObjs.find((x) => x.key === state.anuncios.keyAnuncioAtual));
+    const history = useHistory();
+    const dispatch = useDispatch()
+    let { id } = useParams();
+    id = parseInt(id);
+
+    const anuncio = useSelector(state => selectAnunciosById(state, id));
     return (
         <>
             <Navbar/>

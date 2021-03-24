@@ -1,16 +1,19 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, createEntityAdapter } from '@reduxjs/toolkit'
+import {httpDelete, httpGet, httpPut, httpPost} from '../utils'
 
-const initialAnuncios = {
+//entity adapter
+const anunciosAdapter = createEntityAdapter();
+
+//estado inicial dos anuncios
+const initialAnuncios = anunciosAdapter.getInitialState({
     status: 'not_loaded',
-    anunciosObjs:[],
     error: null
-};
+});
 
-export const fetchAnuncios = createAsyncThunk('anuncios/fetchAnuncio',
-    async () => {
-        return await (await fetch('http://localhost:8000/anuncios')).json();
-    });
-
+//pega dados com thunk
+export const fetchAnuncios = createAsyncThunk('anuncios/fetchAnuncios', async () => {
+    return await httpGet(`http://localhost:8000/anuncios`);
+});
 
 function fullfillAnunciosReducer(anunciosState, anunciosFetched) {
     anunciosFetched.status = 'loaded';
@@ -24,13 +27,22 @@ export const anunciosSlice = createSlice({
         setKeyAnuncioAtual: (state, action) => ({ ...state, keyAnuncioAtual: action.payload }),
     },
     extraReducers: {
-        [fetchAnuncios.fulfilled]: (state, action) => fullfillAnunciosReducer(state, action.payload),
         [fetchAnuncios.pending]: (state, action) => {state.status = 'loading'},
+        [fetchAnuncios.fulfilled]: (state, action) => {
+            state.status = 'loaded';
+            anunciosAdapter.setAll(state, action.payload);
+        }, 
         [fetchAnuncios.rejected]: (state, action) => {state.status = 'failed'; state.error = action.error.message},
         
     }
 })
 
-export const { setKeyAnuncioAtual } = anunciosSlice.actions
+export const { setKeyAnuncioAtual } = anunciosSlice.actions;
 
-export default anunciosSlice.reducer
+export const {
+    selectAll: selectAllAnuncios,
+    selectById: selectAnunciosById,
+    selectIds: selectAnunciosIds
+} = anunciosAdapter.getSelectors(state => state.anuncios);
+
+export default anunciosSlice.reducer;

@@ -1,21 +1,24 @@
 // Componente que recebe um título e renderiza numa linha da página
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams, useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
 
 function AnimalCreateForm() {
-    const submitFormAnuncio = event =>{
-      event.preventDefault();
-      alert("Você criou um anúncio")
-    }
+    const anuncios = useSelector(state => state.anuncios);
+    const animal = anuncios.anunciosObjs[anuncios.keyAnuncioAtual];
+    const history = useHistory();
+    console.log(history);
+    const dispatch = useDispatch();
 
     return (
         <div className="row d-flex justify-content-center mt-4 mb-5">
             <div className="col-lg-4 col-md-8 col-sm-8 col-10">
                 <div class="card">
                     <div class="card-body">
-                        <form onSubmit={submitFormAnuncio}>
+                        <form>
                             <div class="form-group">
                                 <label for="InputName">Nome do Animal</label>
-                                <input type="text" class="form-control" placeholder="Nome do Animal"/>
+                                <input type="text" class="form-control" placeholder="Nome do Animal"></input>
                             </div>
 
                             <div class="form-group mt-2">
@@ -32,12 +35,12 @@ function AnimalCreateForm() {
 
                             <div class="form-group mt-2">
                                 <label for="InputRace">Raça</label>
-                                <input type="text" class="form-control" placeholder="Raça"/>
+                                <input type="text" class="form-control" placeholder="Raça"></input>
                             </div>
         
                             <div class="form-group mt-2">
                                 <label for="InputAge">Idade</label>
-                                <input type="number" class="form-control" placeholder="Idade"/>
+                                <input type="number" class="form-control" placeholder="Idade"></input>
                             </div>
 
                             <div class="form-group mt-2">
@@ -53,10 +56,9 @@ function AnimalCreateForm() {
                                 <textarea class="form-control" rows="3"></textarea>
                             </div>
 
-                            <div class="image-file mt-2">
-                                <label class="custom-file-label">Foto</label>
-                                <input type="file" class="custom-file-input"/>
-                                <div class="invalid-feedback">Arquivo não válido</div>
+                            <div class="form-group mt-2">
+                                <label class="custom-file-label">URL Foto</label>
+                                <input type="text" class="form-control" placeholder="URL"></input>
                             </div>
 
                             <button type="submit" className="btn btn-outline-dark mt-3 text-capitalize">Criar anúncio</button>
