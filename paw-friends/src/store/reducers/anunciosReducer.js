@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 const initialAnuncios = {
-    status: 'not-loaded',
+    status: 'not_loaded',
     anunciosObjs:[],
     error: null
 };
