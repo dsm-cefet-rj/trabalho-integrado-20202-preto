@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux'
 
 export default function IndexPage() {
     const anuncios = useSelector(state => state.anuncios);
-    console.log(anuncios);
     return (
         <>
             <Navbar />

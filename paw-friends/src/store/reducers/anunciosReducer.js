@@ -1,6 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
-const initialAnuncios = {anunciosObjs:[]};
+const initialAnuncios = {
+    status: 'not-loaded',
+    anunciosObjs:[],
+    error: null
+};
 
 export const fetchAnuncios = createAsyncThunk('anuncios/fetchAnuncio',
     async () => {
@@ -8,9 +12,10 @@ export const fetchAnuncios = createAsyncThunk('anuncios/fetchAnuncio',
     });
 
 
-function fullfillAnunciosReducer(initialState, anunciosFetched) {
+function fullfillAnunciosReducer(anunciosState, anunciosFetched) {
+    anunciosFetched.status = 'loaded';
     return anunciosFetched;
-}
+};
 
 export const anunciosSlice = createSlice({
     name: 'anuncios',
@@ -20,6 +25,9 @@ export const anunciosSlice = createSlice({
     },
     extraReducers: {
         [fetchAnuncios.fulfilled]: (state, action) => fullfillAnunciosReducer(state, action.payload),
+        [fetchAnuncios.pending]: (state, action) => {state.status = 'loading'},
+        [fetchAnuncios.rejected]: (state, action) => {state.status = 'failed'; state.error = action.error.message},
+        
     }
 })
 
