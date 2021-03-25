@@ -2,7 +2,7 @@ import Navbar from '../../layouts/navbar/Navbar'
 import Card from './Card'
 import PageTitle from '../../layouts/PageTitle'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchAnuncios, selectAllAnuncios } from '../../../store/reducers/anunciosReducer';
+import { fetchAnuncios, selectAllAnuncios } from '../../../store/reducers/anunciosReducer'
 import React, { useEffect } from 'react'
 
 export default function IndexPage() {

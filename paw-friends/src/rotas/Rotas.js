@@ -13,7 +13,7 @@ function Rotas() {
             <Switch>
                 <Route path="/" exact component={IndexPage}/>
                 <Route path="/index" component={IndexPage}/>
-                <Route path="/editarAnuncio" component={AnimalFormPage}/>
+                <Route path="/editarAnuncio/:id" component={() => <AnimalFormPage type='edit'/>}/>
                 <Route path="/criarAnuncio" component={AnimalFormPage}/>
                 <Route path="/chat" component={ChatCardsPage}/>
                 <Route path="/animal/:id" component={AnimalPage}/>
