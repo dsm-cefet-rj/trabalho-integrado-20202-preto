@@ -14,7 +14,7 @@ function Rotas() {
                 <Route path="/" exact component={IndexPage}/>
                 <Route path="/index" component={IndexPage}/>
                 <Route path="/editarAnuncio/:id" component={() => <AnimalFormPage type='edit'/>}/>
-                <Route path="/criarAnuncio" component={AnimalFormPage}/>
+                <Route path="/criarAnuncio" component={() => <AnimalFormPage type='create' />}/>
                 <Route path="/chat" component={ChatCardsPage}/>
                 <Route path="/animal/:id" component={AnimalPage}/>
                 <Route path="/adocao" component={ConclusionFormPage}/>

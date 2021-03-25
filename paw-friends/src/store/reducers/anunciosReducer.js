@@ -12,27 +12,22 @@ const initialAnuncios = anunciosAdapter.getInitialState({
     error: null
 });
 
-//funções crud
+//funções crud para o entity adapter
 export const fetchAnuncios = createAsyncThunk('anuncios/fetchAnuncios', async () => {
     return await httpGet(`${baseUrl}`);
 });
 
-function fullfillAnunciosReducer(anunciosState, anunciosFetched) {
-    anunciosFetched.status = 'loaded';
-    return anunciosFetched;
-};
-
 export const deleteAnunciosServer = createAsyncThunk('anuncios/deleteAnunciosServer', async (id) => {
-    await httpDelete(`${baseUrl}/anuncios/${id}`);
+    await httpDelete(`${baseUrl}/${id}`);
     return id;
 });
 
 export const addAnunciosServer = createAsyncThunk('anuncios/addAnunciosServer', async (anuncio) => {
-    return await httpPost(`${baseUrl}/anuncios`, anuncio);
+    return await httpPost(`${baseUrl}/`, anuncio);
 });
 
 export const updateAnunciosServer = createAsyncThunk('anuncios/updateAnunciosServer', async (anuncio) => {
-    return await httpPut(`${baseUrl}/anuncios/${anuncio.id}`, anuncio);
+    return await httpPut(`${baseUrl}/${anuncio.id}`, anuncio);
 });
 
 export const anunciosSlice = createSlice({
@@ -48,12 +43,16 @@ export const anunciosSlice = createSlice({
             anunciosAdapter.setAll(state, action.payload);
         }, 
         [fetchAnuncios.rejected]: (state, action) => {state.status = 'failed'; state.error = action.error.message},
+
         [deleteAnunciosServer.pending]: (state, action) => {state.status = 'loading'},
         [deleteAnunciosServer.fulfilled]: (state, action) => {state.status = 'deleted'; anunciosAdapter.removeOne(state, action.payload);},
+
         [addAnunciosServer.pending]: (state, action) => {state.status = 'loading'},
         [addAnunciosServer.fulfilled]: (state, action) => {state.status = 'saved'; anunciosAdapter.addOne(state, action.payload);},
+
         [updateAnunciosServer.pending]: (state, action) => {state.status = 'loading'},
         [updateAnunciosServer.fulfilled]: (state, action) => {state.status = 'saved'; anunciosAdapter.upsertOne(state, action.payload);},
+        [updateAnunciosServer.rejected]: (state, action) => {state.status = 'failed'; state.error = action.error.message},
     }
 })
 

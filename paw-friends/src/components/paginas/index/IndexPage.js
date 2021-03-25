@@ -16,7 +16,7 @@ export default function IndexPage() {
 
     //Fetch
     useEffect(() => {
-        if(status === 'not_loaded'){
+        if(status === 'not_loaded' | status === 'saved'){
             dispatch(fetchAnuncios());
         }
     }, [status, dispatch])
