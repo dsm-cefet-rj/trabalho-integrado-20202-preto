@@ -56,62 +56,62 @@ function AnimalForm(props) {
                             <div className="form-group">
                                 <label for="InputName">Nome do Animal</label>
                                 <input type="text" className="form-control" placeholder="Nome do Animal" name="nome" defaultValue={anuncio.nome} ref={register}></input>
-                                <div className="alert alert-danger">{errors.nome?.message}</div>
+                                <div style={{color: "red"}}>{errors.nome?.message}</div>
                             </div>
 
                             <div class="form-group">
                                 <label for="InputType">Tipo do Animal</label>
                                 <input type="text" class="form-control" placeholder="Tipo" name="tipo" defaultValue={anuncio.tipo} ref={register}></input>
-                                <div className="alert alert-danger">{errors.tipo?.message}</div>
+                                <div style={{color: "red"}}>{errors.tipo?.message}</div>
                             </div>
 
 
                             <div class="form-group mt-2">
                                 <label for="InputRace">Raça</label>
                                 <input type="text" class="form-control" placeholder="Raça" name="raça" defaultValue={anuncio.raça} ref={register}></input>
-                                <div className="alert alert-danger">{errors.raça?.message}</div>
+                                <div style={{color: "red"}}>{errors.raça?.message}</div>
                             </div>
         
                             <div class="form-group mt-2">
                                 <label for="InputAge">Idade</label>
                                 <input type="number" class="form-control" placeholder="Idade" name="idade" defaultValue={anuncio.idade} ref={register}></input>
-                                <div className="alert alert-danger">{errors.idade?.message}</div>
+                                <div style={{color: "red"}}>{errors.idade?.message}</div>
                             </div>
 
                             <div class="form-group mt-2">
                                 <label for="sexoAnimal">Sexo</label>
                                 <input type="text" class="form-control" placeholder="Sexo" name="sexo" defaultValue={anuncio.sexo} ref={register}></input>
-                                <div className="alert alert-danger">{errors.sexo?.message}</div>
+                                <div style={{color: "red"}}>{errors.sexo?.message}</div>
                             </div>
 
                             <div class="form-group mt-2">
                                 <label for="temperamento">Temperamento</label>
                                 <input class="form-control" name="temperamento" placeholder="Temperamento" defaultValue={anuncio.temperamento} ref={register}></input>
-                                <div className="alert alert-danger">{errors.temperamento?.message}</div>
+                                <div style={{color: "red"}}>{errors.temperamento?.message}</div>
                             </div>
 
                             <div class="form-group mt-2">
                                 <label for="temperamento">Descrição no Card</label>
                                 <input class="form-control" name="cardDescricao" placeholder="Descrição no Card" defaultValue={anuncio.cardDescricao} ref={register}></input>
-                                <div className="alert alert-danger">{errors.cardDescricao?.message}</div>
+                                <div style={{color: "red"}}>{errors.cardDescricao?.message}</div>
                             </div>
 
                             <div class="form-group mt-2">
                                 <label for="InputDescription">Descrição</label>
                                 <textarea class="form-control" rows="3" name="descricao" placeholder="Descrição" defaultValue={anuncio.descricao} ref={register}></textarea>
-                                <div className="alert alert-danger">{errors.descricao?.message}</div>
+                                <div style={{color: "red"}}>{errors.descricao?.message}</div>
                             </div>
 
                             <div class="form-group mt-2">
                                 <label class="custom-file-label">URL Foto</label>
                                 <input type="text" class="form-control" placeholder="URL" name="img" defaultValue={anuncio.img} ref={register}></input>
-                                <div className="alert alert-danger">{errors.img?.message}</div>
+                                <div style={{color: "red"}}>{errors.img?.message}</div>
                             </div>
 
                             <div class="form-group mt-2">
                                 <label for="usuario">Usuario</label>
                                 <input type="text" class="form-control" placeholder="Usuario" name="usuario" defaultValue={anuncio.usuario} ref={register}></input>
-                                <div className="alert alert-danger">{errors.usuario?.message}</div>
+                                <div style={{color: "red"}}>{errors.usuario?.message}</div>
                             </div>
 
                             <button type="submit" className="btn btn-outline-dark mt-3 text-capitalize">{buttonMessage}</button>
