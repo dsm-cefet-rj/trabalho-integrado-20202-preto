@@ -18,7 +18,7 @@ function AnimalForm(props) {
         resolver:yupResolver(animalSchema)
     });
     
-    const [anuncio, setAnuncio] = useState(
+    const [anuncio] = useState(
         id ? anuncioById ?? animalSchema.cast({}) : animalSchema.cast({}));
 
     const [actionType, ] = useState(id ? anuncioById 
@@ -27,10 +27,13 @@ function AnimalForm(props) {
         : 'anuncios/addAnuncio'
         );
 
+    
+
     const onSubmit = (anuncio) => {
+        let dataAtual = new Date();
+        anuncio.dataAnuncio = dataAtual.toString();
+
         if(actionType === 'anuncios/addAnuncio'){
-            let dataAtual = new Date();
-            anuncio.dataAnuncio = dataAtual.toString();
             dispatch(addAnunciosServer(anuncio));
             history.push('/index');
         }else{

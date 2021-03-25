@@ -3,7 +3,7 @@ import AnimalCard from './AnimalCard';
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAnuncios, selectAnunciosById } from '../../../store/reducers/anunciosReducer';
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
    
 export default function AnimalPage() {
     const status = useSelector(state => state.anuncios.status);
@@ -11,18 +11,19 @@ export default function AnimalPage() {
     let { id } = useParams();
     id = parseInt(id);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if(status === 'not_loaded'){
             dispatch(fetchAnuncios());
         }
     }, [status, dispatch]);
 
     const anuncio = useSelector(state => selectAnunciosById(state, id));
+
     return (
         <>
             <Navbar/>
             <div className="container-fluid container-cards">
-                <AnimalCard anuncio={anuncio} />
+                <AnimalCard anuncio={anuncio}/>
             </div>
         </>
     );

@@ -10,7 +10,7 @@ export let animalSchema = object().shape(
         tipo: string().required().max(30),
         raça: string().required().max(30),
         sexo: string().required().max(5),
-        idade: number().required().max(2),
+        idade: number().required().max(20),
         descricao: string().required().max(300),
         img: string().required().max(150),
         temperamento: string().required().max(30),
