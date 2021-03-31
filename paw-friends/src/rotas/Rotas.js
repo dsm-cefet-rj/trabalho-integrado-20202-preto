@@ -6,6 +6,7 @@ import ConclusionFormPage from '../components/paginas/adoção/ConclusionFormPag
 import AnimalFormPage from '../components/paginas/anúncio/AnimalFormPage';
 import ProfilePage from '../components/paginas/perfil/ProfilePage';
 import PrivateChatPage from '../components/paginas/chat/PrivateChatPage';
+import ProfileCreatePage from '../components/paginas/perfil/ProfileCreatePage';
 
 function Rotas() {
     return(
@@ -20,6 +21,7 @@ function Rotas() {
                 <Route path="/adocao" component={ConclusionFormPage}/>
                 <Route path="/perfil" component={ProfilePage}/>
                 <Route path="/privateChat" component={PrivateChatPage}/>
+                <Route path="/criarPerfil" component={ProfileCreatePage}/>
             </Switch>
         </Router>
     );
