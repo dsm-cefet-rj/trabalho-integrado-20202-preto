@@ -1,12 +1,13 @@
 // Componente que recebe um título e renderiza numa linha da página
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 // import useForm from 'react-hook-form'; //
 
 
-function ProfileCreateForm() {
+function ProfileCreateForm(props) {
 
     const [profile, setProfile] = useState({});
+    const history = useHistory();
 
     function handleInputChange(e){
         setProfile ({...profile, [e.target.name]: e.target.value})            
@@ -14,8 +15,11 @@ function ProfileCreateForm() {
 
     function PerfilCriado(event){
         event.preventDefault();
+        props.dispatch({type:'add_profile', payload: profile})
+
         alert("Você criou sua conta!")
         console.log(profile);
+        history.push('/perfil');
     }
 
     return (

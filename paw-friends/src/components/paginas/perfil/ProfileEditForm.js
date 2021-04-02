@@ -1,22 +1,33 @@
 // Componente que recebe um título e renderiza numa linha da página
 import React, {useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import {ProfileData} from './ProfilePage';
 // import useForm from 'react-hook-form'; //
 
 
-function ProfileEditForm() {
+function ProfileEditForm(props) {
 
     const [profile, setProfile] = useState({});
+
+    const history = useHistory();
 
     function handleInputChange(e){
         setProfile ({...ProfileData, [e.target.name]: e.target.value})            
     }
 
-    function PerfilCriado(event){
+    function PerfilEditado(event){
         event.preventDefault();
+        props.dispatch({type:'update_profile', payload: profile})
         alert("Você editou seu perfil!")
         console.log(ProfileData);
+        history.push('/perfil');
+    }
+
+    function profileDelete(event){
+        event.preventDefault();
+        props.dispatch({type:'delete_profile', payload: profile.id})
+        alert("Você deletou seu perfil!")
+        history.push('/index');
     }
 
     return (
@@ -24,7 +35,7 @@ function ProfileEditForm() {
             <div className="col-lg-4 col-md-8 col-sm-8 col-10">
                 <div class="card">
                     <div class="card-body">
-                        <form onSubmit={PerfilCriado}>
+                        <form onSubmit={PerfilEditado}>
                             <div class="form-group">
                                 <label for="InputName">Nome</label>
                                 <input type="text" name="nome" value={ProfileData.Nome} onChange={handleInputChange} class="form-control" placeholder="Nome"/>
@@ -80,10 +91,11 @@ function ProfileEditForm() {
                                 <div class="invalid-feedback">Arquivo não válido</div>
                             </div>
 
-                            <button type="submit" className="button-line btn btn-outline-dark mt-3 text-capitalize">Criar perfil</button>
+                            <button type="submit" className="button-line btn btn-outline-dark mt-3 text-capitalize">Confirmar edição</button>
                             <Link to="/index"> 
-                                <button type="button" className="button-line btn btn-outline-danger mt-3 text-capitalize">Cancelar</button> 
+                                <button type="button" className="button-line btn btn-outline-secondary mt-3 text-capitalize">Cancelar</button> 
                             </Link>
+                            <button type="button" onClick={profileDelete} className="button-line btn btn-outline-danger mt-3 text-capitalize">Deletar perfil</button> 
                         </form>
                     </div>
                 </div>

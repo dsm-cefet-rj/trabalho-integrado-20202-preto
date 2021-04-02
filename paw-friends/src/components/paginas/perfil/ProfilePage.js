@@ -1,7 +1,8 @@
 import PageTitle from '../../layouts/PageTitle'
 import Navbar from '../../layouts/navbar/Navbar'
 import ProfileCard from './ProfileCard'
-import { useState } from 'react';
+import { useReducer } from 'react';
+import profilesReducer from '../../../store/reducers'
 
 export const ProfileData = {
             Id: "1",
@@ -19,14 +20,14 @@ export const ProfileData = {
 
 
 function ProfilePage() {
-    const [profile, setProfile] = useState({}) 
-    
+    const [profiles, dispatch] = useReducer(profilesReducer, ProfileData);
+
     return(
         <>
             <Navbar/>
             <PageTitle title={"Editar Perfil"}/>
             <div className="container-fluid container-cards">
-                <ProfileCard ProfileData={ProfileData}/>
+                <ProfileCard ProfileData={ProfileData} dispatch={dispatch}/>
             </div> 
         </>
     );
