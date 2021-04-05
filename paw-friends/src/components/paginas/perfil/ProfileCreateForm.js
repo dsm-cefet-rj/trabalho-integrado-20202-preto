@@ -1,5 +1,6 @@
 // Componente que recebe um título e renderiza numa linha da página
 import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
 import {Link, useHistory} from 'react-router-dom';
 // import useForm from 'react-hook-form'; //
 
@@ -9,13 +10,15 @@ function ProfileCreateForm(props) {
     const [profile, setProfile] = useState({});
     const history = useHistory();
 
+    const dispatch = useDispatch();
+
     function handleInputChange(e){
         setProfile ({...profile, [e.target.name]: e.target.value})            
     }
 
     function PerfilCriado(event){
         event.preventDefault();
-        props.dispatch({type:'add_profile', payload: profile})
+        dispatch({type:'add_profile', payload: profile})
 
         alert("Você criou sua conta!")
         console.log(profile);
@@ -79,7 +82,7 @@ function ProfileCreateForm(props) {
 
                             <div class="image-file mt-2">
                                 <label class="custom-file-label">Foto</label>
-                                <input type="file" class="custom-file-input"/>
+                                <input type="file" value={profile.Img} onChange={handleInputChange} class="custom-file-input"/> 
                                 <div class="invalid-feedback">Arquivo não válido</div>
                             </div>
 
