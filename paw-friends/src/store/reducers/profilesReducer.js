@@ -1,3 +1,5 @@
+import {createSlice} from '@reduxjs/toolkit';
+
 
 const initialProfileData = [{
     Id: "1",
@@ -29,24 +31,33 @@ const initialProfileData = [{
 }
 ];
 
-export default function profilesReducer(profiles = initialProfileData , action){
-    switch(action.type){
-        case 'add_profile':
-            let proxId = 1 + profiles.map(prof => prof.Id).reduce((x,y)=> Math.max(x,y));
-            return profiles.concat ([{...action.payload, id:proxId}]);
-
-        case 'update_profile':
-            let index = profiles.map(prof => prof.Id).indexOf(action.payload.Id);
-            let profilesUpdated = profiles.slice();
-            profilesUpdated.splice(index, 1, action.payload);
-            return profilesUpdated;
-
-        case 'delete_profile':
-            return profiles.filter((prof) => prof.Id !== action.payload);
-
-        default:
-            return profiles;
-
-    }
-
+function addProfileReducer(profiles, profile){
+    let proxId = 1 + profiles.map(prof => prof.Id).reduce((x,y)=> Math.max(x,y));
+    return profiles.concat ([{...profile, id:proxId}]);
 }
+
+function updateProfileReducer(profiles, profile){
+    let index = profiles.map(prof => prof.Id).indexOf(profile.Id);
+    profiles.splice(index, 1, profile);
+    return profiles;
+}
+
+function deleteProfileReducer(profiles, Id){
+    return profiles.filter((prof) => prof.Id !== Id);
+}
+
+
+export const profilesSlice = createSlice({
+    name: 'profiles',
+    initialState: initialProfileData,
+    reducers: {
+        addProfile: (state, action) => addProfileReducer(state, action.payload) ,
+        
+        updateProfile:(state, action) => updateProfileReducer(state, action.payload) ,
+
+        deleteProfile:(state, action) => deleteProfileReducer(state, action.payload) ,
+    }
+})
+
+export const {addProfile, updateProfile, deleteProfile} = profilesSlice.actions
+export default profilesSlice.reducer

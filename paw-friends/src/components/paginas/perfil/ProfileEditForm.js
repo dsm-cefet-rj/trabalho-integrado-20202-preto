@@ -2,6 +2,8 @@
 import React, {useState} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
+import {deleteProfile, updateProfile} from '../../../store/reducers/profilesReducer'
+
 // import useForm from 'react-hook-form'; //
 
 
@@ -20,7 +22,7 @@ function ProfileEditForm(props) {
 
     function PerfilEditado(event){
         event.preventDefault();
-        dispatch({type:'update_profile', payload: profile})
+        dispatch(updateProfile(profile))
         alert("Você editou seu perfil!")
         console.log(profile);
         history.push('/perfil');
@@ -28,7 +30,7 @@ function ProfileEditForm(props) {
 
     function profileDelete(event){
         event.preventDefault();
-        dispatch({type:'delete_profile', payload: profile.Id})
+        dispatch(deleteProfile(profile.Id));
         alert("Você deletou seu perfil!")
         history.push('/index');
     }
