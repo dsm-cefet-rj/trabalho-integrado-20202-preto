@@ -55,47 +55,6 @@
       "dataAnuncio": "Thu Mar 25 2021 15:00:37 GMT-0300 (Horário Padrão de Brasília)",
       "cardDescricao": "Bituco é o pet certo pra você. Incondicionalmente leal",
       "usuario": "usuarioTeste4"
-    },
-    {
-      "nome": "Java",
-      "tipo": "Gato",
-      "img": "https://i.ytimg.com/vi/1Ne1hqOXKKI/maxresdefault.jpg",
-      "raça": "Desconhecida",
-      "idade": "3",
-      "sexo": "Fêmea",
-      "temperamento": "Agitado",
-      "cardDescricao": "Gata",
-      "descricao": "Gata fêmea, editada",
-      "usuario": "123teste",
-      "dataAnuncio": "Thu Mar 25 2021 15:29:47 GMT-0300 (Horário Padrão de Brasília)",
-      "id": 5
-    },
-    {
-      "usuario": "sadasdfas",
-      "cardDescricao": "asdasdasdasd",
-      "temperamento": "sadadsadasdasdas",
-      "img": "https://matsudapet.com.br/blog/wp-content/uploads/2019/08/shutterstock_559799125-compressed.jpg",
-      "descricao": "asdasgasgscascascas",
-      "idade": 2,
-      "raça": "asdasdasd",
-      "tipo": "asdasd",
-      "nome": "testeasd",
-      "sexo": "sadasdas",
-      "dataAnuncio": "Thu Mar 25 2021 16:13:04 GMT-0300 (Horário Padrão de Brasília)",
-      "id": 6
-    },
-    {
-      "usuario": "pigowner",
-      "cardDescricao": "Porco de estimação",
-      "temperamento": "Raivoso",
-      "img": "https://www.correio24horas.com.br//fileadmin/_processed_/1/f/csm_29714652_416922725426980_2256396734362025984_n_b3d439ec3d.jpg",
-      "descricao": "Descrição do porco",
-      "idade": 2,
-      "sexo": "Macho",
-      "raça": "Desconhecida",
-      "tipo": "Porco",
-      "nome": "Guto",
-      "id": 7
     }
   ]
 }
