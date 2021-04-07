@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, createEntityAdapter } from '@reduxjs/toolkit'
-import {httpDelete, httpGet, httpPut, httpPost} from '../utils'
+import { httpDelete, httpGet, httpPut, httpPost } from '../utils'
 
 const baseUrl = 'http://localhost:8000/anuncios';
 
@@ -37,20 +37,20 @@ export const anunciosSlice = createSlice({
         setKeyAnuncioAtual: (state, action) => ({ ...state, keyAnuncioAtual: action.payload }),
     },
     extraReducers: {
-        [fetchAnuncios.pending]: (state, action) => {state.status = 'loading'},
+        [fetchAnuncios.pending]: (state) => {state.status = 'loading'},
         [fetchAnuncios.fulfilled]: (state, action) => {
             state.status = 'loaded';
             anunciosAdapter.setAll(state, action.payload);
         }, 
         [fetchAnuncios.rejected]: (state, action) => {state.status = 'failed'; state.error = action.error.message},
 
-        [deleteAnunciosServer.pending]: (state, action) => {state.status = 'loading'},
+        [deleteAnunciosServer.pending]: (state) => {state.status = 'loading'},
         [deleteAnunciosServer.fulfilled]: (state, action) => {state.status = 'deleted'; anunciosAdapter.removeOne(state, action.payload);},
 
-        [addAnunciosServer.pending]: (state, action) => {state.status = 'loading'},
+        [addAnunciosServer.pending]: (state) => {state.status = 'loading'},
         [addAnunciosServer.fulfilled]: (state, action) => {state.status = 'saved'; anunciosAdapter.addOne(state, action.payload);},
 
-        [updateAnunciosServer.pending]: (state, action) => {state.status = 'loading'},
+        [updateAnunciosServer.pending]: (state) => {state.status = 'loading'},
         [updateAnunciosServer.fulfilled]: (state, action) => {state.status = 'saved'; anunciosAdapter.upsertOne(state, action.payload);},
         [updateAnunciosServer.rejected]: (state, action) => {state.status = 'failed'; state.error = action.error.message},
     }

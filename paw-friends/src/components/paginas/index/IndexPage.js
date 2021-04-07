@@ -7,7 +7,6 @@ import React, { useEffect } from 'react'
 
 export default function IndexPage() {
     const anuncios = useSelector(selectAllAnuncios);
-    //console.log(anuncios)
     const dispatch = useDispatch();
     const status = useSelector(state => state.anuncios.status);
     const error = useSelector(state => state.anuncios.error);
@@ -22,18 +21,20 @@ export default function IndexPage() {
     }, [status, dispatch])
 
     //Gerencia status
-    if(status === 'loaded'){
-        pageTitle = 'Animais para adoção';
-        anunciosRow = anuncios.map((anuncio) => {
-            return <Card id={anuncio.id} anuncio={anuncio}/>;
-        });
-    }
-    else if(status === 'loading'){
-        pageTitle = 'Carregando anúncios';
-    }
-    else if(status === 'failed'){
-        pageTitle = 'Erro! ' + error;
-    }
+    switch(status){
+        case 'loading':
+            pageTitle = 'Carregando anúncios';
+            break;
+        case 'failed':
+            pageTitle = 'Erro! ' + error;
+            break;
+        default:
+            pageTitle = 'Anúncios';
+            anunciosRow = anuncios.map((anuncio) => {
+                return <Card id={anuncio.id} anuncio={anuncio} />;
+            });
+            break;
+    };
 
     return (
         <>

@@ -38,10 +38,13 @@ function AnimalCard(props) {
                         <div className="row text-center justify-content-center">
                             <div className="col-lg-6 col-md-8 col-sm-10 col-10">
                                 <Link to={`/privateChat/${anuncio.id}`}>
-                                    <button className="btn btn-outline-dark btn-adocao">Adotar</button>
+                                    <button className="btn btn-outline-dark m-2">Adotar</button>
                                 </Link>
                                 <Link to={`/editarAnuncio/${anuncio.id}`}>
-                                    <button className="btn btn-outline-dark btn-adocao">Editar</button>
+                                    <button className="btn btn-outline-dark m-2">Editar</button>
+                                </Link>
+                                <Link to='/index'>
+                                    <button className="btn btn-outline-danger m-2" onClick={() => props.handleDeleteAnuncio(anuncio.id)}>Deletar</button>
                                 </Link>
                             </div>
                         </div>
