@@ -82,7 +82,9 @@
       "nome": "testeasd",
       "sexo": "sadasdas",
       "dataAnuncio": "Thu Mar 25 2021 16:13:04 GMT-0300 (Horário Padrão de Brasília)",
-      "id": 6
+      "id": 6,
+      "msg_send": [],
+      "msg_received": []
     },
     {
       "usuario": "pigowner",
@@ -96,6 +98,20 @@
       "tipo": "Porco",
       "nome": "Guto",
       "id": 7
+    },
+    {
+      "usuario": "Jason Momoa",
+      "cardDescricao": "Cachorro gigante que pensa que é um pinscher",
+      "temperamento": "Bobão",
+      "img": "https://fotos.amomeupet.org/uploads/fotos/1592928510_5ef228fe318ca_hd.jpeg",
+      "descricao": ":)",
+      "idade": 7,
+      "sexo": "Macho",
+      "raça": "Pitbull",
+      "tipo": "Cachorro",
+      "nome": "Zuko",
+      "dataAnuncio": "Wed Apr 07 2021 18:44:58 GMT-0300 (Horário Padrão de Brasília)",
+      "id": 8
     }
   ]
 }

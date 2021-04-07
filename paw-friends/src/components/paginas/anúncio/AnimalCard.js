@@ -37,7 +37,7 @@ function AnimalCard(props) {
                         <p className="card-text"><small className="text-muted">Postado em {anuncio.dataAnuncio}</small></p>
                         <div className="row text-center justify-content-center">
                             <div className="col-lg-6 col-md-8 col-sm-10 col-10">
-                                <Link to='/privateChat'>
+                                <Link to={`/privateChat/${anuncio.id}`}>
                                     <button className="btn btn-outline-dark btn-adocao">Adotar</button>
                                 </Link>
                                 <Link to={`/editarAnuncio/${anuncio.id}`}>
