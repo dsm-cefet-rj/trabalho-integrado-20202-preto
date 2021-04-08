@@ -28,7 +28,7 @@ function ProfileEditForm(props) {
         dispatch(updateProfileServer(profile))
         alert("Você editou seu perfil!")
         console.log(profile);
-        history.push('/perfil');
+        history.push(`/perfil/${profile.id}`);
     }
 
     function profileDelete(event){

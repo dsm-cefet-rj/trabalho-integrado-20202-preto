@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { fetchAnuncios, selectAllAnuncios } from '../../../store/reducers/anunciosReducer'
 import { fetchProfiles } from '../../../store/reducers/profilesReducer'
 import React, { useEffect } from 'react'
-import store from '../../../store/store';
 
 export default function IndexPage() {
     const anuncios = useSelector(selectAllAnuncios);
@@ -14,8 +13,6 @@ export default function IndexPage() {
     const error = useSelector(state => state.anuncios.error);
     var pageTitle = '';
     let anunciosRow = null;
-
-    store.dispatch(fetchProfiles());
 
     //Fetch
     useEffect(() => {

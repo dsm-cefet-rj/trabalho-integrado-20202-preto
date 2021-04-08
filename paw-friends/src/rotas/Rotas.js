@@ -20,7 +20,7 @@ function Rotas() {
                 <Route path="/chat" component={ChatCardsPage}/>
                 <Route path="/animal/:id" component={AnimalPage}/>
                 <Route path="/adocao" component={ConclusionFormPage}/>
-                <Route path="/perfil" component={ProfilePage}/>
+                <Route path="/perfil/:id" component={ProfilePage}/>
                 <Route path="/privateChat/:id" component={PrivateChatPage}/>
                 <Route path="/criarPerfil" component={ProfileCreatePage}/>
                 <Route path="/editarPerfil/" component={ProfileEditPage}/>
