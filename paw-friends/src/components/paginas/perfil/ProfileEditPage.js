@@ -1,11 +1,15 @@
 import Navbar from '../../layouts/navbar/Navbar'
 import PageTitle from '../../layouts/PageTitle'
 import PageSubtitle from '../../layouts/PageSubtitle';
+import {useParams} from 'react-router-dom';
 import ProfileEditForm from './ProfileEditForm'
 
 /* Esse componente é referente a página completa da criação de perfil */
 
 function ProfileEditPage() {
+    
+    let { id } = useParams();
+    id = parseInt(id);
 
     return (
         <>

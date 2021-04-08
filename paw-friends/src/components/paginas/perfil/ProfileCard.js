@@ -1,12 +1,29 @@
 import { Link } from 'react-router-dom';
+import {deleteProfileServer} from '../../../store/reducers/profilesReducer'
+import {useDispatch} from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 function ProfileCard(props) {
+
+    
+
 
     let profile = props.profile;
 
     if (profile === undefined){
         profile = {};
     }
+    
+    const history = useHistory();
+    const dispatch = useDispatch();
+
+    function profileDelete(event){
+        event.preventDefault();
+        dispatch(deleteProfileServer(profile.id));
+        alert("Você deletou seu perfil!")
+        history.push('/index');
+    }
+
 
     return(
 
@@ -34,8 +51,9 @@ function ProfileCard(props) {
                             <div class="row text-center justify-content-center">
                                 <div class="col-lg-6 col-md-8 col-sm-10 col-10">
                                     <Link to={`/editarPerfil/${1}`}>
-                                        <button class="btn btn-outline-dark btn-adocao">Editar Perfil</button>
+                                        <button class="btn btn-outline-dark mt-3 btn-adocao">Editar Perfil</button>
                                     </Link>
+                                        <button type="button" onClick={profileDelete} className="btn btn-outline-danger mt-3 text-capitalize">Deletar perfil</button> 
                                 </div>
                             </div>
                     </div>

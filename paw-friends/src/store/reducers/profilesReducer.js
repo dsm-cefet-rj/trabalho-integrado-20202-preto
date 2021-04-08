@@ -27,13 +27,6 @@ export const updateProfileServer = createAsyncThunk('projetos/updateProfileServe
     return await httpPut(`${baseUrl}/${profile.id}`, profile);
 });
 
-
-function fullfillProfilesReducer(profilesState, profilesFetched){
-    profilesState.status = 'loaded';
-    profilesState.profiles = profilesFetched;
-}
-
-
 export const profilesSlice = createSlice({
     name: 'profiles',
     initialState: initialState,

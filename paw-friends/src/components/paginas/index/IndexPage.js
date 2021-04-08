@@ -3,7 +3,6 @@ import Card from './Card'
 import PageTitle from '../../layouts/PageTitle'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchAnuncios, selectAllAnuncios } from '../../../store/reducers/anunciosReducer'
-import { fetchProfiles } from '../../../store/reducers/profilesReducer'
 import React, { useEffect } from 'react'
 
 export default function IndexPage() {

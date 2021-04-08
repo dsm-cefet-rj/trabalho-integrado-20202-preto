@@ -31,13 +31,6 @@ function ProfileEditForm(props) {
         history.push(`/perfil/${profile.id}`);
     }
 
-    function profileDelete(event){
-        event.preventDefault();
-        dispatch(deleteProfileServer(profile.id));
-        alert("Você deletou seu perfil!")
-        history.push('/index');
-    }
-
     return (
         <div className="row d-flex justify-content-center mt-4 mb-5">
             <div className="col-lg-4 col-md-8 col-sm-8 col-10">
@@ -103,7 +96,6 @@ function ProfileEditForm(props) {
                             <Link to="/perfil"> 
                                 <button type="button" className="button-line btn btn-outline-secondary mt-3 text-capitalize">Cancelar</button> 
                             </Link>
-                            <button type="button" onClick={profileDelete} className="button-line btn btn-outline-danger mt-3 text-capitalize">Deletar perfil</button> 
                         </form>
                     </div>
                 </div>
