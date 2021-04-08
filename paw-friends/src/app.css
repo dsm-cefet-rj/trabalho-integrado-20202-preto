@@ -91,6 +91,7 @@
   border-radius: 50%; 
   max-width: 150px;
   max-height: 130px;
+  min-height:130px;
 }
 
 .animaltitle {

@@ -55,6 +55,32 @@
       "dataAnuncio": "Thu Mar 25 2021 15:00:37 GMT-0300 (Horário Padrão de Brasília)",
       "cardDescricao": "Bituco é o pet certo pra você. Incondicionalmente leal",
       "usuario": "usuarioTeste4"
+    },
+    {
+      "usuario": "Jason Momoa",
+      "cardDescricao": "Cachorro gigante que pensa que é um pinscher",
+      "temperamento": "Bobão",
+      "img": "https://fotos.amomeupet.org/uploads/fotos/1592928510_5ef228fe318ca_hd.jpeg",
+      "descricao": ":)",
+      "idade": 7,
+      "sexo": "Macho",
+      "raça": "Pitbull",
+      "tipo": "Cachorro",
+      "nome": "Zuko",
+      "dataAnuncio": "Wed Apr 07 2021 22:06:02 GMT-0300 (Horário Padrão de Brasília)",
+      "id": 5
+    }
+  ],
+  
+  "chats":[{
+    "id":1,
+    "id_animal": 4,
+    "msg_user": [{}]
+    },
+    {
+    "id": 2,
+    "id_animal": 2,
+    "msg_user": [{}]
     }
   ],
   "profiles": [

@@ -46,6 +46,9 @@ function AnimalCard(props) {
                                 <Link to='/index'>
                                     <button className="btn btn-outline-danger m-2" onClick={() => props.handleDeleteAnuncio(anuncio.id)}>Deletar</button>
                                 </Link>
+                                <Link to='/index'>
+                                    <button className="btn btn-outline-success m-2">Finalizar Adoção</button>
+                                </Link>
                             </div>
                         </div>
                     </div>
