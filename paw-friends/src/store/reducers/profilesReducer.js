@@ -1,63 +1,68 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createSlice, createAsyncThunk, createEntityAdapter} from '@reduxjs/toolkit';
+import { httpDelete, httpGet, httpPut, httpPost } from '../utils'
+
+const profilesAdapter = createEntityAdapter();
+
+const baseUrl = 'http://localhost:8000/profiles';
+
+const initialState = profilesAdapter.getInitialState({
+    status: 'not_loaded',
+    error: null
+});
+
+export const fetchProfiles = createAsyncThunk('projetos/fetchProfiles', async () => {
+    return await httpGet(`${baseUrl}`);
+});
+
+export const deleteProfileServer = createAsyncThunk('projetos/deleteProfileServer', async (id) => {
+    await httpDelete(`${baseUrl}/${id}`);
+    return id;
+});
+
+export const addProfileServer = createAsyncThunk('projetos/addProfileServer', async (profile) => {
+    return await httpPost(`${baseUrl}`, profile);
+});
+
+export const updateProfileServer = createAsyncThunk('projetos/updateProfileServer', async (profile) => {
+    return await httpPut(`${baseUrl}/${profile.id}`, profile);
+});
 
 
-const initialProfileData = [{
-    Id: "1",
-    User: "usuario_teste",
-    Nome: "usuario",
-    Sobrenome: "teste",
-    Email: "usu@email.com",
-    Telefone: "(21) 9 1234-5678",
-    CPF: "12345678900",
-    CEP: "12345678",
-    Cidade: "teste",
-    Endereço: "Rua Teste da Silva 45",
-    Senha: "usupass",
-    Img: "https://static-25.sinclairstoryline.com/resources/media/3f1ef009-5f3d-4be8-6f0e-6ab0862f00b5-largeScale_KendallBartley2020_webphoto320x4201.png?1603404656511"
-},
-{
-    Id: "2",
-    User: "usuario2_teste",
-    Nome: "usuario2",
-    Sobrenome: "teste2",
-    Email: "usu@email.com",
-    Telefone: "(21) 9 1234-5678",
-    CPF: "12345678900",
-    CEP: "12345678",
-    Cidade: "teste",
-    Endereço: "Rua Teste da Silva 45",
-    Senha: "usu2pass",
-    Img: "https://static-25.sinclairstoryline.com/resources/media/3f1ef009-5f3d-4be8-6f0e-6ab0862f00b5-largeScale_KendallBartley2020_webphoto320x4201.png?1603404656511"
-}
-];
-
-function addProfileReducer(profiles, profile){
-    let proxId = 1 + profiles.map(prof => prof.Id).reduce((x,y)=> Math.max(x,y));
-    return profiles.concat ([{...profile, id:proxId}]);
-}
-
-function updateProfileReducer(profiles, profile){
-    let index = profiles.map(prof => prof.Id).indexOf(profile.Id);
-    profiles.splice(index, 1, profile);
-    return profiles;
-}
-
-function deleteProfileReducer(profiles, Id){
-    return profiles.filter((prof) => prof.Id !== Id);
+function fullfillProfilesReducer(profilesState, profilesFetched){
+    profilesState.status = 'loaded';
+    profilesState.profiles = profilesFetched;
 }
 
 
 export const profilesSlice = createSlice({
     name: 'profiles',
-    initialState: initialProfileData,
-    reducers: {
-        addProfile: (state, action) => addProfileReducer(state, action.payload) ,
+    initialState: initialState,
+    extraReducers: {
+        [fetchProfiles.pending]: (state) => {state.status = 'loading'},
+        [fetchProfiles.fulfilled]: (state, action) => {
+            state.status = 'loaded';
+            profilesAdapter.setAll(state, action.payload);
+        }, 
+        [fetchProfiles.rejected]: (state, action) => {state.status = 'failed'; state.error = action.error.message},
         
-        updateProfile:(state, action) => updateProfileReducer(state, action.payload) ,
+        [deleteProfileServer.pending]: (state) => {state.status = 'loading'},
+        [deleteProfileServer.fulfilled]: (state, action) => {state.status = 'deleted'; profilesAdapter.removeOne(state, action.payload);},
 
-        deleteProfile:(state, action) => deleteProfileReducer(state, action.payload) ,
+        [addProfileServer.pending]: (state) => {state.status = 'loading'},
+        [addProfileServer.fulfilled]: (state, action) => {state.status = 'saved'; profilesAdapter.addOne(state, action.payload);},
+
+        [updateProfileServer.pending]: (state) => {state.status = 'loading'},
+        [updateProfileServer.fulfilled]: (state, action) => {state.status = 'saved'; profilesAdapter.upsertOne(state, action.payload);},
+        [updateProfileServer.rejected]: (state, action) => {state.status = 'failed'; state.error = action.error.message},
     }
+
 })
 
-export const {addProfile, updateProfile, deleteProfile} = profilesSlice.actions
 export default profilesSlice.reducer
+
+
+export const {
+    selectAll: selectAllProfiles,
+    selectById: selectProfilesById,
+    selectIds: selectProfilesIds
+} = profilesAdapter.getSelectors(state => state.profiles);

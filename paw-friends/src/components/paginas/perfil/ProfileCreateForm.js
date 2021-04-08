@@ -2,7 +2,7 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {Link, useHistory} from 'react-router-dom';
-import {addProfile} from '../../../store/reducers/profilesReducer'
+import {addProfileServer} from '../../../store/reducers/profilesReducer'
 
 // import useForm from 'react-hook-form'; //
 
@@ -20,7 +20,7 @@ function ProfileCreateForm(props) {
 
     function PerfilCriado(event){
         event.preventDefault();
-        dispatch(addProfile(profile))
+        dispatch(addProfileServer(profile))
 
         alert("Você criou sua conta!")
         console.log(profile);

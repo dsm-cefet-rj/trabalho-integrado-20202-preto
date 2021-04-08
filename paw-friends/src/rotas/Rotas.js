@@ -23,7 +23,7 @@ function Rotas() {
                 <Route path="/perfil" component={ProfilePage}/>
                 <Route path="/privateChat/:id" component={PrivateChatPage}/>
                 <Route path="/criarPerfil" component={ProfileCreatePage}/>
-                <Route path="/editarPerfil" component={ProfileEditPage}/>
+                <Route path="/editarPerfil/" component={ProfileEditPage}/>
             </Switch>
         </Router>
     );

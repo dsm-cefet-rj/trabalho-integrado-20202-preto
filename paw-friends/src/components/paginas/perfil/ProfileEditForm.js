@@ -1,8 +1,8 @@
 // Componente que recebe um título e renderiza numa linha da página
 import React, {useState} from 'react';
-import {Link, useHistory} from 'react-router-dom';
+import {Link, useHistory, useParams} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
-import {deleteProfile, updateProfile} from '../../../store/reducers/profilesReducer'
+import {deleteProfileServer, updateProfileServer} from '../../../store/reducers/profilesReducer'
 
 // import useForm from 'react-hook-form'; //
 
@@ -11,9 +11,12 @@ function ProfileEditForm(props) {
 
     const [profile, setProfile] = useState({});
 
+    let { id } = useParams();
+    id = parseInt(id);
+
     const history = useHistory();
 
-    const profiles = useSelector(state => state.profiles)
+    const profiles = useSelector(state => state.profiles.profiles)
     const dispatch = useDispatch();
 
     function handleInputChange(e){
@@ -22,7 +25,7 @@ function ProfileEditForm(props) {
 
     function PerfilEditado(event){
         event.preventDefault();
-        dispatch(updateProfile(profile))
+        dispatch(updateProfileServer(profile))
         alert("Você editou seu perfil!")
         console.log(profile);
         history.push('/perfil');
@@ -30,7 +33,7 @@ function ProfileEditForm(props) {
 
     function profileDelete(event){
         event.preventDefault();
-        dispatch(deleteProfile(profile.Id));
+        dispatch(deleteProfileServer(profile.id));
         alert("Você deletou seu perfil!")
         history.push('/index');
     }
