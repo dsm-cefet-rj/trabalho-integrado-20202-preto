@@ -24,7 +24,7 @@ function ProfileCreateForm(props) {
 
         alert("Você criou sua conta!")
         console.log(profile);
-        history.push('/perfil');
+        history.push(`/perfil/${profile.id}`);
     }
 
     return (

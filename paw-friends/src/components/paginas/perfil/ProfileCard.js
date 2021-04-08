@@ -51,9 +51,9 @@ function ProfileCard(props) {
                             <div class="row text-center justify-content-center">
                                 <div class="col-lg-6 col-md-8 col-sm-10 col-10">
                                     <Link to={`/editarPerfil/${1}`}>
-                                        <button class="btn btn-outline-dark mt-3 btn-adocao">Editar Perfil</button>
+                                        <button class="button-line btn btn-outline-dark mt-3 btn-adocao">Editar Perfil</button>
                                     </Link>
-                                        <button type="button" onClick={profileDelete} className="btn btn-outline-danger mt-3 text-capitalize">Deletar perfil</button> 
+                                        <button type="button" onClick={profileDelete} className="button-line btn btn-outline-danger mt-3 text-capitalize">Deletar perfil</button> 
                                 </div>
                             </div>
                     </div>
