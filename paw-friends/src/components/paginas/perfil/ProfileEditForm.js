@@ -2,22 +2,22 @@
 import React, {useState} from 'react';
 import {Link, useHistory, useParams} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
-import {deleteProfileServer, updateProfileServer} from '../../../store/reducers/profilesReducer'
+import { selectProfilesById, updateProfileServer } from '../../../store/reducers/profilesReducer'
 
 // import useForm from 'react-hook-form'; //
 
 
 function ProfileEditForm(props) {
 
-    const [profile, setProfile] = useState({});
-
+    const history = useHistory();
+    const dispatch = useDispatch();
     let { id } = useParams();
     id = parseInt(id);
 
-    const history = useHistory();
+    const profileCerto = useSelector(state => selectProfilesById(state, id))
 
-    const profiles = useSelector(state => state.profiles.profiles)
-    const dispatch = useDispatch();
+    const [profile, setProfile] = useState(
+        id ? profileCerto ?? {} : {});
 
     function handleInputChange(e){
         setProfile ({...profile, [e.target.name]: e.target.value})            
@@ -28,7 +28,7 @@ function ProfileEditForm(props) {
         dispatch(updateProfileServer(profile))
         alert("Você editou seu perfil!")
         console.log(profile);
-        history.push(`/perfil/${profile.id}`);
+        history.push(`/perfil/${id}`);
     }
 
     return (

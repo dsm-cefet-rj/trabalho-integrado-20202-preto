@@ -8,8 +8,6 @@ import ProfileEditForm from './ProfileEditForm'
 
 function ProfileEditPage() {
     
-    let { id } = useParams();
-    id = parseInt(id);
 
     return (
         <>

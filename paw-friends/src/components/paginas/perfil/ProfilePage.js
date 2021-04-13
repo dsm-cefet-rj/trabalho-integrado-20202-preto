@@ -18,11 +18,11 @@ function ProfilePage() {
     var pageTitle ='';
     
     useEffect(() => {
-        if(status === 'not_loaded'){
+        if(status === 'not_loaded' || status === 'saved' || status === 'deleted'){
             dispatch(fetchProfiles());
         }
-        else if(status === 'saved'){
-            dispatch(fetchProfiles(), 2000);
+        else if(status === 'failed'){
+            setTimeout(() => dispatch(fetchProfiles(), 4000));
         }
     }, [status, dispatch])
 

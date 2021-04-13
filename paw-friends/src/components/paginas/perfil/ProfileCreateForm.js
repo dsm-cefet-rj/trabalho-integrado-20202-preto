@@ -1,7 +1,7 @@
 // Componente que recebe um título e renderiza numa linha da página
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {Link, useHistory} from 'react-router-dom';
+import {Link, useHistory, useParams} from 'react-router-dom';
 import {addProfileServer} from '../../../store/reducers/profilesReducer'
 
 // import useForm from 'react-hook-form'; //
@@ -9,10 +9,13 @@ import {addProfileServer} from '../../../store/reducers/profilesReducer'
 
 function ProfileCreateForm(props) {
 
-    const [profile, setProfile] = useState({});
     const history = useHistory();
-
     const dispatch = useDispatch();
+    
+    const [profile, setProfile] = useState({});
+
+    let { id } = useParams();
+    id = parseInt(id);
 
     function handleInputChange(e){
         setProfile ({...profile, [e.target.name]: e.target.value})            
@@ -24,7 +27,7 @@ function ProfileCreateForm(props) {
 
         alert("Você criou sua conta!")
         console.log(profile);
-        history.push(`/perfil/${profile.id}`);
+        history.push(`/perfil/${id}`);
     }
 
     return (
