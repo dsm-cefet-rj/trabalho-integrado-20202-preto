@@ -1,34 +1,53 @@
 // Componente que recebe um título e renderiza numa linha da página
 import React, {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {Link, useHistory, useParams} from 'react-router-dom';
-import {useSelector, useDispatch} from 'react-redux';
-import { selectProfilesById, updateProfileServer } from '../../../store/reducers/profilesReducer'
+import {addProfileServer, updateProfileServer, selectProfilesById} from '../../../store/reducers/profilesReducer'
+import { useForm } from "react-hook-form";
 
 // import useForm from 'react-hook-form'; //
 
 
-function ProfileEditForm(props) {
+function ProfileForm(props) {
 
+    const typeForm = props.type;
     const history = useHistory();
     const dispatch = useDispatch();
     let { id } = useParams();
     id = parseInt(id);
 
-    const profileCerto = useSelector(state => selectProfilesById(state, id))
+    const profileById = useSelector(state => selectProfilesById(state, id))
 
     const [profile, setProfile] = useState(
-        id ? profileCerto ?? {} : {});
+        id ? profileById ?? {} : {});
+
+    const [actionType, ] = useState(
+        id ? profileById
+            ? 'profiles/updateProfile'
+            : 'profiles/addProfile'
+            : 'profiles/addProfile');
 
     function handleInputChange(e){
         setProfile ({...profile, [e.target.name]: e.target.value})            
     }
 
-    function PerfilEditado(event){
-        event.preventDefault();
-        dispatch(updateProfileServer(profile))
-        alert("Você editou seu perfil!")
-        console.log(profile);
+    function PerfilCriado(e){
+        e.preventDefault();
+        if(actionType === 'profiles/addProfile'){
+            dispatch(addProfileServer(profile));
+            alert("Você criou sua conta!")
+        }else{
+            dispatch(updateProfileServer(profile));
+            alert("Você editou sua conta!")
+        }
         history.push(`/perfil/${id}`);
+    }
+
+    let buttonMessage = '';
+    if(typeForm === 'edit'){
+        buttonMessage = 'Editar Perfil';
+    }else{
+        buttonMessage = 'Cadastrar Perfil';
     }
 
     return (
@@ -36,7 +55,7 @@ function ProfileEditForm(props) {
             <div className="col-lg-4 col-md-8 col-sm-8 col-10">
                 <div class="card">
                     <div class="card-body">
-                        <form onSubmit={PerfilEditado}>
+                        <form onSubmit={PerfilCriado}>
                             <div class="form-group">
                                 <label for="InputName">Nome</label>
                                 <input type="text" name="nome" value={profile.Nome} onChange={handleInputChange} class="form-control" placeholder="Nome"/>
@@ -88,13 +107,13 @@ function ProfileEditForm(props) {
 
                             <div class="image-file mt-2">
                                 <label class="custom-file-label">Foto</label>
-                                <input type="file" value={profile.Img} onChange={handleInputChange}  class="custom-file-input"/>
+                                <input type="file" value={profile.Img} onChange={handleInputChange} class="custom-file-input"/> 
                                 <div class="invalid-feedback">Arquivo não válido</div>
                             </div>
 
-                            <button type="submit" className="button-line btn btn-outline-dark mt-3 text-capitalize">Confirmar edição</button>
-                            <Link to="/perfil"> 
-                                <button type="button" className="button-line btn btn-outline-secondary mt-3 text-capitalize">Cancelar</button> 
+                            <button type="submit" className="button-line btn btn-outline-dark mt-3 text-capitalize">{buttonMessage}</button>
+                            <Link to="/index"> 
+                                <button type="button" className="button-line btn btn-outline-danger mt-3 text-capitalize">Cancelar</button> 
                             </Link>
                         </form>
                     </div>
@@ -105,4 +124,4 @@ function ProfileEditForm(props) {
       )
 }
 
-export default ProfileEditForm;
+export default ProfileForm;
