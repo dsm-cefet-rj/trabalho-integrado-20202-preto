@@ -6,6 +6,7 @@ import {addProfileServer, updateProfileServer, selectProfilesById} from '../../.
 import { profileSchema } from './profileSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from "react-hook-form";
+import { unwrapResult } from '@reduxjs/toolkit'
 
 // import useForm from 'react-hook-form'; //
 
@@ -23,24 +24,23 @@ function ProfileForm(props) {
         resolver:yupResolver(profileSchema)
     });
 
-    const [profileOnLoad] = useState(
+    const [profile] = useState(
         id ? profileById ?? profileSchema.cast({}): profileSchema.cast({}));
 
-    const [actionType, ] = useState(
-        id ? profileById
-            ? 'profiles/updateProfile'
-            : 'profiles/addProfile'
-            : 'profiles/addProfile');
 
-    function onSubmit(profile){
-        if(actionType === 'profiles/addProfile'){
-            dispatch(addProfileServer(profile));
+    const onSubmit = (profile) => {
+        console.log("teste de clique");
+        if(typeForm === 'create'){
+            dispatch(addProfileServer(profile))
+            .then(unwrapResult)
+            .then(profnovo => {history.push(`/perfil/${profnovo.id}`)})
             alert("Você criou sua conta!")
         }else{
-            dispatch(updateProfileServer({...profile, id: profileById.id}));
+            dispatch(updateProfileServer({...profile, id: profileById.id}))
+            .then(unwrapResult)
+            .then(profnovo => {history.push(`/perfil/${profnovo.id}`)})
             alert("Você editou sua conta!")
         }
-        history.push(`/perfil/${id}`);
     }
 
     let buttonMessage = '';
@@ -58,70 +58,65 @@ function ProfileForm(props) {
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div class="form-group">
                                 <label for="InputName">Nome</label>
-                                <input type="text" name="nome" defaultValue={profileOnLoad.Nome} ref={register} class="form-control" placeholder="Nome"/>
-                                <div style={{color: "red"}}>{errors.Nome?.message}</div>
+                                <input type="text" class="form-control" placeholder="Nome" name="nome" defaultValue={profile.nome} ref={register}></input>
+                                <div style={{color: "red"}}>{errors.nome?.message}</div>
                             </div>
                             <div class="form-group mt-2">
                                 <label for="InputName">Sobrenome</label>
-                                <input type="text" name="sobrenome" defaultValue={profileOnLoad.Sobrenome} ref={register} class="form-control" placeholder="Sobrenome"/>
-                                <div style={{color: "red"}}>{errors.Sobrenome?.message}</div>
+                                <input type="text" class="form-control" placeholder="Sobrenome" name="sobrenome" defaultValue={profile.sobrenome} ref={register}></input>
+                                <div style={{color: "red"}}>{errors.sobrenome?.message}</div>
                             </div>
         
                             <div class="form-group mt-2">
                                 <label for="InputCPF/CNPJ">CPF ou CNPJ</label>
-                                <input type="number" name="cpf" defaultValue={profileOnLoad.CPF} ref={register} class="form-control" placeholder="CPF ou CNPJ"/>
-                                <div style={{color: "red"}}>{errors.CPF?.message}</div>
+                                <input type="number" class="form-control" placeholder="CPF ou CNPJ" name="cpf" defaultValue={profile.cpf} ref={register}></input>
+                                <div style={{color: "red"}}>{errors.cpf?.message}</div>
                             </div>
 
                             <div class="form-group mt-2">
                                 <label for="InputCity">Cidade</label>
-                                <input type="text" name="cidade" defaultValue={profileOnLoad.Cidade} ref={register} class="form-control" placeholder="Cidade"/>
-                                <div style={{color: "red"}}>{errors.Cidade?.message}</div>
+                                <input type="text" class="form-control" placeholder="Cidade" name="cidade" defaultValue={profile.cidade} ref={register}></input>
+                                <div style={{color: "red"}}>{errors.cidade?.message}</div>
                             </div>
 
                             <div class="form-group mt-2">
                                 <label for="InputCEP">CEP</label>
-                                <input type="number" name="cep" defaultValue={profileOnLoad.CEP} ref={register} class="form-control" placeholder="Insira o CEP"/>
-                                <div style={{color: "red"}}>{errors.CEP?.message}</div>
+                                <input type="number" class="form-control" placeholder="Insira o CEP" name="cep" defaultValue={profile.cep} ref={register}></input>
+                                <div style={{color: "red"}}>{errors.cep?.message}</div>
                             </div>
 
                             <div class="form-group mt-2">
                                 <label for="InputPhone">Telefone</label>
-                                <input type="tel" name="telefone" defaultValue={profileOnLoad.Telefone} ref={register} class="form-control" placeholder="Número de Telefone"/>
-                                <div style={{color: "red"}}>{errors.Telefone?.message}</div>
+                                <input type="tel" class="form-control" placeholder="Número de Telefone" name="telefone" defaultValue={profile.telefone} ref={register}></input>
+                                <div style={{color: "red"}}>{errors.telefone?.message}</div>
                             </div>
 
                             <div class="form-group mt-2">
                                 <label for="InputAge">Email</label>
-                                <input type="email" name="email" defaultValue={profileOnLoad.Email} ref={register} class="form-control" placeholder="Insira seu Email"/>
-                                <div style={{color: "red"}}>{errors.Email?.message}</div>
+                                <input type="email" class="form-control" placeholder="Insira seu Email" name="email" defaultValue={profile.email} ref={register}></input>
+                                <div style={{color: "red"}}>{errors.email?.message}</div>
                             </div>
 
                             <div class="form-group mt-2">
                                 <label for="tipoAnimal">Nome de Usuário</label>
-                                <input type="text" name="user" defaultValue={profileOnLoad.User} ref={register} class="form-control" placeholder="Nome de Usuario" />
-                                <div style={{color: "red"}}>{errors.User?.message}</div>
+                                <input type="text" class="form-control" placeholder="Nome de Usuario" name="user" defaultValue={profile.user} ref={register}></input>
+                                <div style={{color: "red"}}>{errors.user?.message}</div>
                             </div>
 
                             <div class="form-group mt-2">
                                 <label for="InputPass">Senha</label>
-                                <input type="password" name="senha" defaultValue={profileOnLoad.Senha} ref={register} class="form-control" placeholder="Senha"/>
-                                <div style={{color: "red"}}>{errors.Senha?.message}</div>
-                            </div>
-
-                            <div class="form-group mt-2">
-                                <label for="InputPassConfirmation">Confirme a Senha</label>
-                                <input type="password" name="senha" defaultValue={profileOnLoad.Senha} ref={register} class="form-control" placeholder="Senha"/>
-                                <div style={{color: "red"}}>{errors.Senha?.message}</div>
+                                <input type="password" class="form-control" placeholder="Senha" name="senha" defaultValue={profile.senha} ref={register}></input>
+                                <div style={{color: "red"}}>{errors.senha?.message}</div>
                             </div>
 
                             <div class="image-file mt-2">
-                                <label class="custom-file-label">Foto</label>
-                                <input type="file" defaultValue={profileOnLoad.Img} ref={register} class="custom-file-input"/> 
-                                <div class="invalid-feedback">Arquivo não válido</div>
+                                <label class="custom-file-label">URL da Foto</label>
+                                <input type="text"  class="form-control" placeholder="URL" name="img" defaultValue={profile.img} ref={register}></input>
+                                <div style={{color: "red"}}>{errors.img?.message}</div>
                             </div>
 
                             <button type="submit" className="button-line btn btn-outline-dark mt-3 text-capitalize">{buttonMessage}</button>
+                         
                             <Link to="/index"> 
                                 <button type="button" className="button-line btn btn-outline-danger mt-3 text-capitalize">Cancelar</button> 
                             </Link>
