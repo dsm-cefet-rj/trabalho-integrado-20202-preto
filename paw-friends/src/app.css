@@ -84,6 +84,7 @@
 .headerchat {
   max-width: 1000px;
   border-bottom: solid 2px rgb(155, 155, 155);
+  background-color:white;
 }
 
 .avatarprivate {
@@ -104,16 +105,35 @@
   border-top: solid 2px rgb(155, 155, 155);
   height: 80px;
   max-width: 1000px;
+  background-color: white;
 }
 
 .chatboxmesage {
   padding-right: 20px;
-  padding-left: 20px;
+  padding-left: 50px;
   padding-top: 21px;
 }
 
 .btn-send-chat {
   margin-left: 10px;
+}
+
+.chat-msg {
+  background-color: rgb(63, 63, 63);
+  margin-top: 10px;
+  margin-left: 30%;
+  color: white;
+  font-size: 70%;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  font-weight: 50%;
+  max-width: 68.7%;
+  text-align: start;
+}
+
+.bodychat {
+  margin-bottom: 80px;
 }
 
 /*Botões alinhados para formulário */

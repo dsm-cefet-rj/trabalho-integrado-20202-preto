@@ -12,7 +12,6 @@ function ProfilePage() {
     id = parseInt(id);
 
     const dispatch = useDispatch();
-    const profile = useSelector(state => selectProfilesById(state, id));
     const status = useSelector(state => state.profiles.status);
     const error = useSelector(state => state.profiles.error);
     var pageTitle ='';
@@ -39,6 +38,7 @@ function ProfilePage() {
             break;
     };
 
+    const profile = useSelector(state => selectProfilesById(state, id));
 
     return(
         <>
