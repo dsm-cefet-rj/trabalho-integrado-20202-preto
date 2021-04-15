@@ -9,6 +9,10 @@ function AnimalCard(props) {
         anuncio = {};
     }
 
+    //cast da data de string para Date obj
+    var dataStr = anuncio.dataAnuncio;
+    const dataObj = new Date(dataStr);
+
     return (
         <div className="row d-flex justify-content-center mt-4 mb-5">
             <div className="col-lg-6 col-md-8 col-sm-10 col-10">
@@ -34,7 +38,12 @@ function AnimalCard(props) {
                         <h5 className="card-title">Descrição: </h5>
                         <p className="card-text">{anuncio.descricao}</p>
 
-                        <p className="card-text"><small className="text-muted">Postado em {anuncio.dataAnuncio}</small></p>
+                        <p className="card-text">
+                            <small className="text-muted">
+                                Postado em {dataObj.toString()}
+                            </small></p>
+                        
+                        
                         <div className="row text-center justify-content-center">
                             <div className="col-lg-6 col-md-8 col-sm-10 col-10">
                                 <Link to={`/privateChat/${anuncio.id}`}>
