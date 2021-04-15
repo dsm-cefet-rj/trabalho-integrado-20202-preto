@@ -11,7 +11,6 @@ function AnimalForm(props) {
     const history = useHistory();
     const dispatch = useDispatch()
     let { id } = useParams();
-    id = parseInt(id);
     const anuncioById = useSelector(state => selectAnunciosById(state, id))
 
     const { register, handleSubmit, errors } = useForm({

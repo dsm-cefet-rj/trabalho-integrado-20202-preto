@@ -21,13 +21,13 @@ export default function PrivateChatPage () {
 
     let anuncio = useSelector(state => selectAnunciosById(state, id));
 
-//segura o componente vazio até o estado mudar
-if (anuncio === undefined) {
-    anuncio = {};
-}   
+    //segura o componente vazio até o estado mudar
+    if (anuncio === undefined) {
+        anuncio = {};
+    }   
 
     const [chats, setChats] = useState([
-        "Diga Oi e comece sua adoção!"
+        
     ]); 
 
     return (

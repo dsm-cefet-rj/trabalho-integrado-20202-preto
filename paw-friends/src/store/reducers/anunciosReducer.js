@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, createEntityAdapter } from '@reduxjs/toolkit'
 import { httpDelete, httpGet, httpPut, httpPost } from '../utils'
 
-const baseUrl = 'http://localhost:8000/anuncios';
+const baseUrl = '/anuncios';
 
 //entity adapter
 const anunciosAdapter = createEntityAdapter();
