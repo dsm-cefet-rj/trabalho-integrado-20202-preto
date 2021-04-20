@@ -9,7 +9,6 @@ export default function AnimalPage() {
     const status = useSelector(state => state.anuncios.status);
     const dispatch = useDispatch();
     let { id } = useParams();
-    id = parseInt(id);
 
     function handleDeleteAnuncio(id){
         dispatch(deleteAnunciosServer(id));

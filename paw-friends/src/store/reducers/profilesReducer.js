@@ -10,20 +10,20 @@ const initialState = profilesAdapter.getInitialState({
     error: null
 });
 
-export const fetchProfiles = createAsyncThunk('projetos/fetchProfiles', async () => {
+export const fetchProfiles = createAsyncThunk('profiles/fetchProfiles', async () => {
     return await httpGet(`${baseUrl}`);
 });
 
-export const deleteProfileServer = createAsyncThunk('projetos/deleteProfileServer', async (id) => {
+export const deleteProfileServer = createAsyncThunk('profiles/deleteProfileServer', async (id) => {
     await httpDelete(`${baseUrl}/${id}`);
     return id;
 });
 
-export const addProfileServer = createAsyncThunk('projetos/addProfileServer', async (profile) => {
+export const addProfileServer = createAsyncThunk('profiles/addProfileServer', async (profile) => {
     return await httpPost(`${baseUrl}`, profile);
 });
 
-export const updateProfileServer = createAsyncThunk('projetos/updateProfileServer', async (profile) => {
+export const updateProfileServer = createAsyncThunk('profiles/updateProfileServer', async (profile) => {
     return await httpPut(`${baseUrl}/${profile.id}`, profile);
 });
 

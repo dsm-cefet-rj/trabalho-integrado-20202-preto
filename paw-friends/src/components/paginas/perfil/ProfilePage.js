@@ -1,7 +1,7 @@
 import PageTitle from '../../layouts/PageTitle'
 import Navbar from '../../layouts/navbar/Navbar'
 import ProfileCard from './ProfileCard'
-import { useEffect } from 'react'
+import { useLayoutEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchProfiles, selectProfilesById } from '../../../store/reducers/profilesReducer'
@@ -16,7 +16,7 @@ function ProfilePage() {
     const error = useSelector(state => state.profiles.error);
     var pageTitle ='';
     
-    useEffect(() => {
+    useLayoutEffect(() => {
         if(status === 'not_loaded' || status === 'saved' || status === 'deleted'){
             dispatch(fetchProfiles());
         }
@@ -39,13 +39,22 @@ function ProfilePage() {
     };
 
     const profile = useSelector(state => selectProfilesById(state, id));
-
+    console.log(profile);
+    let profileDisplay = ''
+    
+    if(status === 'loaded' || status === 'saved' || status === 'deleted'){
+        profileDisplay = <ProfileCard profile={profile}/>;
+      }else if(status === 'loading'){
+        profileDisplay = <div>Carregando o perfil...</div>;
+      }else if(status === 'failed'){
+        profileDisplay = <div>Error: {error}</div>;
+    }
     return(
         <>
             <Navbar/>
             <PageTitle title={pageTitle}/>
             <div className="container-fluid container-cards">
-                <ProfileCard profile={profile}/>
+            {profileDisplay}
             </div> 
         </>
     );
