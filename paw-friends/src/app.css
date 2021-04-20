@@ -123,13 +123,14 @@
   margin-top: 10px;
   margin-left: 30%;
   color: white;
-  font-size: 70%;
+  font-size: 60%;
   padding-left: 20px;
   padding-bottom: 10px;
   padding-top: 10px;
   font-weight: 50%;
   max-width: 68.7%;
   text-align: start;
+  min-height: 45px
 }
 
 .bodychat {

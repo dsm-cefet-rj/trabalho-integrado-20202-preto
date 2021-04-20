@@ -10,8 +10,8 @@
       "sexo": "Macho",
       "raça": "Gatinho",
       "tipo": "Gato",
-      "nome": "Salvador Dali o famigerado",
-      "dataAnuncio": "Thu Mar 25 2021 18:22:35 GMT-0300 (Horário Padrão de Brasília)",
+      "nome": "Salvador Dali",
+      "dataAnuncio": "Sat Apr 17 2021 10:50:03 GMT-0300 (Horário Padrão de Brasília)",
       "id": 1
     },
     {
@@ -74,17 +74,58 @@
   "chats": [
     {
       "id": 1,
-      "id_animal": 4,
-      "msg_user": [
-        {}
-      ]
+      "id_user": 5,
+      "msg_sent": "Boa noite!"
     },
     {
       "id": 2,
-      "id_animal": 2,
-      "msg_user": [
-        {}
-      ]
+      "id_user": 5,
+      "msg_sent": "Onde o senhor encontrou o Zuko?"
+    },
+    {
+      "id": 3,
+      "id_user": 4,
+      "msg_sent": "Boa noite moço!"
+    },
+    {
+      "msg_sent": "Legal",
+      "id_user": 5,
+      "id": 4
+    },
+    {
+      "msg_sent": "KKKKKK",
+      "id_user": 5,
+      "id": 5
+    },
+    {
+      "msg_sent": "Opa meu guerreiro, tudo bom?",
+      "id_user": 2,
+      "id": 6
+    },
+    {
+      "msg_sent": "Quero saber quanto o Maick mede mais ou menos",
+      "id_user": 2,
+      "id": 7
+    },
+    {
+      "msg_sent": "Showza",
+      "id_user": 5,
+      "id": 8
+    },
+    {
+      "msg_sent": "Se possível poderia me enviar umas fotos dele no whatsapp?",
+      "id_user": 2,
+      "id": 9
+    },
+    {
+      "msg_sent": "Meu número eh 2112345678",
+      "id_user": 2,
+      "id": 10
+    },
+    {
+      "msg_sent": "Que legal",
+      "id_user": 2,
+      "id": 11
     }
   ],
   "profiles": [
