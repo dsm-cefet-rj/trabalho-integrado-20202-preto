@@ -21,12 +21,14 @@ export default function AnimalPage() {
     }, [status, dispatch]);
 
     const anuncio = useSelector(state => selectAnunciosById(state, id));
+    const animalCard = <AnimalCard anuncio={anuncio} handleDeleteAnuncio={handleDeleteAnuncio}/>;
+
 
     return (
         <>
             <Navbar/>
             <div className="container-fluid container-cards">
-                <AnimalCard anuncio={anuncio} handleDeleteAnuncio={handleDeleteAnuncio}/>
+                {animalCard}
             </div>
         </>
     );
