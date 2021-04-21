@@ -16,6 +16,17 @@ connect.then((db) => {
   console.log("Connected correctly to server");
 }, (err) => { console.log(err); });
 
+//mongoose
+const mongoose = require('mongoose');
+mongoose.set('useUnifiedTopology', true);
+const url = 'mongodb://localhost:27017/paw-friends-bd';
+const connect = mongoose.connect(url, { useNewUrlParser: true });
+
+
+connect.then((db) => {
+  console.log("Connected correctly to server");
+}, (err) => { console.log(err); });
+
 var app = express();
 
 app.use(logger('dev'));

@@ -16,7 +16,7 @@ function AnimalForm(props) {
     const { register, handleSubmit, errors } = useForm({
         resolver:yupResolver(animalSchema)
     });
-    
+    console.log(errors)
     const [anuncio] = useState(
         id ? anuncioById ?? animalSchema.cast({}) : animalSchema.cast({}));
 
@@ -25,8 +25,6 @@ function AnimalForm(props) {
         : 'anuncios/addAnuncio'
         : 'anuncios/addAnuncio'
         );
-
-    
 
     const onSubmit = (anuncio) => {
         let dataAtual = new Date();
