@@ -13,8 +13,6 @@ export default function PrivateChatCards (props) {
         mensagens = ["Comece agora mesmo o seu chat"];
     };
 
-    console.log(chat);
-
     function handleInputChange(e) {
             setChat({[e.target.name]: e.target.value, id_user: props.anuncio.id})
             if (e.target.value === "") {

@@ -3,7 +3,7 @@ import { httpGet, httpPost } from '../utils';
 
 const chatsAdapter = createEntityAdapter();
 
-const baseUrl = 'http://localhost:8000/chats';
+const baseUrl = '/chats';
 
 const initialState = chatsAdapter.getInitialState({
         status: 'not_loaded',

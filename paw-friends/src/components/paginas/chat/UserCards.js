@@ -1,92 +1,27 @@
 //referente ao card presente na tela de chat
 //card onde vai mostrar com quem se esta tendo a conversa
-import React, { Component } from "react";
+import React from "react";
+import { Link } from 'react-router-dom'
 
-class UserCards extends Component {
-    state = {
-      data: [],
-      per: 9,
-      page: 1,
-      total_pages: null
-    };
-  
-    uppercase = word => {
-      return word.charAt(0).toUpperCase() + word.slice(1);
-    };
-  
-    loadData = () => {
-      const { per, page, data } = this.state;
-      const endpoint = `https://randomuser.me/api/?nat=us&results=${per}&page=${page}`;
-      fetch(endpoint)
-        .then(response => response.json())
-        .then(json => {
-          this.setState({
-            data: [...data, ...json.results],
-            scrolling: false,
-            total_pages: json.info.results
-          });
-        });
-    };
-  
-    loadMore = () => {
-      this.setState(
-        prevState => ({
-          page: prevState.page + 1,
-          scrolling: true
-        }),
-        this.loadData
-      );
-    };
-  
-    componentDidMount() {
-      this.loadData();
-    }
-  
-  render() {
-    return (
-      <div className="container-fluid">
-        <div className="clearfix">
-          <div className="row">
-            {this.state.data.map(data => (
-              <div className="col-md-4 animated fadeIn" key={data.id.value}>
-                <div className="card">
-                  <div className="card-body">
-                    <div className="avatar">
-                      <img
-                        src={data.picture.large}
-                        className="card-img-top"
-                        alt=""
-                      />
-                    </div>
-                    <h5 className="card-title">
-                      {this.uppercase(data.name.first) +
-                        " " +
-                        this.uppercase(data.name.last)}
-                    </h5>
-                    <p className="card-text">
-                      {data.location.city +
-                        ", " +
-                        this.uppercase(data.location.state)}
-                      <br />
-                      <span className="phone">{data.phone}</span>
-                    </p>
+function UserCards(props) {
+  return (
+      <>
+          <div className="col-10 col-sm-6 col-md-4 col-lg-4 mt-4 d-flex justify-content-center">
+              <div className="card">
+                  <img className="card-img-top"
+                      src={props.anuncio.img}
+                      alt="Card cap" />
+                  <div className="card-body text-center">
+                      <h5 className="card-title">{props.anuncio.nome}</h5>
+                      <p className="card-text">{props.anuncio.cardDescricao}</p>
+                      <Link to={`/privateChat/${props.anuncio.id}`}>            
+                        <button className="btn btn-outline-dark text-capitalize">Abrir Chat</button>
+                      </Link>
                   </div>
-                </div>
               </div>
-            ))}
           </div>
-          <button
-            className="btn btn-light btn-block w-50 mx-auto"
-            onClick={e => {
-              this.loadMore();
-            }}
-          >
-            Previous Messages
-          </button>
-        </div>
-      </div>
-    );
-  }
+      </>
+  );
 }
   
   export default UserCards;
