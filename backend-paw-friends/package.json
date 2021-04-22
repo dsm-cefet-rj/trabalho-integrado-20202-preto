@@ -9,12 +9,8 @@
     "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
-<<<<<<< HEAD
-    "express": "^4.17.1",
-=======
     "express": "^4.16.4",
     "express-session": "^1.17.1",
->>>>>>> bc6779237ee21935ea319c31ff9a3a783e9f304c
     "mongoose": "^5.12.5",
     "morgan": "~1.9.1",
     "normalize-mongoose": "0.0.1",
