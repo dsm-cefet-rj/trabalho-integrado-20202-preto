@@ -5,6 +5,16 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var anunciosRouter = require('./routes/anuncios');
+var profilesRouter = require('./routes/profiles');
+
+const mongoose = require('mongoose');
+
+const url = 'mongodb://localhost:27017/pawfriends';
+const connect = mongoose.connect(url);
+
+connect.then((db) => {
+  console.log("Connected correctly to server");
+}, (err) => { console.log(err); });
 
 //mongoose
 const mongoose = require('mongoose');
@@ -56,5 +66,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/anuncios', anunciosRouter);
+app.use('/profiles', profilesRouter);
 
 module.exports = app;
