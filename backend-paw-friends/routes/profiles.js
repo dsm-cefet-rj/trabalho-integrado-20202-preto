@@ -1,109 +1,85 @@
-const { Router } = require('express');
 var express = require('express');
 var router = express.Router();
+const bodyParser = require('body-parser');
+const Profiles = require('../models/profilesModels');
 
-var profiles = [
-  {
-    "senha": "usupass",
-    "cidade": "teste1",
-    "cep": 12345678,
-    "cpf": 12345678900,
-    "telefone": 21912345678,
-    "email": "usu1@email.com",
-    "sobrenome": "teste1",
-    "nome": "usuario1",
-    "user": "usuario1_teste",
-    "img": "https://static-25.sinclairstoryline.com/resources/media/3f1ef009-5f3d-4be8-6f0e-6ab0862f00b5-largeScale_KendallBartley2020_webphoto320x4201.png?1603404656511",
-    "id": 1
-  },
-  {
-    "senha": "usupass",
-    "cidade": "teste2",
-    "cep": 12345678,
-    "cpf": 12345678900,
-    "telefone": 21912345678,
-    "email": "usu2@email.com",
-    "sobrenome": "teste2",
-    "nome": "usuario2",
-    "user": "usuario2_teste",
-    "img": "https://static-25.sinclairstoryline.com/resources/media/3f1ef009-5f3d-4be8-6f0e-6ab0862f00b5-largeScale_KendallBartley2020_webphoto320x4201.png?1603404656511",
-    "id": 2
-  },
-  {
-    "senha": "usupass",
-    "cidade": "teste3",
-    "cep": 12345678,
-    "cpf": 12345678900,
-    "telefone": 21912345678,
-    "email": "usu3@email.com",
-    "sobrenome": "teste3",
-    "nome": "usuario3",
-    "user": "usuario3_teste",
-    "img": "https://static-25.sinclairstoryline.com/resources/media/3f1ef009-5f3d-4be8-6f0e-6ab0862f00b5-largeScale_KendallBartley2020_webphoto320x4201.png?1603404656511",
-    "id": 3
-  },
-  {
-    "senha": "usupass",
-    "cidade": "teste4",
-    "cep": 12345678,
-    "cpf": 12345678900,
-    "telefone": 21912345678,
-    "email": "usu4@email.com",
-    "sobrenome": "teste4",
-    "nome": "usuario4",
-    "user": "usuario4_teste",
-    "img": "https://static-25.sinclairstoryline.com/resources/media/3f1ef009-5f3d-4be8-6f0e-6ab0862f00b5-largeScale_KendallBartley2020_webphoto320x4201.png?1603404656511",
-    "id": 4
-  },
-  {
-    "senha": "usupass",
-    "cidade": "teste5",
-    "cep": 12345678,
-    "cpf": 12345678900,
-    "telefone": 21912345678,
-    "email": "usu5@email.com",
-    "sobrenome": "teste5",
-    "nome": "usuario5",
-    "user": "usuario5_teste",
-    "img": "https://static-25.sinclairstoryline.com/resources/media/3f1ef009-5f3d-4be8-6f0e-6ab0862f00b5-largeScale_KendallBartley2020_webphoto320x4201.png?1603404656511",
-    "id": 5
-  }
-];
+var bodyParserJson = bodyParser.json();
+router.use(bodyParserJson);
 
 
 /* GET users listing. */
 router.route('/')
-.get(function(req, res, next) {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'application/json');
-  res.json(profiles);
-})
-.post(function(req, res, next) {
-  let proxId = 1 + profiles.map(p => p.id).reduce((x, y) => Math.max(x,y));
-  let profile = {...req.body, id: proxId};
-  profiles.push(profile);
+.get(async (req, res, next) => {
 
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'application/json');
-  res.json(profile);
+  try{
+    const profilesBanco = await Profiles.find({});
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    res.json(profilesBanco);
+    console.log(profilesBanco);
+    
+  }catch(err){
+    err = {};
+    res.statusCode = 404;
+    res.json(err);
+  }
+})
+
+.post((req, res, next) => {
+
+  Profiles.create(req.body)
+  .then((profile) => {
+      console.log('Perfil criado ', profile);
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'application/json');
+      res.json(profile);
+  }, (err) => next(err))
+  .catch((err) => next(err));
 })
 
 router.route('/:id')
-.delete(function(req, res, next) {
-  profiles = profiles.filter(function(value, index, arr){
-    return value.id != req.params.id;
-  });
-  res.statusCode = 200;
+.get(async (req, res, next) => {
+  let err;
   res.setHeader('Content-Type', 'application/json');
-  res.json(req.params.id);
+  try{
+    const resp = await Profiles.findById(req.params.id);
+    if(resp != null){
+      res.statusCode = 200;
+      res.json(resp);
+    }else{
+      err = {};
+      res.statusCode = 404;
+      res.json(err);
+    }
+  
+  }catch(errParam){
+    console.log(errParam);
+    res.statusCode = 404;
+    res.json({});
+  }  
+})  
+.delete((req, res, next) => {
+  
+  Profiles.findByIdAndRemove(req.params.id)
+    .then((resp) => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(resp.id);
+    }, (err) => next(err))
+    .catch((err) => next(err));
+
 })
 .put(function(req, res, next) {
-  let index = req.params.id;
-  profiles.splice(index, 1, req.body);
-  console.log("teste");
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'application/json');
-  res.json(req.body);
+  
+  Profiles.findByIdAndUpdate(req.params.id, {
+    $set: req.body
+  }, { new: true })
+  .then((profile) => {
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'application/json');
+      res.json(profile);
+  }, (err) => next(err))
+  .catch((err) => next(err));
 })
 
 module.exports = router;

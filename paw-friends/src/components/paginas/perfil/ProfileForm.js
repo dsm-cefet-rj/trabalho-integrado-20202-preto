@@ -16,7 +16,8 @@ function ProfileForm(props) {
     const history = useHistory();
     const dispatch = useDispatch();
     let { id } = useParams();
-    id = parseInt(id);
+
+
 
     const profileById = useSelector(state => selectProfilesById(state, id))
 
@@ -33,12 +34,12 @@ function ProfileForm(props) {
         if(typeForm === 'create'){
             dispatch(addProfileServer(profile))
             .then(unwrapResult)
-            .then(profnovo => {history.push(`/perfil/${profnovo.id}`)})
+            .then(profnovo => {history.push(`/profile/${profnovo.id}`)})
             alert("Você criou sua conta!")
         }else{
             dispatch(updateProfileServer({...profile, id: profileById.id}))
             .then(unwrapResult)
-            .then(profnovo => {history.push(`/perfil/${profnovo.id}`)})
+            .then(profnovo => {history.push(`/profile/${profnovo.id}`)})
             alert("Você editou sua conta!")
         }
     }

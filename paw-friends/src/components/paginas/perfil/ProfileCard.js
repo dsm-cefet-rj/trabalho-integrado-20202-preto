@@ -1,12 +1,9 @@
 import { Link } from 'react-router-dom';
 import {deleteProfileServer} from '../../../store/reducers/profilesReducer'
 import {useDispatch} from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 function ProfileCard(props) {
-
-    let { id } = useParams();
-    id = parseInt(id);
 
     let profile = props.profile;
     console.log(profile);
@@ -51,7 +48,7 @@ function ProfileCard(props) {
 
                             <div class="row text-center justify-content-center">
                                 <div class="col-lg-6 col-md-8 col-sm-10 col-10">
-                                    <Link to={`/editarPerfil/${profile.id}`}>
+                                    <Link to={`/editProfile/${profile.id}`}>
                                         <button class="button-line btn btn-outline-dark mt-3 btn-adocao">Editar Perfil</button>
                                     </Link>
                                         <button type="button" onClick={profileDelete} className="button-line btn btn-outline-danger mt-3 text-capitalize">Deletar perfil</button> 

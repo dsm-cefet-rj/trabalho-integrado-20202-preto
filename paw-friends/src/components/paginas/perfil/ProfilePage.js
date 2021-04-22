@@ -9,7 +9,6 @@ import { fetchProfiles, selectProfilesById } from '../../../store/reducers/profi
 function ProfilePage() {
     
     let { id } = useParams();
-    id = parseInt(id);
 
     const dispatch = useDispatch();
     const status = useSelector(state => state.profiles.status);
