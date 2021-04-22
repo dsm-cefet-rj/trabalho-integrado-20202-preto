@@ -10,6 +10,7 @@ export default function IndexPage() {
     const dispatch = useDispatch();
     const status = useSelector(state => state.anuncios.status);
     const error = useSelector(state => state.anuncios.error);
+
     var pageTitle = '';
     let anunciosRow = null;
 

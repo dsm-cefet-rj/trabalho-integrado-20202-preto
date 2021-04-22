@@ -4,19 +4,21 @@ const bodyParser = require('body-parser');
 const Anuncios = require('../models/anuncios');
 var authenticate = require('../authenticate');
 
-var bodyParserJson = bodyParser.json();
-router.use(bodyParserJson);
+// var bodyParserJson = bodyParser.json();
+// router.use(bodyParserJson);
 
 
 /* GET users listing. */
 router.route('/')
-    .get(authenticate.verifyUser, async (req, res, next) => {
+    .get(async (req, res, next) => {
+        console.log(req.user);
         try {
             const anunciosBanco = await Anuncios.find({}).maxTime(5000);
             res.statusCode = 200;
             res.setHeader('Content-Type', 'application/json');
             res.json(anunciosBanco);
         } catch (err) {
+            console.log('erro fetch')
             next(err);
         }
     })
