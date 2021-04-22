@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const bodyParser = require('body-parser');
 const Profiles = require('../models/profilesModels');
+var authenticate = require('../authenticate');
 
 var bodyParserJson = bodyParser.json();
 router.use(bodyParserJson);
@@ -9,8 +10,8 @@ router.use(bodyParserJson);
 
 /* GET users listing. */
 router.route('/')
-.get(async (req, res, next) => {
-
+.get(authenticate.verifyUser, async (req, res, next) => {
+  console.log(req.user);
   try{
     const profilesBanco = await Profiles.find({});
     res.statusCode = 200;
@@ -25,7 +26,7 @@ router.route('/')
   }
 })
 
-.post((req, res, next) => {
+.post(authenticate.verifyUser, (req, res, next) => {
 
   Profiles.create(req.body)
   .then((profile) => {
@@ -38,7 +39,7 @@ router.route('/')
 })
 
 router.route('/:id')
-.get(async (req, res, next) => {
+.get(authenticate.verifyUser, async (req, res, next) => {
   let err;
   res.setHeader('Content-Type', 'application/json');
   try{
@@ -58,7 +59,7 @@ router.route('/:id')
     res.json({});
   }  
 })  
-.delete((req, res, next) => {
+.delete(authenticate.verifyUser, (req, res, next) => {
   
   Profiles.findByIdAndRemove(req.params.id)
     .then((resp) => {
@@ -69,7 +70,7 @@ router.route('/:id')
     .catch((err) => next(err));
 
 })
-.put(function(req, res, next) {
+.put(authenticate.verifyUser, (req, res, next) => {
   
   Profiles.findByIdAndUpdate(req.params.id, {
     $set: req.body

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const bodyParser = require('body-parser');
 const Anuncios = require('../models/anuncios');
+var authenticate = require('../authenticate');
 
 var bodyParserJson = bodyParser.json();
 router.use(bodyParserJson);
@@ -9,7 +10,7 @@ router.use(bodyParserJson);
 
 /* GET users listing. */
 router.route('/')
-    .get(async (req, res, next) => {
+    .get(authenticate.verifyUser, async (req, res, next) => {
         try {
             const anunciosBanco = await Anuncios.find({}).maxTime(5000);
             res.statusCode = 200;
@@ -19,7 +20,7 @@ router.route('/')
             next(err);
         }
     })
-    .post((req, res, next) => {
+    .post(authenticate.verifyUser, (req, res, next) => {
 
         Anuncios.create(req.body)
             .then((anuncio) => {
@@ -33,7 +34,7 @@ router.route('/')
     })
 
 router.route('/:id')
-    .get((req, res, next) => {
+    .get(authenticate.verifyUser, (req, res, next) => {
 
         Anuncios.findById(req.params.id)
             .then((resp) => {
@@ -45,7 +46,7 @@ router.route('/:id')
 
 
     })
-    .delete((req, res, next) => {
+    .delete(authenticate.verifyUser, (req, res, next) => {
 
         Anuncios.findByIdAndRemove(req.params.id)
             .then((resp) => {
@@ -57,7 +58,7 @@ router.route('/:id')
 
 
     })
-    .put((req, res, next) => {
+    .put(authenticate.verifyUser, (req, res, next) => {
 
         Anuncios.findByIdAndUpdate(req.params.id, {
             $set: req.body
