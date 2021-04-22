@@ -6,7 +6,7 @@ setLocale(ptForm)
 export let profileSchema = object().shape(
     {
    
-        id: number(),
+        id: string(),
         user: string().required().max(20),
         nome: string().required().max(30),
         sobrenome: string().required().max(30),
