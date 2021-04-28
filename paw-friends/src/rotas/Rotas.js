@@ -7,6 +7,9 @@ import AnimalFormPage from '../components/paginas/anúncio/AnimalFormPage';
 import ProfilePage from '../components/paginas/perfil/ProfilePage';
 import PrivateChatPage from '../components/paginas/chat/PrivateChatPage';
 import ProfileFormPage from '../components/paginas/perfil/ProfileFormPage';
+import InitialPage from '../components/paginas/inicio/InitialPage';
+import ProfileLoginPage from '../components/paginas/perfil/ProfileLoginPage';
+
 
 function Rotas() {
     return(
@@ -23,6 +26,8 @@ function Rotas() {
                 <Route path="/privateChat/:id" component={PrivateChatPage}/>
                 <Route path="/editProfile/:id" component={() => <ProfileFormPage type='edit'/>}/>
                 <Route path="/createProfile" component={() => <ProfileFormPage type='create' />}/>
+                <Route path="/login" component={ProfileLoginPage}/>
+                <Route path="/inicio" component={InitialPage}/>
             </Switch>
         </Router>
     );
