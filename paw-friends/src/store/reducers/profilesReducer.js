@@ -3,7 +3,7 @@ import { httpDelete, httpGet, httpPut, httpPost } from '../utils'
 
 const profilesAdapter = createEntityAdapter();
 
-const baseUrl = 'http://localhost:8000/profiles';
+const baseUrl = '/profiles';
 
 const initialState = profilesAdapter.getInitialState({
     status: 'not_loaded',
