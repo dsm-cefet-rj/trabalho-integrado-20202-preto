@@ -10,7 +10,7 @@ function UserCards(props) {
               <div className="card">
                   <img className="card-img-top"
                       src={props.anuncio.img}
-                      alt="Card cap" />
+                      alt="Animal" />
                   <div className="card-body text-center">
                       <h5 className="card-title">{props.anuncio.nome}</h5>
                       <p className="card-text">{props.anuncio.cardDescricao}</p>

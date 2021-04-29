@@ -13,32 +13,33 @@ export default function PrivateChatPage () {
     const status2 = useSelector(state => state.chats.status);
     const dispatch = useDispatch();
     let { id } = useParams();
-    id = parseInt(id);
 
     useLayoutEffect(() => {
         if(status === 'not_loaded'){
             dispatch(fetchAnuncios());
-            dispatch(fetchChats());
         }
     }, [status, dispatch]);
 
     useLayoutEffect(()=>{
-        if(status2 === 'saved') {
+        if(status2 === 'not_loaded' || status2 === 'saved') {
             dispatch(fetchChats());
         }
     }, [status2, dispatch]);
 
     let anuncio = useSelector(state => selectAnunciosById(state, id));
-
+    
     //segura o componente vazio até o estado mudar
     if (anuncio === undefined) {
         anuncio = {};
-    } 
+    }
+    const privateChatCard = <PrivateChatCards anuncio={anuncio} />;
 
     return (
         <>
             <Navbar/>
-            <PrivateChatCards anuncio={anuncio} />
+            <div className="container-fluid container-cards">
+                {privateChatCard}
+            </div>
         </>
     );
 }

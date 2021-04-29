@@ -4,10 +4,12 @@ import { addChatServer, selectAllChats } from "../../../store/reducers/chatReduc
 
 export default function PrivateChatCards (props) {
 
+    let anuncio = props.anuncio;
+    console.log(anuncio);
     const [chat, setChat] = useState({});
     const dispatch = useDispatch();
     const chats = useSelector(selectAllChats);
-    let chatdapagina = chats.filter(state => state.id_user === props.anuncio.id); 
+    let chatdapagina = chats.filter(state => state.id_user === anuncio.id); 
     let mensagens = chatdapagina.map(state => state.msg_sent);  
     if (mensagens[0] === "" || mensagens[0] === undefined ) {
         mensagens = ["Comece agora mesmo o seu chat"];
@@ -32,8 +34,8 @@ export default function PrivateChatCards (props) {
             <div className= "bodychat">
                 <div className="container-fluid headerchat fixed">
                     <div className="row">
-                            <img alt="" className="col-xs-2 col-md-3 avatarprivate" src={props.anuncio.img} />
-                            <div className="col-md-4 animaltitle"> {props.anuncio.nome} </div>
+                            <img alt="" className="col-xs-2 col-md-3 avatarprivate" src={anuncio.img} />
+                            <div className="col-md-4 animaltitle"> {anuncio.nome} </div>
                     </div>
                 </div>
                 <div className="container-fluid" >

@@ -11,7 +11,7 @@ import React, { useEffect } from 'react'
 function ChatCardsPage() {
     
     const chats = useSelector(selectAllChats);
-    const anuncios = useSelector(selectAllAnuncios);
+    let anuncios = useSelector(selectAllAnuncios);
     var iddosusers = chats.map(chat => chat.id_user);
     var IdsUsers = iddosusers.filter(function(este, i) {
         return iddosusers.indexOf(este) === i;
@@ -21,12 +21,10 @@ function ChatCardsPage() {
     });
     const anunciossaveds = anunciossalvos.flat();
     const dispatch = useDispatch();
-    const status = useSelector(state => state.anuncios.status);
-    const error = useSelector(state => state.anuncios.error);
+    const status = useSelector(state => state.chats.status);
+    const error = useSelector(state => state.chats.error);
     var pageTitle = '';
     let chatsRow = null;
-
-    console.log(anunciossaveds);
     
     //Fetch
     useEffect(() => {

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const bodyParser = require('body-parser');
-const Profiles = require('../models/profilesModels');
+const Profiles = require('../models/profiles');
 var authenticate = require('../authenticate');
 
 var bodyParserJson = bodyParser.json();

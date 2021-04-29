@@ -1,35 +1,29 @@
 var express = require('express');
 var router = express.Router();
+const Chats = require('../models/chats');
 
-var chats = [
-    {
-        "id":1,
-        "id_user":4,
-        "msg_sent":"Hey dude, sup?"
-    },
-    {
-        "id":2,
-        "id_user":4,
-        "msg_sent":"r u fine?"
-    },
-]
+var chats = []
 
 router.route('/')
-    .get(function (req, res, next) {
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'application/json');
-        res.json(chats);
+    .get((req, res, next) => {
+        Chats.find({})
+        .then((chatsBanco) => {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.json(chatsBanco);                
+        },(err) => next(err))
+        .catch((err) => next(err));
     })
 
     .post(function (req, res, next) {
-        let proxId = 1 + chats.map(p => p.id).reduce((x, y) => Math.max(x, y));
-        let chat = { ...req.body, id: proxId };
-        chats.push(chat);
-
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'application/json');
-        res.json(chat);
-    })
+        Chats.create(req.body)
+        .then((chatsBanco) => {
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.json(chatsBanco);                
+        },(err) => next(err))
+        .catch((err) => next(err));
+        })
 
 
 module.exports = router;
