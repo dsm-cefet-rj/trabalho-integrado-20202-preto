@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { addAnunciosServer, updateAnunciosServer, selectAnunciosById } from '../../../store/reducers/anunciosReducer';
+import { addAnuncioServer, updateAnuncioServer, selectAnunciosById } from '../../../store/reducers/anunciosReducer';
 import { animalSchema } from './AnimalSchema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from "react-hook-form";
@@ -31,10 +31,10 @@ function AnimalForm(props) {
         anuncio.dataAnuncio = dataAtual.toString();
 
         if(actionType === 'anuncios/addAnuncio'){
-            dispatch(addAnunciosServer(anuncio));
+            dispatch(addAnuncioServer(anuncio));
             history.push('/index');
         }else{
-            dispatch(updateAnunciosServer({...anuncio, id: anuncioById.id}));
+            dispatch(updateAnuncioServer({...anuncio, id: anuncioById.id}));
             history.push(`/animal/${id}`);
         }
     }
