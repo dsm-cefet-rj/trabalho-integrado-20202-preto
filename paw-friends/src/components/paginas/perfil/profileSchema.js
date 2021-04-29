@@ -5,8 +5,7 @@ setLocale(ptForm)
 
 export let profileSchema = object().shape(
     {
-   
-        id: string(),
+
         user: string().required().max(20),
         nome: string().required().max(30),
         sobrenome: string().required().max(30),
@@ -14,7 +13,7 @@ export let profileSchema = object().shape(
         telefone: number().required().positive().integer().max(9999999999999).min(10000000),
         cpf: number().required().min(1000000000).max(99999999999),
         cep: number().required().min(1).max(99999999),
-        cidade: string().required().max(30),
-        senha: string().required().max(18),
+        cidade: string().required().max(50),
+        senha: string().required().max(20),
     }
 )
