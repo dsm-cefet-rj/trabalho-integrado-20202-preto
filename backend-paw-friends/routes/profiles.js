@@ -26,7 +26,7 @@ router.route('/')
   }
 })
 
-.post(authenticate.verifyUser, (req, res, next) => {
+.post((req, res, next) => {
 
   Profiles.create(req.body)
   .then((profile) => {

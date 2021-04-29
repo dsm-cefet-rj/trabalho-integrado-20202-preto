@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice, createEntityAdapter } from '@reduxjs/toolkit'
 import { httpDelete, httpGet, httpPut, httpPost } from '../utils'
-
-const baseUrl = '/anuncios';
+import {baseUrl} from './baseUrl'
 
 //entity adapter
 const anunciosAdapter = createEntityAdapter();
@@ -13,22 +12,24 @@ const initialAnuncios = anunciosAdapter.getInitialState({
 });
 
 //funções crud para o entity adapter
-export const fetchAnuncios = createAsyncThunk('anuncios/fetchAnuncios', async () => {
-    return await httpGet(`${baseUrl}`);
+export const fetchAnuncios = createAsyncThunk('anuncios/fetchAnuncios', async (_, {getState}) => {
+    console.log(getState());
+    return await httpGet(`${baseUrl}/anuncios`, {headers: {Authorization: 'Bearer ' + getState().logins.currentToken}});
 });
 
-export const deleteAnunciosServer = createAsyncThunk('anuncios/deleteAnunciosServer', async (id) => {
-    await httpDelete(`${baseUrl}/${id}`);
+export const deleteAnuncioServer = createAsyncThunk('anuncios/deleteAnuncioServer', async (id, {getState}) => {
+    await httpDelete(`${baseUrl}/anuncios/${id}`, {headers: {Authorization: 'Bearer ' + getState().logins.currentToken}});
     return id;
 });
 
-export const addAnunciosServer = createAsyncThunk('anuncios/addAnunciosServer', async (anuncio) => {
-    return await httpPost(`${baseUrl}/`, anuncio);
+export const addAnuncioServer = createAsyncThunk('anuncios/addAnuncioServer', async (anuncio, {getState}) => {
+    return await httpPost(`${baseUrl}/anuncios`, anuncio, {headers: {Authorization: 'Bearer ' + getState().logins.currentToken}});
 });
 
-export const updateAnunciosServer = createAsyncThunk('anuncios/updateAnunciosServer', async (anuncio) => {
-    return await httpPut(`${baseUrl}/${anuncio.id}`, anuncio);
+export const updateAnuncioServer = createAsyncThunk('anuncios/updateAnuncioServer', async (anuncio, {getState}) => {
+    return await httpPut(`${baseUrl}/anuncios/${anuncio.id}`, anuncio, {headers: {Authorization: 'Bearer ' + getState().logins.currentToken}});
 });
+
 
 export const anunciosSlice = createSlice({
     name: 'anuncios',
@@ -44,15 +45,15 @@ export const anunciosSlice = createSlice({
         }, 
         [fetchAnuncios.rejected]: (state, action) => {state.status = 'failed'; state.error = action.error.message},
 
-        [deleteAnunciosServer.pending]: (state) => {state.status = 'loading'},
-        [deleteAnunciosServer.fulfilled]: (state, action) => {state.status = 'deleted'; anunciosAdapter.removeOne(state, action.payload);},
+        [deleteAnuncioServer.pending]: (state) => {state.status = 'loading'},
+        [deleteAnuncioServer.fulfilled]: (state, action) => {state.status = 'deleted'; anunciosAdapter.removeOne(state, action.payload);},
 
-        [addAnunciosServer.pending]: (state) => {state.status = 'loading'},
-        [addAnunciosServer.fulfilled]: (state, action) => {state.status = 'saved'; anunciosAdapter.addOne(state, action.payload);},
+        [addAnuncioServer.pending]: (state) => {state.status = 'loading'},
+        [addAnuncioServer.fulfilled]: (state, action) => {state.status = 'saved'; anunciosAdapter.addOne(state, action.payload);},
 
-        [updateAnunciosServer.pending]: (state) => {state.status = 'loading'},
-        [updateAnunciosServer.fulfilled]: (state, action) => {state.status = 'saved'; anunciosAdapter.upsertOne(state, action.payload);},
-        [updateAnunciosServer.rejected]: (state, action) => {state.status = 'failed'; state.error = action.error.message},
+        [updateAnuncioServer.pending]: (state) => {state.status = 'loading'},
+        [updateAnuncioServer.fulfilled]: (state, action) => {state.status = 'saved'; anunciosAdapter.upsertOne(state, action.payload);},
+        [updateAnuncioServer.rejected]: (state, action) => {state.status = 'failed'; state.error = action.error.message},
     }
 })
 

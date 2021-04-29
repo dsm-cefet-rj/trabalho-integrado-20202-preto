@@ -15,7 +15,6 @@ function Rotas() {
     return(
         <Router>
             <Switch>
-                <Route path="/" exact component={IndexPage}/>
                 <Route path="/index" component={IndexPage}/>
                 <Route path="/editarAnuncio/:id" component={() => <AnimalFormPage type='edit'/>}/>
                 <Route path="/criarAnuncio" component={() => <AnimalFormPage type='create' />}/>
@@ -26,8 +25,9 @@ function Rotas() {
                 <Route path="/privateChat/:id" component={PrivateChatPage}/>
                 <Route path="/editProfile/:id" component={() => <ProfileFormPage type='edit'/>}/>
                 <Route path="/createProfile" component={() => <ProfileFormPage type='create' />}/>
-                <Route path="/login" component={ProfileLoginPage}/>
-                <Route path="/inicio" component={InitialPage}/>
+                <Route path="/signup" component={() => <ProfileLoginPage type='create' />}/>
+                <Route path="/login" component={() => <ProfileLoginPage type='login' />}/>
+                <Route path="/" exact component={InitialPage}/>
             </Switch>
         </Router>
     );

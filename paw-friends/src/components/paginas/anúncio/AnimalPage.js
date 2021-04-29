@@ -2,7 +2,7 @@ import Navbar from '../../layouts/navbar/Navbar';
 import AnimalCard from './AnimalCard';
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAnuncios, selectAnunciosById, deleteAnunciosServer } from '../../../store/reducers/anunciosReducer';
+import { fetchAnuncios, selectAnunciosById, deleteAnuncioServer } from '../../../store/reducers/anunciosReducer';
 import { useLayoutEffect } from 'react';
    
 export default function AnimalPage() {
@@ -11,7 +11,7 @@ export default function AnimalPage() {
     let { id } = useParams();
 
     function handleDeleteAnuncio(id){
-        dispatch(deleteAnunciosServer(id));
+        dispatch(deleteAnuncioServer(id));
     };
 
     useLayoutEffect(() => {

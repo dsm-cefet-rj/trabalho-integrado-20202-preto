@@ -30,11 +30,10 @@ function ProfileForm(props) {
 
 
     const onSubmit = (profile) => {
-        console.log("teste de clique");
         if(typeForm === 'create'){
             dispatch(addProfileServer(profile))
             .then(unwrapResult)
-            .then(profnovo => {history.push(`/profile/${profnovo.id}`)})
+            .then(profnovo => {history.push(`/login`)})
             alert("Você criou sua conta!")
         }else{
             dispatch(updateProfileServer({...profile, id: profileById.id}))

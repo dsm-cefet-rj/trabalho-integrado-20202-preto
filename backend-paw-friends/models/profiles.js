@@ -54,11 +54,7 @@ const profileSchema = new Schema({
     img: {
         type: String,
         required: true,
-    },
-
-
-
-
+    }
 })
 
 profileSchema.plugin(normalize);

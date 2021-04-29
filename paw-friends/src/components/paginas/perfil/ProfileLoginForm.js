@@ -1,49 +1,46 @@
-import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Link, useHistory, useParams} from 'react-router-dom';
-import {addProfileServer, updateProfileServer, selectProfilesById} from '../../../store/reducers/profilesReducer'
-import { profileSchema } from './profileSchema';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from "react-hook-form";
-import { unwrapResult } from '@reduxjs/toolkit'
+import React, {useEffect} from 'react';
+import {useHistory } from "react-router-dom";
+import {useDispatch, useSelector} from 'react-redux';
+import { useForm } from "react-hook-form";
+import {loginServer, createUserServer} from '../../../store/reducers/loginReducer';
+import {Link} from 'react-router-dom';
 
-function ProfileForm(props) {
-    const typeForm = props.type;
+export default function LoginForm(props){
+
     const history = useHistory();
-    const dispatch = useDispatch();
-    let { id } = useParams();
+    const dispatch = useDispatch()
+    const status = useSelector(state => state.logins.status);
 
-    const profileById = useSelector(state => selectProfilesById(state, id))
+    const { register, handleSubmit, errors } = useForm();
 
-    const { register, handleSubmit, errors } = useForm({
-        resolver:yupResolver(profileSchema)
-    });
-
-    const [profile] = useState(
-        id ? profileById ?? profileSchema.cast({}): profileSchema.cast({}));
-
-
-    const onSubmit = (profile) => {
-        console.log("teste de clique");
-        if(typeForm === 'create'){
-            dispatch(addProfileServer(profile))
-            .then(unwrapResult)
-            .then(profnovo => {history.push(`/profile/${profnovo.id}`)})
-            alert("Você criou sua conta!")
+    function onSubmit(login){
+        if(props.type === 'login'){
+            dispatch(loginServer(login));
         }else{
-            dispatch(updateProfileServer({...profile, id: profileById.id}))
-            .then(unwrapResult)
-            .then(profnovo => {history.push(`/profile/${profnovo.id}`)})
-            alert("Você editou sua conta!")
+            dispatch(createUserServer(login));
+            history.push(`/login`)
         }
     }
 
-    let buttonMessage = '';
-    if(typeForm === 'edit'){
-        buttonMessage = 'Editar Perfil';
+    //modificador das mensagens dos botões
+    const type = props.type;
+    var createButton = '';
+    var msgSubmitButton = '';
+    if (type === "login") {
+        createButton = 
+            <Link to="/signup">
+                <button type="button" className="button-line btn btn-outline-success mt-3 text-capitalize">Criar conta</button>
+            </Link>;
+        msgSubmitButton = "Entrar";
     }else{
-        buttonMessage = 'Cadastrar Perfil';
+        msgSubmitButton = "Criar";
     }
+
+    useEffect(() => {
+        if (status === 'logged_in' ) {
+            history.push('/index');
+        }
+    }, [status])
 
     return (
         <div className="row d-flex justify-content-center mt-4 mb-5">
@@ -54,21 +51,22 @@ function ProfileForm(props) {
 
                             <div class="form-group mt-2">
                                 <label for="InputUser">Nome de Usuário</label>
-                                <input type="text" class="form-control" placeholder="Nome de Usuario" name="user" defaultValue={profile.user} ref={register}></input>
-                                <div style={{color: "red"}}>{errors.user?.message}</div>
+                                <input type="text" class="form-control" placeholder="Nome de Usuario" name="username" ref={register}></input>
+                                <div style={{color: "red"}}>{errors.username?.message}</div>
                             </div>
 
                             <div class="form-group mt-2">
                                 <label for="InputPass">Senha</label>
-                                <input type="password" class="form-control" placeholder="Senha" name="senha" defaultValue={profile.senha} ref={register}></input>
-                                <div style={{color: "red"}}>{errors.senha?.message}</div>
+                                <input type="password" class="form-control" placeholder="Senha" name="password" ref={register}></input>
+                                <div style={{color: "red"}}>{errors.password?.message}</div>
                             </div>
 
-                            <button type="submit" className="button-line btn btn-outline-dark mt-3 text-capitalize">Entrar</button>
+                            <button type="submit" className="button-line btn btn-outline-dark mt-3 text-capitalize">{msgSubmitButton}</button>
 
-                            <Link to="/inicio"> 
+                            <Link to="/"> 
                                 <button type="button" className="button-line btn btn-outline-danger mt-3 text-capitalize">Cancelar</button> 
                             </Link>
+                            {createButton}
                         </form>
                     </div>
                 </div>
@@ -77,5 +75,3 @@ function ProfileForm(props) {
         
       )
 }
-
-export default ProfileForm;

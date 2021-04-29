@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux'
 import anuncios from './anunciosReducer';
-import profilesReducer from './profilesReducer';
-import chatReducer from './chatReducer';
+import profiles from './profilesReducer';
+import chats from './chatReducer';
+import logins from './loginReducer';
 
 export default combineReducers({
-    anuncios, profiles: profilesReducer, chats: chatReducer,
+    anuncios, profiles, chats, logins
 })

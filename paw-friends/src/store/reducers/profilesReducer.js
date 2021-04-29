@@ -1,9 +1,8 @@
 import {createSlice, createAsyncThunk, createEntityAdapter} from '@reduxjs/toolkit';
 import { httpDelete, httpGet, httpPut, httpPost } from '../utils'
-
+import {baseUrl} from './baseUrl';
 const profilesAdapter = createEntityAdapter();
 
-const baseUrl = '/profiles';
 
 const initialState = profilesAdapter.getInitialState({
     status: 'not_loaded',
@@ -11,20 +10,20 @@ const initialState = profilesAdapter.getInitialState({
 });
 
 export const fetchProfiles = createAsyncThunk('profiles/fetchProfiles', async () => {
-    return await httpGet(`${baseUrl}`);
+    return await httpGet(`${baseUrl}/profiles`);
 });
 
 export const deleteProfileServer = createAsyncThunk('profiles/deleteProfileServer', async (id) => {
-    await httpDelete(`${baseUrl}/${id}`);
+    await httpDelete(`${baseUrl}/profiles/${id}`);
     return id;
 });
 
 export const addProfileServer = createAsyncThunk('profiles/addProfileServer', async (profile) => {
-    return await httpPost(`${baseUrl}`, profile);
+    return await httpPost(`${baseUrl}/profiles`, profile);
 });
 
 export const updateProfileServer = createAsyncThunk('profiles/updateProfileServer', async (profile) => {
-    return await httpPut(`${baseUrl}/${profile.id}`, profile);
+    return await httpPut(`${baseUrl}/profiles/${profile.id}`, profile);
 });
 
 export const profilesSlice = createSlice({
