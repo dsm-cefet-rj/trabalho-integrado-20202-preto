@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 const Chats = require('../models/chats');
 
-var chats = []
-
 router.route('/')
     .get((req, res, next) => {
         Chats.find({})
