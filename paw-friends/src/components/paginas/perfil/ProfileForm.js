@@ -38,7 +38,7 @@ function ProfileForm(props) {
         }else{
             dispatch(updateProfileServer({...profile, id: profileById.id}))
             .then(unwrapResult)
-            .then(profnovo => {history.push(`/profile/${profnovo.id}`)})
+            .then(profnovo => {history.push(`/profiles/${profnovo.id}`)})
             alert("Você editou sua conta!")
         }
     }

@@ -1,29 +1,29 @@
 import {createSlice, createAsyncThunk, createEntityAdapter} from '@reduxjs/toolkit';
 import { httpDelete, httpGet, httpPut, httpPost } from '../utils'
 import {baseUrl} from './baseUrl';
-const profilesAdapter = createEntityAdapter();
 
+const profilesAdapter = createEntityAdapter();
 
 const initialState = profilesAdapter.getInitialState({
     status: 'not_loaded',
     error: null
 });
 
-export const fetchProfiles = createAsyncThunk('profiles/fetchProfiles', async () => {
-    return await httpGet(`${baseUrl}/profiles`);
+export const fetchProfiles = createAsyncThunk('profiles/fetchProfiles', async (_,{getState}) => {
+    return await httpGet(`${baseUrl}/profiles`, {headers: {Authorization: 'Bearer ' + getState().logins.currentToken}});
 });
 
-export const deleteProfileServer = createAsyncThunk('profiles/deleteProfileServer', async (id) => {
-    await httpDelete(`${baseUrl}/profiles/${id}`);
+export const deleteProfileServer = createAsyncThunk('profiles/deleteProfileServer', async (id, {getState}) => {
+    await httpDelete(`${baseUrl}/profiles/${id}`, {headers: {Authorization: 'Bearer ' + getState().logins.currentToken}});
     return id;
 });
 
-export const addProfileServer = createAsyncThunk('profiles/addProfileServer', async (profile) => {
-    return await httpPost(`${baseUrl}/profiles`, profile);
+export const addProfileServer = createAsyncThunk('profiles/addProfileServer', async (profile, {getState}) => {
+    return await httpPost(`${baseUrl}/profiles`, profile, {headers: {Authorization: 'Bearer ' + getState().logins.currentToken}});
 });
 
-export const updateProfileServer = createAsyncThunk('profiles/updateProfileServer', async (profile) => {
-    return await httpPut(`${baseUrl}/profiles/${profile.id}`, profile);
+export const updateProfileServer = createAsyncThunk('profiles/updateProfileServer', async (profile, {getState}) => {
+    return await httpPut(`${baseUrl}/profiles/${profile.id}`, profile, {headers: {Authorization: 'Bearer ' + getState().logins.currentToken}});
 });
 
 export const profilesSlice = createSlice({
