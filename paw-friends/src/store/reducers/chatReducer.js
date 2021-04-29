@@ -10,13 +10,13 @@ const initialState = chatsAdapter.getInitialState({
         error: null
 });
 
-export const fetchChats = createAsyncThunk('chats/fetchChats', async () => {
-        return await httpGet(`${baseUrl}`);
+export const fetchChats = createAsyncThunk('chats/fetchChats', async (_, {getState}) => {
+        return await httpGet(`${baseUrl}`, {headers: {Authorization: 'Bearer ' + getState().logins.currentToken}});
     }
 );
 
-export const addChatServer = createAsyncThunk('chats/addChatServer', async (chat) => {
-    return await httpPost(`${baseUrl}`, chat);
+export const addChatServer = createAsyncThunk('chats/addChatServer', async (chat, {getState}) => {
+    return await httpPost(`${baseUrl}`, chat, {headers: {Authorization: 'Bearer ' + getState().logins.currentToken}});
 });
 
 export const chatsSlice = createSlice({
