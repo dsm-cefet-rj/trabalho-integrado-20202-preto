@@ -5,15 +5,24 @@ import ProfileLoginForm from './ProfileLoginForm';
 
 /* Esse componente é referente a página completa da criação de perfil */
 
-function ProfileLoginPage() {
-    const title = 'Login';
-    const subtitle = 'Entre na sua conta!';
+function ProfileLoginPage(props) {
+    var title = '';
+    var subtitle = '';
+
+    if(props.type === 'login'){
+        title = 'Login';
+        subtitle = 'Entre na sua conta!';
+    }else{
+        title = 'Criar usuário'
+        subtitle = 'Crie o seu usuario!';
+    }
+    
     return (
         <>
             <Navbar/>
             <PageTitle title={title}/>
             <PageSubtitle subtitle={subtitle}/>
-            <ProfileLoginForm/>
+            <ProfileLoginForm type={props.type}/>
         </>
     );
 }

@@ -25,7 +25,8 @@ function Rotas() {
                 <Route path="/privateChat/:id" component={PrivateChatPage}/>
                 <Route path="/editProfile/:id" component={() => <ProfileFormPage type='edit'/>}/>
                 <Route path="/createProfile" component={() => <ProfileFormPage type='create' />}/>
-                <Route path="/login" component={ProfileLoginPage}/>
+                <Route path="/signup" component={() => <ProfileLoginPage type='create' />}/>
+                <Route path="/login" component={() => <ProfileLoginPage type='login' />}/>
                 <Route path="/" exact component={InitialPage}/>
             </Switch>
         </Router>

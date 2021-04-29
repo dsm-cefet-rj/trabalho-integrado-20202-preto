@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {useHistory } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
 import { useForm } from "react-hook-form";
-import {loginServer} from '../../../store/reducers/loginReducer';
+import {loginServer, createUserServer} from '../../../store/reducers/loginReducer';
 import {Link} from 'react-router-dom';
 
 export default function LoginForm(props){
@@ -11,15 +11,30 @@ export default function LoginForm(props){
     const dispatch = useDispatch()
     const status = useSelector(state => state.logins.status);
 
-    const { register, handleSubmit, errors } = useForm(/*{
-            resolver: yupResolver(profileSchema)
-        }*/);
+    const { register, handleSubmit, errors } = useForm();
 
     function onSubmit(login){
-        console.log(login);
-        dispatch(loginServer(login));
+        if(props.type === 'login'){
+            dispatch(loginServer(login));
+        }else{
+            dispatch(createUserServer(login));
+            history.push(`/login`)
+        }
     }
 
+    //modificador das mensagens dos botões
+    const type = props.type;
+    var createButton = '';
+    var msgSubmitButton = '';
+    if (type === "login") {
+        createButton = 
+            <Link to="/signup">
+                <button type="button" className="button-line btn btn-outline-success mt-3 text-capitalize">Criar conta</button>
+            </Link>;
+        msgSubmitButton = "Entrar";
+    }else{
+        msgSubmitButton = "Criar";
+    }
 
     useEffect(() => {
         if (status === 'logged_in' ) {
@@ -46,11 +61,12 @@ export default function LoginForm(props){
                                 <div style={{color: "red"}}>{errors.password?.message}</div>
                             </div>
 
-                            <button type="submit" className="button-line btn btn-outline-dark mt-3 text-capitalize">Entrar</button>
+                            <button type="submit" className="button-line btn btn-outline-dark mt-3 text-capitalize">{msgSubmitButton}</button>
 
-                            <Link to="/inicio"> 
+                            <Link to="/"> 
                                 <button type="button" className="button-line btn btn-outline-danger mt-3 text-capitalize">Cancelar</button> 
                             </Link>
+                            {createButton}
                         </form>
                     </div>
                 </div>
