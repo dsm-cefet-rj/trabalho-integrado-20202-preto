@@ -10,7 +10,7 @@ var authenticate = require('../authenticate');
 
 /* GET users listing. */
 router.route('/')
-    .get(async (req, res, next) => {
+    .get(authenticate.verifyUser, async (req, res, next) => {
         console.log(req.user);
         try {
             const anunciosBanco = await Anuncios.find({}).maxTime(5000);
