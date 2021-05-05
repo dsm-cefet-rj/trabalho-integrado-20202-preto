@@ -1,0 +1,563 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Paw Friends",
+    "description": "API do Paw Friends, plataforma para adoção de animais."
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "User",
+      "description": "Rotas referentes a entidade users"
+    },
+    {
+      "name": "Anúncios",
+      "description": "Rotas referentes a entidade anúncio"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/users/signup": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/users/login": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/users/logout": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/anuncios/": {
+      "get": {
+        "tags": [
+          "Anúncios"
+        ],
+        "description": "Endpoint para obter todos os anuncios do banco.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "type": "object",
+            "description": "Objeto contendo todos os anuncios do banco",
+            "schema": {
+              "$ref": "#/definitions/ArrayAnuncios"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Anuncio"
+            },
+            "description": "Anuncios encontrados."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Anúncios"
+        ],
+        "description": "Endpoint para criar um novo anuncio no banco.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "type": "object",
+            "description": "Objeto contendo as informações do anuncio a serem escritas no banco",
+            "schema": {
+              "$ref": "#/definitions/Anuncio"
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/anuncios/{id}": {
+      "get": {
+        "tags": [
+          "Anúncios"
+        ],
+        "description": "Endpoint para encontrar e retornar anuncio no banco pelo seu ID.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID do anuncio."
+          },
+          {
+            "name": "res",
+            "in": "body",
+            "type": "object",
+            "description": "Objeto contendo as informações do anuncio desejado",
+            "schema": {
+              "$ref": "#/definitions/Anuncio"
+            }
+          }
+        ],
+        "responses": {}
+      },
+      "put": {
+        "tags": [
+          "Anúncios"
+        ],
+        "description": "Endpoint para encontrar e atualizar um anuncio no banco pelo seu ID.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID do anuncio."
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "type": "object",
+            "description": "Objeto contendo as informações do anuncio editado",
+            "schema": {
+              "$ref": "#/definitions/Anuncio"
+            }
+          }
+        ],
+        "responses": {}
+      },
+      "delete": {
+        "tags": [
+          "Anúncios"
+        ],
+        "description": "Endpoint para encontrar e excluir um anuncio no banco pelo seu ID.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID do anuncio."
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/profiles/": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {}
+      },
+      "post": {
+        "tags": [],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/profiles/{id}": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      },
+      "put": {
+        "tags": [],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      },
+      "delete": {
+        "tags": [],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/chats/": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {}
+      },
+      "post": {
+        "tags": [],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {}
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Jhon Doe"
+        },
+        "age": {
+          "type": "number",
+          "example": 29
+        },
+        "parents": {
+          "type": "object",
+          "properties": {
+            "father": {
+              "type": "string",
+              "example": "Simon Doe"
+            },
+            "mother": {
+              "type": "string",
+              "example": "Marie Doe"
+            }
+          }
+        },
+        "diplomas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "school": {
+                "type": "string",
+                "example": "XYZ University"
+              },
+              "year": {
+                "type": "number",
+                "example": 2020
+              },
+              "completed": {
+                "type": "boolean",
+                "example": true
+              },
+              "internship": {
+                "type": "object",
+                "properties": {
+                  "hours": {
+                    "type": "number",
+                    "example": 290
+                  },
+                  "location": {
+                    "type": "string",
+                    "example": "XYZ Company"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "AddUser": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "Jhon Doe"
+        },
+        "age": {
+          "type": "number",
+          "example": 29
+        },
+        "about": {
+          "type": "string",
+          "example": ""
+        }
+      },
+      "required": [
+        "name",
+        "age"
+      ]
+    },
+    "Anuncio": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "object",
+          "properties": {
+            "oid": {
+              "type": "string",
+              "example": "6078909e4cae7a39ec3be355"
+            }
+          },
+          "required": [
+            "oid"
+          ]
+        },
+        "usuario": {
+          "type": "string",
+          "example": "filipeshanom"
+        },
+        "cardDescricao": {
+          "type": "string",
+          "example": "Gatinho para adoção muito simpático."
+        },
+        "temperamento": {
+          "type": "string",
+          "example": "Tranquilo"
+        },
+        "img": {
+          "type": "string",
+          "example": "https://i2-prod.mirror.co.uk/incoming/article21142078.ece/ALTERNATES/s615/0_Stray-Cat.jpg"
+        },
+        "descricao": {
+          "type": "string",
+          "example": "Quero dar esse gato fofo para adoção pois não tenho recursos financeiros para cuidar dele. Ele é bem agitado, gosta de bater nas pessoas e provavelmente vai acabar com a sua casa. Mas ele é lindo. Olha pra essa cara fofa."
+        },
+        "idade": {
+          "type": "number",
+          "example": 2
+        },
+        "sexo": {
+          "type": "string",
+          "example": "Macho"
+        },
+        "raça": {
+          "type": "string",
+          "example": "Desconhecida"
+        },
+        "tipo": {
+          "type": "string",
+          "example": "Gato"
+        },
+        "nome": {
+          "type": "string",
+          "example": "Salvador"
+        },
+        "dataAnuncio": {
+          "type": "object",
+          "properties": {
+            "date": {
+              "type": "string",
+              "example": "2021-04-29T22:07:45.000Z"
+            }
+          },
+          "required": [
+            "date"
+          ]
+        },
+        "__v": {
+          "type": "number",
+          "example": 0
+        }
+      },
+      "required": [
+        "_id",
+        "usuario",
+        "cardDescricao",
+        "temperamento",
+        "img",
+        "descricao",
+        "idade",
+        "sexo",
+        "raça",
+        "tipo",
+        "nome",
+        "dataAnuncio",
+        "__v"
+      ]
+    },
+    "ArrayAnuncios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "object",
+            "properties": {
+              "oid": {
+                "type": "string",
+                "example": "607892064cae7a39ec3be357"
+              }
+            },
+            "required": [
+              "oid"
+            ]
+          },
+          "usuario": {
+            "type": "string",
+            "example": "gabs452"
+          },
+          "cardDescricao": {
+            "type": "string",
+            "example": "Golden filhote em niterói para adoção"
+          },
+          "temperamento": {
+            "type": "string",
+            "example": "Bagunceira"
+          },
+          "img": {
+            "type": "string",
+            "example": "https://i.pinimg.com/originals/0c/e8/cd/0ce8cddcbbb19d11199fa8ae2d81927f.jpg"
+          },
+          "descricao": {
+            "type": "string",
+            "example": " A Laurita é linda demais, adora crianças. Uma companheira para todas as horas!"
+          },
+          "idade": {
+            "type": "number",
+            "example": 1
+          },
+          "sexo": {
+            "type": "string",
+            "example": "Fêmea"
+          },
+          "raça": {
+            "type": "string",
+            "example": "Golden"
+          },
+          "tipo": {
+            "type": "string",
+            "example": "Cachorro"
+          },
+          "nome": {
+            "type": "string",
+            "example": "Laurita"
+          },
+          "dataAnuncio": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string",
+                "example": "2021-04-15T19:20:37.000Z"
+              }
+            },
+            "required": [
+              "date"
+            ]
+          },
+          "__v": {
+            "type": "number",
+            "example": 0
+          }
+        },
+        "required": [
+          "_id",
+          "usuario",
+          "cardDescricao",
+          "temperamento",
+          "img",
+          "descricao",
+          "idade",
+          "sexo",
+          "raça",
+          "tipo",
+          "nome",
+          "dataAnuncio",
+          "__v"
+        ]
+      }
+    }
+  }
+}

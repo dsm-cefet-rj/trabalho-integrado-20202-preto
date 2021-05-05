@@ -1,3 +1,4 @@
 node_modules/
 public/
 sessions/
+swagger_ouput.json/

@@ -7,6 +7,10 @@ var FileStore = require('session-file-store')(session);
 var passport = require('passport');
 var authenticate = require('./authenticate');
 
+//swagger
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./swagger_output.json')
+
 //routers
 var indexRouter = require('./routes/index');
 var anunciosRouter = require('./routes/anuncios');
@@ -27,15 +31,12 @@ connect.then((db) => {
 
 var app = express();
 
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
 app.use(passport.initialize());
-
-//app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
 app.use('/anuncios', anunciosRouter);
 app.use('/profiles', profilesRouter);
 app.use('/chats', chatsRouter);
