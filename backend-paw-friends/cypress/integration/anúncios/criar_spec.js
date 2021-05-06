@@ -11,7 +11,7 @@ describe('Criar anúncios', () => {
         cy.get('#IndexPageComponent > div.row.d-flex.justify-content-center.mt-4.mb-5 > div > div > div > form > button').contains('Entrar').click()
  
         //Criar
-        cy.wait(900)
+        cy.wait(2000)
         cy.get('#navbarTogglerDemo02 > ul > a:nth-child(5)').contains('Criar Anúncio').click()
         cy.wait(300)
         cy.get('#IndexPageComponent > div.row.d-flex.justify-content-center.mt-4.mb-5 > div > div > div > form > div:nth-child(1) > input').click().should('be.visible').type('Box')
@@ -35,7 +35,7 @@ describe('Criar anúncios', () => {
         cy.get('#IndexPageComponent > div.row.d-flex.justify-content-center.mt-4.mb-5 > div > div > div > form > div:nth-child(10) > input').click().should('be.visible').type('lipe')
         cy.wait(300)
         cy.get('#IndexPageComponent > div.row.d-flex.justify-content-center.mt-4.mb-5 > div > div > div > form > button').contains('Cadastrar Anúncio').click()
-        cy.wait(2000)
+        cy.wait(3000)
         cy.get('#IndexPageComponent > div.container-fluid.container-cards > div > div:nth-child(4) > div > div > a').click()
         })
     })
