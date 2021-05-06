@@ -27,6 +27,10 @@ const doc = {
         {
             "name": "Anúncios",
             "description": "Rotas referentes a entidade anúncio"
+        },
+        {
+            "name":"Chats",
+            "description":"Rotas referentes a entidade chats"
         }
     ],
     definitions: {
@@ -130,8 +134,31 @@ const doc = {
                     $date: "2021-04-15T19:20:37.000Z"
                 },
                 $__v: 0
-            }
+            },
         ],
+        Chat: {
+            $_id: {
+                $oid: "607890ff4cae7a39ec3be356"
+            },
+            $id_user: "607890ff4cae7a39ec3be356",
+            $msg_sent: "Opa, Boa noite"
+        },
+        ArrayChats: [
+            {
+                $_id: {
+                    $oid: "607890ff4cae7a39ec3be356"
+                },
+                $id_user: "607890ff4cae7a39ec3be356",
+                $msg_sent: "Opa, Boa noite"
+            },
+            {
+                $_id: {
+                    $oid: "607890ff4cae7a39ec3be350"
+                },
+                $id_user: "607890ff4cae7a39ec3be356",
+                $msg_sent: "Poderia me mandar algumas fotos do animalzinho?"
+            }
+        ]
         //inserir outros modelos aqui
     }
 }

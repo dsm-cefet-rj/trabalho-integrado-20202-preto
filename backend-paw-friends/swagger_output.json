@@ -15,6 +15,10 @@
     {
       "name": "Anúncios",
       "description": "Rotas referentes a entidade anúncio"
+    },
+    {
+      "name": "Chats",
+      "description": "Rotas referentes a entidade chats"
     }
   ],
   "schemes": [
@@ -280,21 +284,52 @@
     },
     "/chats/": {
       "get": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "Chats"
+        ],
+        "description": "Endpoint para obter todos os chats do banco.",
         "produces": [
           "application/json"
         ],
-        "parameters": [],
-        "responses": {}
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "type": "object",
+            "description": "Objeto contendo todos os chats do banco",
+            "schema": {
+              "$ref": "#/definitions/ArrayChats"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Chat"
+            },
+            "description": "Chats encontrados."
+          }
+        }
       },
       "post": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "Chats"
+        ],
+        "description": "Endpoint para adicionar uma mensagem no banco.",
         "produces": [
           "application/json"
         ],
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "type": "object",
+            "description": "Objeto contendo as informações da mensagem a serem escritas no banco",
+            "schema": {
+              "$ref": "#/definitions/Chat"
+            }
+          }
+        ],
         "responses": {}
       }
     }
@@ -556,6 +591,69 @@
           "nome",
           "dataAnuncio",
           "__v"
+        ]
+      }
+    },
+    "Chat": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "object",
+          "properties": {
+            "oid": {
+              "type": "string",
+              "example": "607890ff4cae7a39ec3be356"
+            }
+          },
+          "required": [
+            "oid"
+          ]
+        },
+        "id_user": {
+          "type": "string",
+          "example": "607890ff4cae7a39ec3be356"
+        },
+        "msg_sent": {
+          "type": "string",
+          "example": "Opa, Boa noite"
+        }
+      },
+      "required": [
+        "_id",
+        "id_user",
+        "msg_sent"
+      ]
+    },
+    "ArrayChats": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "object",
+            "properties": {
+              "oid": {
+                "type": "string",
+                "example": "607890ff4cae7a39ec3be350"
+              }
+            },
+            "required": [
+              "oid"
+            ]
+          },
+          "id_user": {
+            "type": "string",
+            "example": "607890ff4cae7a39ec3be356"
+          },
+          "msg_sent": {
+            "type": "string",
+            "example": "Poderia me mandar algumas fotos do animalzinho?"
+          }
+        },
+        "required": [
+          "_id",
+          "id_user",
+          "msg_sent"
         ]
       }
     }
