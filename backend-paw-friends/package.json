@@ -20,7 +20,8 @@
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.1.0",
-    "session-file-store": "^1.5.0"
+    "session-file-store": "^1.5.0",
+    "swagger": "^0.7.5"
   },
   "devDependencies": {
     "cypress": "^7.2.0",

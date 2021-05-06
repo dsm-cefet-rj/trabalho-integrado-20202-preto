@@ -26,6 +26,10 @@ const doc = {
         {
             "name": "Anúncios",
             "description": "Rotas referentes a entidade anúncio"
+        },
+        {
+            "name":"Chats",
+            "description":"Rotas referentes a entidade chats"
         }
     ],
     definitions: {
@@ -72,6 +76,16 @@ const doc = {
                 "nome": "Laurita",
                 "dataAnuncio": "2021-04-15T19:20:37.000Z"
         },
+        Chat: {
+            "id_user": "607890ff4cae7a39ec3be356",
+            "msg_sent": "Opa, Boa noite"
+        },
+        Chats: [
+            {
+                "id_user": "607890ff4cae7a39ec3be356",
+                "msg_sent": "Poderia me mandar algumas fotos do animalzinho?"
+            }
+        ],
         //inserir outros modelos aqui
     }
 }
