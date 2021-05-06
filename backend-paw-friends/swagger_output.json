@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.0",
+  "swagger": "2.0",
   "info": {
     "version": "1.0.0",
     "title": "Paw Friends",
@@ -95,21 +95,27 @@
         ],
         "parameters": [
           {
-            "name": "obj",
+            "name": "anuncios",
             "in": "body",
             "type": "object",
-            "description": "Objeto contendo todos os anuncios do banco",
+            "description": "Array de objetos contendo todos os anuncios do site",
             "schema": {
-              "$ref": "#/definitions/ArrayAnuncios"
+              "$ref": "#/definitions/Anuncios"
             }
           }
         ],
         "responses": {
-          "200": {
+          "304": {
             "schema": {
-              "$ref": "#/definitions/Anuncio"
+              "$ref": "#/definitions/Anuncios"
             },
             "description": "Anuncios encontrados."
+          },
+          "401": {
+            "description": "Não autorizado. Precisa efetuar login."
+          },
+          "500": {
+            "description": "Server ou banco fora do ar."
           }
         }
       },
@@ -123,7 +129,7 @@
         ],
         "parameters": [
           {
-            "name": "obj",
+            "name": "anuncios",
             "in": "body",
             "type": "object",
             "description": "Objeto contendo as informações do anuncio a serem escritas no banco",
@@ -132,7 +138,17 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Anuncio criado."
+          },
+          "401": {
+            "description": "Não autorizado. Precisa efetuar login."
+          },
+          "500": {
+            "description": "Server ou banco fora do ar."
+          }
+        }
       }
     },
     "/anuncios/{id}": {
@@ -162,7 +178,20 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Anuncio"
+            },
+            "description": "Anuncio existe e é retornado."
+          },
+          "401": {
+            "description": "Não autorizado. Precisa efetuar login."
+          },
+          "500": {
+            "description": "Server ou banco fora do ar."
+          }
+        }
       },
       "put": {
         "tags": [
@@ -186,11 +215,24 @@
             "type": "object",
             "description": "Objeto contendo as informações do anuncio editado",
             "schema": {
-              "$ref": "#/definitions/Anuncio"
+              "$ref": "#/definitions/AnuncioPut"
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/AnuncioPut"
+            },
+            "description": "Anuncio editado."
+          },
+          "401": {
+            "description": "Não autorizado. Precisa efetuar login."
+          },
+          "500": {
+            "description": "Server ou banco fora do ar."
+          }
+        }
       },
       "delete": {
         "tags": [
@@ -209,7 +251,17 @@
             "description": "ID do anuncio."
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Anuncio deletado."
+          },
+          "401": {
+            "description": "Não autorizado. Precisa efetuar login."
+          },
+          "500": {
+            "description": "Server ou banco fora do ar."
+          }
+        }
       }
     },
     "/profiles/": {
@@ -287,27 +339,30 @@
         "tags": [
           "Chats"
         ],
-        "description": "Endpoint para obter todos os chats do banco.",
+        "description": "Endpoint para obter todos os chats do site.",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
-            "name": "obj",
+            "name": "chats",
             "in": "body",
             "type": "object",
-            "description": "Objeto contendo todos os chats do banco",
+            "description": "Objeto contendo todos os chats do site",
             "schema": {
-              "$ref": "#/definitions/ArrayChats"
+              "$ref": "#/definitions/Chats"
             }
           }
         ],
         "responses": {
           "200": {
-            "schema": {
-              "$ref": "#/definitions/Chat"
-            },
             "description": "Chats encontrados."
+          },
+          "401": {
+            "description": "Não autorizado. Precisa efetuar login."
+          },
+          "500": {
+            "description": "Server ou banco fora do ar."
           }
         }
       },
@@ -330,285 +385,182 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Chats encontrados."
+          },
+          "401": {
+            "description": "Não autorizado. Precisa efetuar login."
+          },
+          "500": {
+            "description": "Server ou banco fora do ar."
+          }
+        }
       }
     }
   },
   "definitions": {
-    "User": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "example": "Jhon Doe"
-        },
-        "age": {
-          "type": "number",
-          "example": 29
-        },
-        "parents": {
-          "type": "object",
-          "properties": {
-            "father": {
-              "type": "string",
-              "example": "Simon Doe"
-            },
-            "mother": {
-              "type": "string",
-              "example": "Marie Doe"
-            }
-          }
-        },
-        "diplomas": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "school": {
-                "type": "string",
-                "example": "XYZ University"
-              },
-              "year": {
-                "type": "number",
-                "example": 2020
-              },
-              "completed": {
-                "type": "boolean",
-                "example": true
-              },
-              "internship": {
-                "type": "object",
-                "properties": {
-                  "hours": {
-                    "type": "number",
-                    "example": 290
-                  },
-                  "location": {
-                    "type": "string",
-                    "example": "XYZ Company"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "AddUser": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "example": "Jhon Doe"
-        },
-        "age": {
-          "type": "number",
-          "example": 29
-        },
-        "about": {
-          "type": "string",
-          "example": ""
-        }
-      },
-      "required": [
-        "name",
-        "age"
-      ]
-    },
-    "Anuncio": {
-      "type": "object",
-      "properties": {
-        "_id": {
-          "type": "object",
-          "properties": {
-            "oid": {
-              "type": "string",
-              "example": "6078909e4cae7a39ec3be355"
-            }
-          },
-          "required": [
-            "oid"
-          ]
-        },
-        "usuario": {
-          "type": "string",
-          "example": "filipeshanom"
-        },
-        "cardDescricao": {
-          "type": "string",
-          "example": "Gatinho para adoção muito simpático."
-        },
-        "temperamento": {
-          "type": "string",
-          "example": "Tranquilo"
-        },
-        "img": {
-          "type": "string",
-          "example": "https://i2-prod.mirror.co.uk/incoming/article21142078.ece/ALTERNATES/s615/0_Stray-Cat.jpg"
-        },
-        "descricao": {
-          "type": "string",
-          "example": "Quero dar esse gato fofo para adoção pois não tenho recursos financeiros para cuidar dele. Ele é bem agitado, gosta de bater nas pessoas e provavelmente vai acabar com a sua casa. Mas ele é lindo. Olha pra essa cara fofa."
-        },
-        "idade": {
-          "type": "number",
-          "example": 2
-        },
-        "sexo": {
-          "type": "string",
-          "example": "Macho"
-        },
-        "raça": {
-          "type": "string",
-          "example": "Desconhecida"
-        },
-        "tipo": {
-          "type": "string",
-          "example": "Gato"
-        },
-        "nome": {
-          "type": "string",
-          "example": "Salvador"
-        },
-        "dataAnuncio": {
-          "type": "object",
-          "properties": {
-            "date": {
-              "type": "string",
-              "example": "2021-04-29T22:07:45.000Z"
-            }
-          },
-          "required": [
-            "date"
-          ]
-        },
-        "__v": {
-          "type": "number",
-          "example": 0
-        }
-      },
-      "required": [
-        "_id",
-        "usuario",
-        "cardDescricao",
-        "temperamento",
-        "img",
-        "descricao",
-        "idade",
-        "sexo",
-        "raça",
-        "tipo",
-        "nome",
-        "dataAnuncio",
-        "__v"
-      ]
-    },
-    "ArrayAnuncios": {
+    "Anuncios": {
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
-          "_id": {
-            "type": "object",
-            "properties": {
-              "oid": {
-                "type": "string",
-                "example": "607892064cae7a39ec3be357"
-              }
-            },
-            "required": [
-              "oid"
-            ]
-          },
           "usuario": {
             "type": "string",
-            "example": "gabs452"
+            "example": "filipeshanom"
           },
           "cardDescricao": {
             "type": "string",
-            "example": "Golden filhote em niterói para adoção"
+            "example": "Gatinho para adoção muito simpático."
           },
           "temperamento": {
             "type": "string",
-            "example": "Bagunceira"
+            "example": "Tranquilo"
           },
           "img": {
             "type": "string",
-            "example": "https://i.pinimg.com/originals/0c/e8/cd/0ce8cddcbbb19d11199fa8ae2d81927f.jpg"
+            "example": "https://i2-prod.mirror.co.uk/incoming/article21142078.ece/ALTERNATES/s615/0_Stray-Cat.jpg"
           },
           "descricao": {
             "type": "string",
-            "example": " A Laurita é linda demais, adora crianças. Uma companheira para todas as horas!"
+            "example": "Quero dar esse gato fofo para adoção pois não tenho recursos financeiros para cuidar dele. Ele é bem agitado, gosta de bater nas pessoas e provavelmente vai acabar com a sua casa. Mas ele é lindo. Olha pra essa cara fofa."
           },
           "idade": {
             "type": "number",
-            "example": 1
+            "example": 2
           },
           "sexo": {
             "type": "string",
-            "example": "Fêmea"
+            "example": "Macho"
           },
           "raça": {
             "type": "string",
-            "example": "Golden"
+            "example": "Desconhecida"
           },
           "tipo": {
             "type": "string",
-            "example": "Cachorro"
+            "example": "Gato"
           },
           "nome": {
             "type": "string",
-            "example": "Laurita"
+            "example": "Salvador"
           },
           "dataAnuncio": {
-            "type": "object",
-            "properties": {
-              "date": {
-                "type": "string",
-                "example": "2021-04-15T19:20:37.000Z"
-              }
-            },
-            "required": [
-              "date"
-            ]
+            "type": "string",
+            "example": "2021-04-29T22:07:45.000Z"
           },
-          "__v": {
-            "type": "number",
-            "example": 0
+          "id": {
+            "type": "string",
+            "example": "6078909e4cae7a39ec3be355"
           }
+        }
+      }
+    },
+    "Anuncio": {
+      "type": "object",
+      "properties": {
+        "usuario": {
+          "type": "string",
+          "example": "gabs452"
         },
-        "required": [
-          "_id",
-          "usuario",
-          "cardDescricao",
-          "temperamento",
-          "img",
-          "descricao",
-          "idade",
-          "sexo",
-          "raça",
-          "tipo",
-          "nome",
-          "dataAnuncio",
-          "__v"
-        ]
+        "cardDescricao": {
+          "type": "string",
+          "example": "Golden filhote em niterói para adoção"
+        },
+        "temperamento": {
+          "type": "string",
+          "example": "Bagunceira"
+        },
+        "img": {
+          "type": "string",
+          "example": "https://i.pinimg.com/originals/0c/e8/cd/0ce8cddcbbb19d11199fa8ae2d81927f.jpg"
+        },
+        "descricao": {
+          "type": "string",
+          "example": "A Laurita é linda demais, adora crianças. Uma companheira para todas as horas!"
+        },
+        "idade": {
+          "type": "number",
+          "example": 1
+        },
+        "sexo": {
+          "type": "string",
+          "example": "Fêmea"
+        },
+        "raça": {
+          "type": "string",
+          "example": "Golden"
+        },
+        "tipo": {
+          "type": "string",
+          "example": "Cachorro"
+        },
+        "nome": {
+          "type": "string",
+          "example": "Laurita"
+        },
+        "dataAnuncio": {
+          "type": "string",
+          "example": "2021-04-15T19:20:37.000Z"
+        },
+        "id": {
+          "type": "string",
+          "example": "607892064cae7a39ec3be357"
+        }
+      }
+    },
+    "AnuncioPut": {
+      "type": "object",
+      "properties": {
+        "usuario": {
+          "type": "string",
+          "example": "gabs452"
+        },
+        "cardDescricao": {
+          "type": "string",
+          "example": "Golden filhote em niterói para adoção"
+        },
+        "temperamento": {
+          "type": "string",
+          "example": "Bagunceira"
+        },
+        "img": {
+          "type": "string",
+          "example": "https://i.pinimg.com/originals/0c/e8/cd/0ce8cddcbbb19d11199fa8ae2d81927f.jpg"
+        },
+        "descricao": {
+          "type": "string",
+          "example": "A Laurita é linda demais, adora crianças. Uma companheira para todas as horas!"
+        },
+        "idade": {
+          "type": "number",
+          "example": 1
+        },
+        "sexo": {
+          "type": "string",
+          "example": "Fêmea"
+        },
+        "raça": {
+          "type": "string",
+          "example": "Golden"
+        },
+        "tipo": {
+          "type": "string",
+          "example": "Cachorro"
+        },
+        "nome": {
+          "type": "string",
+          "example": "Laurita"
+        },
+        "dataAnuncio": {
+          "type": "string",
+          "example": "2021-04-15T19:20:37.000Z"
+        }
       }
     },
     "Chat": {
       "type": "object",
       "properties": {
-        "_id": {
-          "type": "object",
-          "properties": {
-            "oid": {
-              "type": "string",
-              "example": "607890ff4cae7a39ec3be356"
-            }
-          },
-          "required": [
-            "oid"
-          ]
-        },
         "id_user": {
           "type": "string",
           "example": "607890ff4cae7a39ec3be356"
@@ -617,30 +569,13 @@
           "type": "string",
           "example": "Opa, Boa noite"
         }
-      },
-      "required": [
-        "_id",
-        "id_user",
-        "msg_sent"
-      ]
+      }
     },
-    "ArrayChats": {
+    "Chats": {
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
-          "_id": {
-            "type": "object",
-            "properties": {
-              "oid": {
-                "type": "string",
-                "example": "607890ff4cae7a39ec3be350"
-              }
-            },
-            "required": [
-              "oid"
-            ]
-          },
           "id_user": {
             "type": "string",
             "example": "607890ff4cae7a39ec3be356"
@@ -649,12 +584,7 @@
             "type": "string",
             "example": "Poderia me mandar algumas fotos do animalzinho?"
           }
-        },
-        "required": [
-          "_id",
-          "id_user",
-          "msg_sent"
-        ]
+        }
       }
     }
   }

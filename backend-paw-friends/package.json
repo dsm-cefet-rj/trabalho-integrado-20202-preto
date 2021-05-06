@@ -24,6 +24,7 @@
     "swagger": "^0.7.5"
   },
   "devDependencies": {
+    "cypress": "^7.2.0",
     "swagger-autogen": "^2.8.1",
     "swagger-ui-express": "^4.1.6"
   }
