@@ -60,17 +60,17 @@ const doc = {
                 "id": "607892064cae7a39ec3be357"
         },
         AnuncioPut: {
-            "usuario": "gabs452",
-            "cardDescricao": "Golden filhote em niterói para adoção",
-            "temperamento": "Bagunceira",
-            "img": "https://i.pinimg.com/originals/0c/e8/cd/0ce8cddcbbb19d11199fa8ae2d81927f.jpg",
-            "descricao": "A Laurita é linda demais, adora crianças. Uma companheira para todas as horas!",
-            "idade": 1,
-            "sexo": "Fêmea",
-            "raça": "Golden",
-            "tipo": "Cachorro",
-            "nome": "Laurita",
-            "dataAnuncio": "2021-04-15T19:20:37.000Z"
+                "usuario": "gabs452",
+                "cardDescricao": "Golden filhote em niterói para adoção",
+                "temperamento": "Bagunceira",
+                "img": "https://i.pinimg.com/originals/0c/e8/cd/0ce8cddcbbb19d11199fa8ae2d81927f.jpg",
+                "descricao": "A Laurita é linda demais, adora crianças. Uma companheira para todas as horas!",
+                "idade": 1,
+                "sexo": "Fêmea",
+                "raça": "Golden",
+                "tipo": "Cachorro",
+                "nome": "Laurita",
+                "dataAnuncio": "2021-04-15T19:20:37.000Z"
         },
         //inserir outros modelos aqui
     }
