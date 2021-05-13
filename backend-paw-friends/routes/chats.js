@@ -70,4 +70,32 @@ router.route('/')
     })
 
 
+
+
+router.route('/:id')
+    .delete(authenticate.verifyUser, (req, res, next) => {
+        /*
+            #swagger.tags = ['Chats']
+            #swagger.description = 'Endpoint para encontrar e excluir um chat no banco pelo seu ID.'
+            #swagger.parameters['id'] = { description: 'ID do chat.' }
+
+            #swagger.responses[200] = { 
+                description: 'Chat deletado.' 
+            } 
+            #swagger.responses[401] = { 
+                description: 'Não autorizado. Precisa efetuar login.' 
+            },
+            #swagger.responses[500] = { 
+                description: 'Server ou banco fora do ar.' 
+            } 
+        */
+        Chats.findByIdAndRemove(req.params.id)
+            .then((resp) => {
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(resp.id);
+            }, (err) => next(err))
+            .catch((err) => next(err));
+    })
+
 module.exports = router;

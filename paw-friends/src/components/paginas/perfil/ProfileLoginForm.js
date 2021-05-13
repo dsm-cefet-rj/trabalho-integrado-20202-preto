@@ -40,7 +40,7 @@ export default function LoginForm(props){
         if (status === 'logged_in' ) {
             history.push('/index');
         }
-    }, [status])
+    }, [history, status])
 
     return (
         <div className="row d-flex justify-content-center mt-4 mb-5">

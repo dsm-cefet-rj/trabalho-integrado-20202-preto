@@ -1,1 +1,7 @@
+<<<<<<< HEAD
 {}
+=======
+{
+    "baseUrl": "http://localhost:3000"
+}
+>>>>>>> cea9fb1a2e9d0c6e7185e3fec27dc9b0ae887673

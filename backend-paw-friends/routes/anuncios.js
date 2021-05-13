@@ -17,7 +17,7 @@ router.route('/')
                 schema: {$ref: "#/definitions/Anuncios"}
             } 
         
-            #swagger.responses[304] = { 
+            #swagger.responses[200] = { 
                 schema: { $ref: "#/definitions/Anuncios" },
                 description: 'Anuncios encontrados.' 
             } 
