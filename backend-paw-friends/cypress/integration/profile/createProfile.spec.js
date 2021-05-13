@@ -43,7 +43,7 @@ describe('Cypress dos profiles', () => {
         cy.wait(400)
         cy.get('[name=senha]').clear().type('teste123');
         cy.wait(400)
-        cy.get('[name=img]').clear().type('https://www.tupi.fm/wp-content/uploads/51175344166_747830582c_c.jpg');
+        cy.get('[name=img]').clear().type('https://www.netflu.com.br/wp-content/uploads/2016/06/2-5.jpg');
         cy.wait(400)
         cy.get('[type=submit]').click();
         cy.wait(2000)

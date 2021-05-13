@@ -22,7 +22,7 @@ function Navbar() {
                                 Inicio
                             </li>
                         </Link>
-                        <Link to="/profiles/609d9a635b1b3120b067cbb6" style={{textDecoration: 'none'}} >
+                        <Link to="/profiles/609d9a355b1b3120b067cbb4" style={{textDecoration: 'none'}} >
                             <li className="nav-item nav-link">
                                 Sua conta
                             </li>
