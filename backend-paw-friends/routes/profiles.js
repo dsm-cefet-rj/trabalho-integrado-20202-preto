@@ -17,7 +17,7 @@ router.route('/')
       description: "Array de objetos contendo todos os profiles do site.",
       schema: {$ref: "#/definitions/Profiles"}
     } 
-    #swagger.responses[304] = { 
+    #swagger.responses[200] = { 
       schema: { $ref: "#/definitions/Profiles" },
       description: 'Profiles encontrados.' 
     } 
