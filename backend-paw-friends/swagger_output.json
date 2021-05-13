@@ -511,6 +511,37 @@
           }
         }
       }
+    },
+    "/chats/{id}": {
+      "delete": {
+        "tags": [
+          "Chats"
+        ],
+        "description": "Endpoint para encontrar e excluir um chat no banco pelo seu ID.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID do chat."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Chat deletado."
+          },
+          "401": {
+            "description": "Não autorizado. Precisa efetuar login."
+          },
+          "500": {
+            "description": "Server ou banco fora do ar."
+          }
+        }
+      }
     }
   },
   "definitions": {
