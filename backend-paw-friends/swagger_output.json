@@ -19,6 +19,10 @@
     {
       "name": "Chats",
       "description": "Rotas referentes a entidade chats"
+    },
+    {
+      "name": "Profiles",
+      "description": "Rotas referentes a entidade profiles"
     }
   ],
   "schemes": [
@@ -105,7 +109,7 @@
           }
         ],
         "responses": {
-          "304": {
+          "200": {
             "schema": {
               "$ref": "#/definitions/Anuncios"
             },
@@ -266,28 +270,77 @@
     },
     "/profiles/": {
       "get": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "Profiles"
+        ],
+        "description": "Endpoint para obter todos os profiles do banco.",
         "produces": [
           "application/json"
         ],
-        "parameters": [],
-        "responses": {}
+        "parameters": [
+          {
+            "name": "profiles",
+            "in": "body",
+            "type": "object",
+            "description": "Array de objetos contendo todos os profiles do site.",
+            "schema": {
+              "$ref": "#/definitions/Profiles"
+            }
+          }
+        ],
+        "responses": {
+          "304": {
+            "schema": {
+              "$ref": "#/definitions/Profiles"
+            },
+            "description": "Profiles encontrados."
+          },
+          "401": {
+            "description": "Não autorizado. Precisa efetuar login."
+          },
+          "500": {
+            "description": "Server ou banco fora do ar."
+          }
+        }
       },
       "post": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "Profiles"
+        ],
+        "description": "Endpoint para criar um novo profile no banco.",
         "produces": [
           "application/json"
         ],
-        "parameters": [],
-        "responses": {}
+        "parameters": [
+          {
+            "name": "profiles",
+            "in": "body",
+            "type": "object",
+            "description": "Objeto contendo as informações do profile a serem escritas no banco",
+            "schema": {
+              "$ref": "#/definitions/Profile"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Profile criado."
+          },
+          "401": {
+            "description": "Não autorizado. Precisa efetuar login."
+          },
+          "500": {
+            "description": "Server ou banco fora do ar."
+          }
+        }
       }
     },
     "/profiles/{id}": {
       "get": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "Profiles"
+        ],
+        "description": "Endpoint para encontrar e retornar profile no banco pelo seu ID.",
         "produces": [
           "application/json"
         ],
@@ -296,14 +349,39 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "ID do profile."
+          },
+          {
+            "name": "res",
+            "in": "body",
+            "type": "object",
+            "description": "Objeto contendo as informações do profile desejado",
+            "schema": {
+              "$ref": "#/definitions/Profile"
+            }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Profile"
+            },
+            "description": "Profile existe e é retornado."
+          },
+          "401": {
+            "description": "Não autorizado. Precisa efetuar login."
+          },
+          "500": {
+            "description": "Server ou banco fora do ar."
+          }
+        }
       },
       "put": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "Profiles"
+        ],
+        "description": "Endpoint para encontrar e atualizar um profile no banco pelo seu ID.",
         "produces": [
           "application/json"
         ],
@@ -312,14 +390,39 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "ID do profile."
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "type": "object",
+            "description": "Objeto contendo as informações do Profile editado",
+            "schema": {
+              "$ref": "#/definitions/ProfilePut"
+            }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/ProfilePut"
+            },
+            "description": "Profile editado."
+          },
+          "401": {
+            "description": "Não autorizado. Precisa efetuar login."
+          },
+          "500": {
+            "description": "Server ou banco fora do ar."
+          }
+        }
       },
       "delete": {
-        "tags": [],
-        "description": "",
+        "tags": [
+          "Profiles"
+        ],
+        "description": "Endpoint para encontrar e excluir um profile no banco pelo seu ID.",
         "produces": [
           "application/json"
         ],
@@ -328,10 +431,21 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "ID do profile."
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Profile deletado."
+          },
+          "401": {
+            "description": "Não autorizado. Precisa efetuar login."
+          },
+          "500": {
+            "description": "Server ou banco fora do ar."
+          }
+        }
       }
     },
     "/chats/": {
@@ -584,6 +698,144 @@
             "type": "string",
             "example": "Poderia me mandar algumas fotos do animalzinho?"
           }
+        }
+      }
+    },
+    "Profiles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "senha": {
+            "type": "string",
+            "example": "usupass"
+          },
+          "cidade": {
+            "type": "string",
+            "example": "teste1"
+          },
+          "cep": {
+            "type": "number",
+            "example": 12345678
+          },
+          "cpf": {
+            "type": "number",
+            "example": 12345678900
+          },
+          "telefone": {
+            "type": "number",
+            "example": 21912345678
+          },
+          "email": {
+            "type": "string",
+            "example": "usu1@email.com"
+          },
+          "sobrenome": {
+            "type": "string",
+            "example": "teste1"
+          },
+          "nome": {
+            "type": "string",
+            "example": "usuario1"
+          },
+          "user": {
+            "type": "string",
+            "example": "usuario1_teste"
+          },
+          "img": {
+            "type": "string",
+            "example": "https://static-25.sinclairstoryline.com/resources/media/3f1ef009-5f3d-4be8-6f0e-6ab0862f00b5-largeScale_KendallBartley2020_webphoto320x4201.png?1603404656511"
+          }
+        }
+      }
+    },
+    "Profile": {
+      "type": "object",
+      "properties": {
+        "senha": {
+          "type": "string",
+          "example": "usupass"
+        },
+        "cidade": {
+          "type": "string",
+          "example": "teste2"
+        },
+        "cep": {
+          "type": "number",
+          "example": 12345678
+        },
+        "cpf": {
+          "type": "number",
+          "example": 12345678900
+        },
+        "telefone": {
+          "type": "number",
+          "example": 21912345678
+        },
+        "email": {
+          "type": "string",
+          "example": "usu2@email.com"
+        },
+        "sobrenome": {
+          "type": "string",
+          "example": "teste2"
+        },
+        "nome": {
+          "type": "string",
+          "example": "usuario2"
+        },
+        "user": {
+          "type": "string",
+          "example": "usuario2_teste"
+        },
+        "img": {
+          "type": "string",
+          "example": "https://static-25.sinclairstoryline.com/resources/media/3f1ef009-5f3d-4be8-6f0e-6ab0862f00b5-largeScale_KendallBartley2020_webphoto320x4201.png?1603404656511"
+        }
+      }
+    },
+    "ProfilePut": {
+      "type": "object",
+      "properties": {
+        "senha": {
+          "type": "string",
+          "example": "usupass"
+        },
+        "cidade": {
+          "type": "string",
+          "example": "teste3"
+        },
+        "cep": {
+          "type": "number",
+          "example": 12345678
+        },
+        "cpf": {
+          "type": "number",
+          "example": 12345678900
+        },
+        "telefone": {
+          "type": "number",
+          "example": 21912345678
+        },
+        "email": {
+          "type": "string",
+          "example": "usu3@email.com"
+        },
+        "sobrenome": {
+          "type": "string",
+          "example": "teste3"
+        },
+        "nome": {
+          "type": "string",
+          "example": "usuario3"
+        },
+        "user": {
+          "type": "string",
+          "example": "usuario3_teste"
+        },
+        "img": {
+          "type": "string",
+          "example": "https://static-25.sinclairstoryline.com/resources/media/3f1ef009-5f3d-4be8-6f0e-6ab0862f00b5-largeScale_KendallBartley2020_webphoto320x4201.png?1603404656511"
         }
       }
     }
