@@ -29,7 +29,7 @@ export default function LoginForm(props){
     if (type === "login") {
         createButton = 
             <Link to="/signup">
-                <button type="button" className="button-line btn btn-outline-success mt-3 text-capitalize">Criar conta</button>
+                <button type="button" name="CreateAccount" className="button-line btn btn-outline-success mt-3 text-capitalize">Criar conta</button>
             </Link>;
         msgSubmitButton = "Entrar";
     }else{

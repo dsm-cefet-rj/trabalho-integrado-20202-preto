@@ -22,7 +22,7 @@ function Navbar() {
                                 Inicio
                             </li>
                         </Link>
-                        <Link to="/profiles/608af1bd5641fe4be8696fbb" style={{textDecoration: 'none'}} >
+                        <Link to="/profiles/609d9a635b1b3120b067cbb6" style={{textDecoration: 'none'}} >
                             <li className="nav-item nav-link">
                                 Sua conta
                             </li>
@@ -40,6 +40,11 @@ function Navbar() {
                         <Link to="/criarAnuncio" style={{textDecoration: 'none'}}>
                             <li className="nav-item nav-link">
                                 Criar Anúncio
+                            </li>
+                        </Link>
+                        <Link to="/createProfile" style={{textDecoration: 'none'}}>
+                            <li name="CreateProfileButton" className="nav-item nav-link">
+                                Criar Perfil
                             </li>
                         </Link>
                         <li className="nav-item nav-link">
