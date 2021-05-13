@@ -1,8 +1,13 @@
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { deleteAnuncioServer } from "../../../store/reducers/anunciosReducer";
+import { deleteChatServer } from "../../../store/reducers/chatReducer";
 import PageTitle from "../../layouts/PageTitle";
 
 function AnimalCard(props) {
     let anuncio = props.anuncio;
+    let chats = props.chats;
+    const dispatch = useDispatch();
 
     //segura o componente vazio até o estado mudar
     if (anuncio === undefined) {
@@ -12,6 +17,25 @@ function AnimalCard(props) {
     //cast da data de string para Date obj
     var dataStr = anuncio.dataAnuncio;
     const dataObj = new Date(dataStr);
+
+    //Definindo vetor com ids referentes ao chat do anuncio
+    let chatsdoanuncio = chats.filter(state => state.id_user === anuncio.id );
+    var idsdoschats = chatsdoanuncio.map (state => state.id)
+    console.log(idsdoschats);
+
+    //função de exclusão dos chats e anuncios
+    function handleDeleteChats (id) {
+        dispatch(deleteChatServer(id))
+    };
+
+    function handleDeleteAnuncio(id){
+        dispatch(deleteAnuncioServer(id));
+    };
+
+    function handleDeleteCorrespondente () {
+        handleDeleteAnuncio(anuncio.id);
+        idsdoschats.forEach(handleDeleteChats);
+    }
 
     return (
         <div className="row d-flex justify-content-center mt-4 mb-5">
@@ -53,7 +77,7 @@ function AnimalCard(props) {
                                     <button className="btn btn-outline-dark m-2">Editar</button>
                                 </Link>
                                 <Link to='/index'>
-                                    <button className="btn btn-outline-danger m-2" onClick={() => props.handleDeleteAnuncio(anuncio.id)}>Deletar</button>
+                                    <button className="btn btn-outline-danger m-2" onClick={handleDeleteCorrespondente}>Deletar</button>
                                 </Link>
                                 <Link to='/index'>
                                     <button className="btn btn-outline-success m-2">Finalizar Adoção</button>
